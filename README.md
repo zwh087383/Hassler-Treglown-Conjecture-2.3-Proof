@@ -1,4 +1,6 @@
-# Counting maximal sum-free sets in $\mathbb F_5^k$
+# Hassler–Treglown 猜想 2.3 的证明
+
+*Proof of Hassler and Treglown’s Conjecture 2.3 on maximal sum-free sets in $\mathbb F_5^k$.*
 
 设 $n=5^k$。在 $\mathbb F_5^k$ 中，按包含关系极大的无和集个数满足
 

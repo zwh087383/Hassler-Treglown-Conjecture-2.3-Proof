@@ -1,0 +1,295 @@
+FINAL GLOBAL BRIDGE: INDEPENDENT AUDIT AND SELF-CONTAINED ASSEMBLY
+================================================================
+
+Status: complete joint proof. The local theorem (GB), every generic four-layer
+block has at most 3^q maximal independent sets, is established in
+global_final_coverage.txt. Its zero-containing part is assembled in
+global_zero_layer_generic_theorem.txt. Its no-zero part is exhausted by
+matrix_nozero_remaining.txt, with the final types A/C proved in
+root_entropy_ac_proof.txt and type B in matrix_typeB_entropy_proof.txt,
+including Section 7 for all ranks. The final entropy certificates have
+completed independent cross-review. The global conclusion below is therefore
+unconditional within this joint proof. No new Lean verification, external
+refereeing, or publication-level novelty certification is claimed here.
+
+Notation. G=F_5^k, n=5^k, H=F_5^(k-1), h=|H|, and
+B={2,3} x H. Thus |B|=N=2h=2n/5. A sum-free set has no solution x+y=z,
+including repeated entries. For disjoint sum-free sets B,S, the looped link
+L_S[B] has ordinary edges xy when x+y is in S or x-y is in S or y-x is in S;
+it has a loop at x precisely when S union {x} is not sum-free. Independent
+sets in this graph are exactly those I subset B for which S union I is
+sum-free. Write mis for the number of inclusion-maximal independent sets.
+
+1. Elementary monotonicity used in this proof
+--------------------------------------------
+
+If J is an induced subgraph of a simple finite graph F, then mis(J)<=mis(F).
+Indeed, extend each maximal independent set I of J to a maximal independent
+set E(I) of F, choosing a deterministic extension. Since I is already maximal
+inside J, E(I) intersect V(J)=I. Therefore this extension map is injective.
+
+For a looped graph L, let F be its ordinary-edge graph on all vertices and let
+U be the vertices without loops. Then mis(L)=mis(F[U])<=mis(F). This is the
+only monotonicity needed when loops are suppressed. No claim about arbitrary
+edge additions is made or used.
+
+2. Short large-degree fingerprint lemma
+--------------------------------------
+
+LEMMA. Every simple graph F on N vertices satisfying delta(F)>=4096 and
+Delta(F)<=2 delta(F) satisfies
+
+  log_3 mis(F)/N
+    < 8192/35331 + 8/513
+     = 1495048/6041601
+     = 1/4 - 61409/24166404.                       (1)
+
+Proof. Fix an ordering of V(F). For each maximal independent set I construct
+T subset I, initially empty, with A=V(F)\N_F(T). While some v in I has at
+least 512 neighbours in F[A], add the first such v to T and recompute A.
+Every selected vertex deletes at least 512 previously undeleted neighbours.
+Since T is independent, T is disjoint from N_F(T), and hence
+
+  513|T| <= N.
+
+At termination put U={v in A : deg_{F[A]}(v)<=511}. The construction guarantees
+I subset U. Moreover, I is maximal independent in F[U], since it was maximal
+in F. The fingerprint T determines A and U, so each T accounts for at most
+mis(F[U]) possible sets I.
+
+Write delta=delta(F), Delta=Delta(F). Every vertex of U has at least
+delta-511 neighbours in N_F(T). Counting edges from U into N_F(T) gives
+
+  (delta-511)|U| <= Delta|N_F(T)| <= Delta(N-|U|).
+
+Consequently
+
+  |U| <= Delta N/(delta+Delta-511)
+       <= 2delta N/(3delta-511)
+       <= 8192 N/11777.
+
+The first rational expression increases with Delta because delta>511; the
+second decreases with delta. This justifies both substitutions. Moon--Moser
+therefore gives mis(F[U])<=3^(8192N/35331).
+
+The standard binomial entropy estimate, with p=1/513, yields
+
+  sum_{j<=N/513} binom(N,j)
+    <= exp(N[-p ln p-(1-p)ln(1-p)])
+    <= exp(N(ln513+1)/513)
+     < 3^(8N/513).
+
+Here -(1-p)ln(1-p)<=p. Also e>8/3, since the terms through 1/3! sum to 8/3
+and later terms are positive, and (8/3)^7>513 by 8^7>513*3^7. Thus ln513<7.
+Finally e<3 follows from j!>=2^(j-1) for j>=2, with strict inequality for
+j>=3; hence ln3>1. The last strict inequality is fully elementary.
+Multiplying the two bounds proves (1). QED.
+
+3. Application to every sufficiently large seed
+-----------------------------------------------
+
+Let S subset G\B be sum-free. Put A=S_0, P=S_1, Q=-S_4, where S_i is the
+tail set in first-coordinate layer i. Set
+
+  d=|A union (-A)|+|P union Q|.
+
+The ordinary difference-edge graph on B is d-regular. Within each layer its
+neighbours have tail displacement in A union (-A); between the two layers
+the possible displacements are exactly P union Q (with the sign reversed
+when the starting layer is reversed). These two contributions are disjoint.
+There are no difference loops, because the zero element is absent from S.
+
+At a vertex in layer 2 the extra sum-edge degree is at most |A|+|Q|; at a
+vertex in layer 3 it is at most |A|+|P|. These are both at most d, even if
+some sum edges coincide with difference edges or would form loops.
+Thus, for the ordinary graph F retaining all vertices of B,
+
+  delta(F)>=d>=|S|/2,   Delta(F)<=2d<=2delta(F).
+
+When |S|>=8192, the lemma applies. By the induced-subgraph injection in
+Section 1,
+
+  mis(L_S[B]) <= mis(F) < 3^(N/4).                 (2)
+
+This argument does not need a rank bound or a hypothesis |S|=o(n).
+
+4. Bounded seeds and the exceptional core: uniform error
+-------------------------------------------------------
+
+PROVED LOCAL THEOREM (GB). For every finite-dimensional F_5-vector space K and every
+sum-free S subset {0,1,4} x K, its generic link block, consisting of two
+opposite nonzero residual cosets and the two B-layers, has at most 3^|K|
+maximal independent sets. The complete proof and exhaustive dependency list
+are in global_final_coverage.txt; the statement is now an established input,
+not a conjectural hypothesis.
+
+If |S|<8192, take K to be the linear span of all tail coordinates
+of S in H, let r=dim K, q=|K|, and choose a complement W so H=K direct-sum W.
+Then r<=|S|<=8191 and q<=5^8191.
+
+Every link edge preserves a residual W-coordinate or negates it: difference
+edges preserve it, and sum edges negate it. Every loop occurs over residual
+zero. For the latter statement, each obstruction involving one B-vertex and
+two S-elements expresses the B-vertex as a sum or difference of S-elements,
+and so its residual coordinate is zero; an obstruction 2v in S also gives
+zero residual coordinate since 2 is invertible in F_5.
+
+It follows that L_S[B] is the disjoint union of a core on 2q vertices and
+(|W|-1)/2 generic blocks on 4q vertices. The residual group W has odd order,
+so zero is its only element fixed by negation. All generic blocks have the
+same adjacency pattern, obtained by labelling the residual signs + and -.
+This decomposition is also the odd-order case of Hassler--Treglown Lemma 2.10.
+
+Use Moon--Moser on the core after deleting looped vertices, and (GB) on the
+generic blocks. Multiplication over graph components gives
+
+  mis(L_S[B])
+    <= 3^(2q/3) (3^q)^((h/q-1)/2)
+     = 3^(h/2+q/6)
+    <= 3^(n/10+C),  where C=5^8191/6.             (3)
+
+The same calculation includes W={0} and S empty. Combining (2) and (3)
+gives, uniformly over every sum-free S subset G\B,
+
+  mis(L_S[B]) <= 3^(n/10+C).                      (4)
+
+C is one absolute constant, independent of k, S, the number of containers,
+and their exceptional sets. Thus C=o(n) as k tends to infinity. No statement
+of the form O_S(1)=o(n) for a varying seed is used.
+
+5. Containers, removal, and maximal completion
+---------------------------------------------
+
+The Green--Ruzsa container theorem gives a family F_k of at most
+2^[n(log n)^(-1/18)] subsets of G, covering all sum-free subsets, each
+containing at most n^2(log n)^(-1/9) ordered Schur triples. A convenient
+published formulation is Hassler--Treglown (2022), Lemma 2.3.
+
+The arithmetic removal lemma gives a function rho(t)->0 as t->0 such that
+a set with at most t n^2 Schur triples can be made sum-free by deleting at
+most rho(t)n elements. The uniformity over the container family follows from
+the same input t=(log n)^(-1/9) for every member. One exact source is Green,
+Theorem 1.5, with the three sets F,F,-F: delete the union of the deleted
+sets in the first two positions and the negative of the deleted set in the
+third position. This removes at most three times the stated error and leaves
+no solution x+y=z. The factor three is absorbed into rho.
+
+For each F in F_k choose E_F subset F of size at most rho((log n)^(-1/9))n
+such that A_F=F\E_F is sum-free. Extend A_F to a globally inclusion-maximal
+sum-free set M_F; this exists because G is finite. Put E'_F=E_F\M_F.
+Then M_F and E'_F are disjoint and
+
+  F subset M_F union E'_F,   |E'_F|<=|E_F|.
+
+Thus we have at most |F_k| pairs (M,E), with M maximal sum-free and |E|=o(n)
+uniformly, whose unions cover all sum-free sets. Enlarging a container here
+means covering more original sets; it is not an assertion about the number
+of maximal independent sets under an edge change.
+
+Fix one pair (M,E), and a globally maximal sum-free X subset M union E.
+Set S=X intersect E and I=X intersect M. Then I is maximal independent in
+L_S[M]: if a vertex of M\I could be added in the link, it could also be added
+to X as a sum-free set, contradicting maximality. For each fixed S, X is
+uniquely determined by I. Hence the number of such X is at most
+
+  sum_{S subset E, S sum-free} mis(L_S[M]).        (5)
+
+If |M|<=3n/10, deleting looped vertices and applying Moon--Moser gives
+mis(L_S[M])<=3^(|M|/3)<=3^(n/10).
+
+If |M|>3n/10, Lev's Theorem 3 applies: M subset (e+H_0) union (-e+H_0)
+for a proper subgroup H_0 and e outside H_0. Its size forces
+|H_0|=5^(k-1), because a proper subspace of codimension at least two gives
+two cosets of total size at most 2n/25<3n/10. The union of these opposite
+cosets is itself sum-free. Since M is globally maximal, equality holds:
+
+  M=(e+H_0) union (-e+H_0).
+
+An invertible linear map sends this set to {2,3} x F_5^(k-1): choose a
+linear functional with kernel H_0 and value 2 on e, then use it as first
+coordinate. The same map sends S outside B, preserves sum-freeness, and
+preserves the link graph. Equation (4) therefore bounds every summand in
+(5) by 3^(n/10+C).
+
+Combining the two cases and summing (5) over the container family yields
+
+  f_max(G)
+    <= 2^[n(log n)^(-1/18)+rho((log n)^(-1/9))n] 3^(n/10+C)
+     = 3^(n/10+o(n)).                             (6)
+
+The o(n) is uniform. Counting a maximal sum-free set several times under
+different pairs causes no issue for this upper bound.
+
+6. Matching lower bound, with an explicit injection
+--------------------------------------------------
+
+Let s=(1,0), S={s}, B={2,3} x H. The link has loops at (2,0) and (3,0).
+For each nonzero pair {x,-x} subset H it has the path
+
+  (2,x), (3,x), (3,-x), (2,-x),
+
+in that order, and no edges between different such paths. Each four-vertex
+path has exactly three maximal independent sets. Thus
+
+  mis(L_S[B])=3^((h-1)/2)=3^(n/10-1/2).
+
+For every such maximal independent set I, extend S union I to a globally
+maximal sum-free set X_I. This extension cannot add another B-vertex,
+because I was already maximal in the link. Consequently X_I intersect B=I,
+so the extension map is injective. This proves
+
+  f_max(G)>=3^(n/10-1/2).                         (7)
+
+Equations (6) and (7), together with the proved theorem (GB), establish
+
+  THEOREM. f_max(F_5^k)=3^(5^k/10+o(5^k)) as k tends to infinity.
+
+Equivalently, putting n=5^k, f_max(F_5^k)=3^(n/10+o(n)). This completes the
+joint proof of the stated Hassler--Treglown asymptotic conjecture.
+
+7. Primary sources and exact points checked on 2026-11-22
+--------------------------------------------------------
+
+(a) V. F. Lev, Large sum-free sets in Z_5^n, Journal of Combinatorial Theory,
+Series A 205 (2024), 105865, DOI 10.1016/j.jcta.2024.105865.
+Author's full manuscript, Theorem 3 (all k>=1):
+https://math.haifa.ac.il/seva/Papers/SFF5n.pdf
+Author's publication list identifies the published article:
+https://math.haifa.ac.il/seva/pub_list.html
+
+(b) B. Green, A Szemeredi-type regularity lemma in abelian groups, with
+applications, Geometric and Functional Analysis 15 (2005), 340--376.
+Theorem 1.5 with three possibly different sets, as used above:
+https://arxiv.org/pdf/math/0310476
+The original PDF page 2 was visually checked: its hypothesis is k>=3.
+Do not directly call its Theorem 1.4 a Schur-triple removal theorem: that
+theorem is stated for x+y+z=0 in one set. Theorem 1.5 avoids this ambiguity.
+
+(c) N. Hassler and A. Treglown, On maximal sum-free sets in abelian groups,
+Electronic Journal of Combinatorics 29(2) (2022), P2.32.
+Lemma 2.3: Green--Ruzsa containers; Lemma 2.8: link implication;
+Lemma 2.10: lifted-link decomposition.
+https://web.mat.bham.ac.uk/A.Treglown/EJCaccepted.pdf
+
+(d) Optional stronger structure sources, not needed for this bridge:
+L. Versteegen, The structure of large sum-free sets in F_p^n,
+Quarterly Journal of Mathematics 75(3) (2024), Theorem 1.4.
+https://arxiv.org/pdf/2303.00828
+https://academic.oup.com/qjmath/article/75/3/1057/7732560
+The threshold is |A|>1.2*5^(k-1)=6n/25, and the conclusion is normality.
+
+C. Reiher and S. Zotova, Large sum-free sets in finite vector spaces II,
+arXiv:2604.02894v1, Theorem 1.3 (2026).
+https://arxiv.org/html/2604.02894v1
+The first statement sf_1(F_5^k)=28*5^(k-3) suffices. The displayed ambient
+dimension in its second statement has a typo; avoiding this unnecessary
+source also avoids a needless transcription issue.
+
+AUDIT CONCLUSION. The short 8192 cutoff, full-link degree control, induced
+loop deletion, bounded-rank error, uniform removal, maximal completion,
+normalization, counting injection, and lower-bound injection all pass.
+The generic-block coverage is now complete, including all three final
+entropy types in every rank. Therefore the global main theorem is proved
+by the assembled arguments. No monotonicity under adding ordinary edges
+is used. The older round-two BDD and rank-one enumeration, and the 29
+round-five rank-two decision DAGs, are not dependencies of this final proof.

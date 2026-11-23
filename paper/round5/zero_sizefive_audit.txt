@@ -1,0 +1,53 @@
+ROUND 5: INDEPENDENT AUDIT OF global_sizefive_progress.txt
+Result: all mathematical lemmas and the stated classification passed.
+All 16 checks in global_sizefive_certificates.py were run and passed.
+
+The fixed potential parameters in the nine-regular proof are retained
+throughout every induced-subgraph call. For residual maximum degree
+at most eight, beta=c/14 satisfies the general master lemma. A residual
+degree-nine vertex retains its complete original neighborhood, so each
+of the three or six specified neighborhood edges remains present.
+
+The delicate one-cross-pair step was checked directly against the
+coordinate edge table. With q=p+t, v=X_x and w=Y_x, their six common
+neighbors are exactly
+  X_{x+t}, Y_{x-t}, Y_{-x-p}, Y_{-x-r}, X_{-x-q}, X_{-x-s}.
+The equality is exact because the two coset signs are distinct and
+P,Q are disjoint. If w is absent, all six have lost a neighbor, so w
+must survive when N(v) has at most one low-degree vertex.
+
+The protected vertex Y_{x+t} is adjacent to both X_{-x-q} and Y_{-x-q}
+in N(v): their reflection labels are p in both cases. The protected
+vertex X_{-x-p} is adjacent to both X_{x-t} and Y_{x-t} in N(v): their
+reflection labels are q. Thus both protected vertices survive. Together
+with the six common neighbors they give deg(w)=8 or 9. The P4 in N(w)
+uses the surviving vertices Y_{x+t},X_{-x-q},X_{-x-p},Y_{x-t}.
+
+For v=Y_x and w=X_x, the protected vertices X_{x-t},Y_{-x-q} and their
+two witnesses each are correct for the same reason. This verifies the
+argument for both row types and both coset signs.
+
+After deleting v, the six common neighbors have degree at most eight,
+while w retains degree k in {8,9}. Subtracting the three retained
+neighborhood edges yields the asserted closed-neighborhood edge bound
+  6*8+(k-6)*9-3=9k-9.
+The resulting drops give exactly
+  C_k=3^{-(15-k)/42}+3^{-(k+4)/7}.
+The two rational estimates C_8,C_9<99/100 and the final coefficient
+19989/20000<1 are valid. Every subsidiary graph is a proper induced
+subgraph of the fixed original graph, so the induction is complete.
+
+The 9/6 and 9/7 cap lemma is also correct. A residual degree-eight
+vertex can have lost only one original neighbor, and therefore retains
+at least three low neighbors. A residual degree-nine vertex retains all
+of its at least four low neighbors, giving at most 5*9+4*7=73 incident
+edges in its closed neighborhood and drops 7/31,87/31. The newer
+unconditional Delta<=8 theorem supplies an alternative residual case.
+
+The size-five integer-profile classification is exhaustive. One status
+update is necessary in the final prose: the triangle-free part of the
+remaining eight-regular family is now proved by zero_eight_extension.txt.
+Only its triangle-containing subcase with the unique q=p+t relation
+remains for the matrix agent's transfer treatment. The triangle-free
+part of the remaining 10/8 family is already covered by the previously
+proved maximum-degree-ten triangle-free theorem.

@@ -1,0 +1,566 @@
+FINAL EXHAUSTIVE COVERAGE AND THE COMPLETED GLOBAL THEOREM
+=========================================================
+
+Status: completed joint proof, 2026-11-22. This is the canonical final
+coverage statement. It supersedes the historical progress-status sentences
+in earlier research files. Every case below has a completed mathematical
+proof; the finite cases have explicit exact arithmetic certificates.
+The final no-zero entropy arguments have been independently cross-reviewed.
+The companion Lean development formally verifies the main theorem.
+The appendices retain their original audit records. Historical searches
+and failed proposed strengthenings are not inputs to this proof.
+
+MAIN THEOREM.
+Let n=5^k and let f_max(F_5^k) count the inclusion-maximal sum-free subsets,
+where sum-free forbids x+y=z even when entries repeat. Then, as k tends
+to infinity,
+
+                  f_max(F_5^k)=3^(n/10+o(n)).                (T)
+
+The proof is assembled in Sections 1--7 below. The complete global
+container/removal argument, large-seed lemma, and matching lower bound are
+written in global_final_bridge_audit.txt.
+
+1. THE GENERIC-BLOCK THEOREM, PRECISELY STATED
+--------------------------------------------
+
+THEOREM (GB). Let K be any finite-dimensional F_5-vector space of cardinality
+kappa. Embed it in H=K direct-sum F_5 g, with g outside K. Let
+
+  S subset {0,1,4} x K
+
+be sum-free, and let Gamma_S be the link graph induced on
+
+  {2,3} x ((g+K) union (-g+K)).
+
+Then Gamma_S is loop-free and
+
+                      mis(Gamma_S)<=3^kappa.                 (GB)
+
+The graph depends only on the signed two-coset adjacency pattern, not on
+the particular choice of g. The statement permits the seed tails to span
+a proper subspace of K.
+
+Write A=S_0, P=S_1, Q=-S_4, U=P union Q, and
+
+  z=|A|, p=|P|, r=|Q|, a0=|A union -A|, d=|U|, s=z+p+r.
+
+After exchanging the two nonzero layers, assume p>=r. In the coordinates
+X_x=(2,x), Y_x=(3,-x), x in (g+K) union(-g+K), the edges are exactly
+
+  X_x X_y: x-y in A union -A, or x+y in -Q;
+  Y_x Y_y: x-y in A union -A, or x+y in -P;
+  X_x Y_y: x-y in A,          or x+y in -U.
+
+Difference edges preserve the residual sign and sum edges reverse it.
+Since g and -g represent distinct nonzero cosets, the listed degree
+contributions do not overlap. There are equally many vertices of degrees
+
+             a=a0+z+d+p,       b=a0+z+d+r.                   (8)
+
+In particular a>=b and a<=2b. When z>0, put alpha=a0+z>=3. Then
+
+             a<=2b-alpha<=2b-3,     b>=a0+s>=s+2.            (9)
+
+NORMALIZATION AND SUBSPACE CHECK.
+The shear (i,x)->(i,x-it) preserves sum-freeness and the two B-layers.
+All shears used below have t in the existing K. If the normalized seed
+tails span L subset K, an old generic block splits into |K|/|L| generic
+blocks for L. None becomes an exceptional core, because its original
+nonzero residual coordinate is still outside K and therefore outside L.
+An L-block bound 3^|L| therefore multiplies to 3^|K|. For the no-zero
+matrix formulation, simultaneous translation of P,Q is just a relabeling
+of the right columns; the same coset multiplication applies. Thus no
+argument silently substitutes a lower-rank quotient for an arbitrary
+covering graph.
+
+Sections 2 and 3 prove (GB), according as z=0 or z>0. The empty seed gives
+an edgeless graph and one MIS, so is covered separately without assumptions.
+
+2. COMPLETE PROOF WHEN THE ZERO LAYER IS EMPTY
+--------------------------------------------
+
+With z=0, Gamma_S is bipartite with matrix
+
+                   [ C_U   C_Q ]
+                   [ C_P   C_U ],
+
+where (C_T)_(x,y)=1 exactly when y-x belongs to T. Its two degree classes
+are d+p and d+r. The full classification is also recorded in
+matrix_nozero_remaining.txt, with its final status update.
+
+2.1 Nested color sets, including all pure-layer seeds.
+
+If Q subset P, the two left neighborhoods at each x are nested:
+
+  N(L0_x)=(x+P) in R0 union (x+Q) in R1
+     subset N(L1_x)=(x+P) in R0 union (x+P) in R1.
+
+Selecting L1_x in an MIS forces selecting L0_x as well, since otherwise
+L0_x could be added. Each left pair has only three possible states:
+empty, {L0_x}, or both. A bipartite MIS is uniquely determined by its
+left part, since its right part is the complement of the left neighborhood.
+Hence mis<=3^kappa. The other inclusion reverses the two roles.
+This proof includes P or Q empty, P=Q, and the empty seed. It reproduces
+the non-enumerative nested-row argument without importing the finite
+enumerations elsewhere in the historical round-two file.
+
+2.2 Every affine-rank-one mixed case: the 212 bound.
+
+When P,Q are nonempty and their union is contained in an affine line,
+translate the union into a one-dimensional subspace. The matrix decomposes
+into twenty-vertex graphs, one per five-element coset. Each such graph
+has a perfect C4 factor: for fixed p0 in P, q0 in Q the four vertices
+
+                  L0_x,L1_x,R0_(x+p0),R1_(x+q0)
+
+span K_(2,2), and these five blocks partition all vertices. If a,b count
+occupied left and right pairs in an MIS, then a+b<=5. Those with a<=2
+are determined by at most 1+5*3+10*9=106 left patterns. Those with a>=3
+have b<=2 and are determined by at most 106 right patterns. Thus every
+component has at most 212<3^5 MIS, proving the target after multiplication.
+This is a direct counting proof, with no rank-one enumeration. The same
+argument appears in matrix_typeB_entropy_proof.txt, Section 7.
+
+2.3 Seed size at most three.
+
+Nested cases are settled by 2.1. Two distinct nonnested singleton color
+sets normalize to affine rank one and use 2.2. The only remaining
+three-seed case has a disjoint 2+1 color split. Translate the singleton
+to zero. Its other two translations either have rank one (2.2), or are
+independent and become P={0}, Q={e1,e2}, up to interchanging colors.
+
+The latter is proved by matrix_rank2_transfer_proof.txt. The 83 carry
+states have a direct cyclic-word characterization. Its 19-row rational
+table gives a weighted Frobenius norm squared of 1,433,053/32<3^10,
+and Cauchy--Schwarz gives
+
+                  mis <=(1433053/32)^(5/2)<3^25.
+
+The explicit transition formula and integer table form the certificate.
+The old round-two BDD is unnecessary.
+
+2.4 Seed size at least seven.
+
+Use global_trianglefree_potential.txt. The graph is bipartite and hence
+triangle-free. Its three corollaries give the target in these regimes:
+
+  max(a,b)<=10 and a+b>=17;
+  max(a,b)<=12 and a+b>=18;
+  max(a,b)>=12 and min(a,b)>=max(a,b)/2.
+
+To see exhaustiveness directly, if p+r>=8 and p>=6, then a>=12; if p=5,
+then r>=3 and the degree sum is at least18; the sole remaining possibility
+is p=r=4, which is nested when d=4 and has sum at least18 otherwise.
+For p+r=7, p>=6 again gives a>=12. For (p,r)=(5,2), d=5 gives (10,7),
+and d>=6 gives degree sum at least19. For (p,r)=(4,3), d=4 is nested;
+d=5,6 gives maximum degree at most10 and sum at least17; d=7 gives
+(11,10), covered by the maximum-degree-twelve corollary. These are all
+unordered positive splits of seven.
+
+2.5 Complete table for sizes four, five, and six.
+
+The following list includes every p>=r>0 and every possible d between
+p and p+r. Cases r=0 are already nested. The symbols in the last column
+refer to completed proofs immediately below.
+
+ s   p r   d    degrees     proof
+ 4   3 1   3    6,4         nested
+ 4   3 1   4    7,5         A entropy
+ 4   2 2   2    4,4         nested
+ 4   2 2   3    5,5         two opposite defects
+ 4   2 2   4    6,6         B entropy/factorization
+
+ 5   4 1   4    8,5         nested
+ 5   4 1   5    9,6         CAP9
+ 5   3 2   3    6,5         nested
+ 5   3 2   4    7,6         C entropy
+ 5   3 2   5    8,7         TF8
+
+ 6   5 1   5   10,6         nested
+ 6   5 1   6   11,7         TF12
+ 6   4 2   4    8,6         nested
+ 6   4 2   5    9,7         CAP9
+ 6   4 2   6   10,8         TF10
+ 6   3 3   3    6,6         nested
+ 6   3 3   4    7,7         two opposite defects
+ 6   3 3   5    8,8         TF8
+ 6   3 3   6    9,9         TF10
+
+TF8 is the complete triangle-free maximum-degree-eight theorem
+mis<=2^((16N-E)/31), in zero_eight_extension.txt together with its
+low-degree proof zero_eight_potential_audit.txt. All listed TF8 cases
+have average degree at least 7.5, so the exponent is at most 49N/124,
+which is below N log_2(3)/4 by 2^49<3^31.
+
+TF10/TF12 are the first two corollaries in 2.4. CAP9 is Section 2 of
+global_sizefive_progress.txt: a triangle-free 9/l graph, l=6 or7, with
+at least four low neighbors at every high vertex satisfies the same
+potential. The matrix here actually supplies at least five such neighbors.
+
+In each two-opposite-defect case |P\Q|=|Q\P|=1. The common color set gives
+a symmetric seed background, with one extra element in layer1 and one
+in layer4. Apply round4/two_opposite_defects_application.txt and the
+generic-block amplification in Section 4 below.
+
+The final three types have the following rank-free entropy bounds:
+
+  A: |P|=3, |Q|=1, P intersect Q empty,
+       mis <=(1259/16)^(kappa/4)<3^kappa;
+  C: |P|=3, |Q|=2, |P intersect Q|=1,
+       mis <=(279/4)^(kappa/4)<3^kappa.
+
+Both are proved in root_entropy_ac_proof.txt. Translations and the
+inversion/clone-swap involution give equal marginal distributions for
+input pair states and output pair states. A unique exclusive Q-neighbor
+restricts the local support to193 configurations. Exact rational weights
+have zero expected log-ratio, and the four-fold translated entropy cover
+gives the displayed bounds. There is no affine-independence assumption.
+
+For B, |P|=|Q|=2 and P intersect Q empty. Normalize P={0,u}, Q={v,w}.
+If {0,-u,u,-v,-w,u-v,u-w} has seven distinct elements, the seven-fold
+entropy cover and the four-row rational certificate give
+
+            mis <=(43177189/20736)^(kappa/7)<3^kappa.
+
+Section 7 of matrix_typeB_entropy_proof.txt covers all collisions:
+they occur exactly when v or w belongs to {-u,2u}, or w-v belongs to
+{u,-u}. In the nonparallel rank-at-least-two case, exchanging the colors
+and translating eliminates the collision. In the parallel case Q=P+t,
+Boolean matrix multiplication gives
+
+  GammaMatrix(P,P+t)=diag(C_P,C_P) GammaMatrix({0},{t}).
+
+The row-union image of a Boolean product XY is contained in the row-union
+image of Y. Since row unions count bipartite MIS exactly, this bounds the
+parallel case by the singleton-color graph. Its components are twenty-
+vertex graphs covered by 2.2. Rank-one collisions use the same 212 bound.
+Thus B is proved for every rank; no affine-orbit DAG is a dependency.
+
+This completes every seed with z=0.
+
+3. COMPLETE PROOF FOR SEEDS MEETING THE ZERO LAYER
+------------------------------------------------
+
+The full theorem and its detailed proof references are assembled in
+global_zero_layer_generic_theorem.txt. The following is its exhaustive
+partition, with precise replacements for obsolete finite enumerations.
+
+3.1 Pure zero layer, every size and rank.
+
+Apply zero_pure_layer_theorem.txt. The full link is regular of degree
+
+       D=|A union -A|+|A|=3|A|-2*(number of opposite pairs).
+
+D>=10 uses the general-graph regular potential from
+global_general_potential_audit.txt. If D<=9 then |A|<=4. At most two
+elements use the paper proofs in 3.3; four elements force A=-A; three
+elements either contain an opposite pair (symmetric background plus one),
+or give D=9. In the last case the graph is triangle-free unless
+A={a,b,-a-b} with a,b independent. The triangle-free case uses
+global_trianglefree_potential.txt, Theorem 1, giving 2^(7N/18)<3^(N/4)
+by 2^14<3^9; the zero-sum triple uses zero_triple_proof.txt,
+whose every full-degree-nine neighborhood contains six edges. This
+completes all pure zero seeds, with no large finite graph enumeration.
+
+3.2 Mixed seeds of size at least eight.
+
+By (9), a>=b>=10 and a<=2b-3. Theorem C in
+global_general_potential_audit.txt applies, with fixed
+beta=c/(a+b-4), c=log_2(3)/3. The initial potential is exactly
+N log_2(3)/4; the hereditary master bound applies to every induced
+subgraph with this same beta. Hence (GB) follows for all these seeds.
+
+3.3 All seeds of size at most two.
+
+The complete paper proofs are Sections 1--7 of
+round3/paper_algebra_lowrank.txt. No round-two enumeration is needed.
+The relevant normalized generic blocks and certified counts are:
+
+  one zero seed: kappa5, count100<243;
+  opposite zero pair: kappa5, count25<243;
+  independent zero pair: kappa25,
+      count<=820694^2=673538641636<847288609443=3^25;
+  one zero plus one nonzero seed: kappa5, count<=220<243.
+
+The two-seed minimal blocks have 83 MIS in one nonzero layer and 122
+for a nonopposite pair in different nonzero layers. For opposite seeds,
+P=Q={0} and kappa disjoint C4s give 2^kappa MIS (2 for K={0},
+32 for K=F_5). Section 2 also covers these cases. A singleton nonzero
+seed has a four-vertex path as its minimal generic block. The empty seed
+has one MIS. This exhausts all one/two-seed distributions.
+
+3.4 Mixed seeds of size three.
+
+Exactly two zero seeds: if dependent, they are opposite, and the whole
+seed is symmetric background plus one. If independent, shear the
+nonzero tail to zero; the degree-7/8 model is covered by
+zero_eight_potential_audit.txt.
+
+Exactly one zero seed: normalize A={a} and one nonzero tail to zero.
+If both nonzero seeds lie in one layer, the model is
+  A={a}, P={0,r}, Q empty.
+If they lie in opposite layers, it is
+  A={a}, P={0}, Q={r}.
+Independent a,r give exactly the two hundred-vertex models in
+matrix_mixed3_strip_proof.txt, with respective bounds
+112742891520 and128849018880, each below3^25.
+Dependent directions give precisely the five twenty-vertex triple
+certificates in global_rank1_certificate.txt, except r=0 in the
+opposite-layer case, which is symmetric background plus one.
+The five bounds are197,195,222,172,231, each below243.
+
+The pure-zero triple is covered by3.1; no-zero triples by2.3.
+Thus every three-seed configuration is covered.
+
+3.5 Mixed seeds of size four.
+
+The full coordinate and degeneracy table is global_mixed_size4_table.txt.
+Here is the complete distribution table; pure zero is3.1.
+
+ z  zero type                 (p,r), color relation       degree/proof
+ 3  no opposite pair          (1,0)                       11/10, theorem C
+ 3  one opposite pair         (1,0)                       9/8, TF10
+
+ 2  A={a,b}, nonopposite      (2,0)                       10/8, TF10
+ 2  A={a,b}, nonopposite      (1,1), equal                 8/8, TF8
+ 2  A={a,b}, nonopposite      (1,1), distinct              9/9, below
+ 2  A={a,-a}                 (1,1), equal                 symmetric
+ 2  A={a,-a}                 (1,1), distinct              two opposite defects
+ 2  A={a,-a}                 (2,0)                       8/6, transfer/rank1
+
+ 1  A={a}                    (3,0)                       9/6, CAP9
+ 1  A={a}                    (2,1), nested               7/6, transfer/rank1
+ 1  A={a}                    (2,1), disjoint             8/7, below
+
+The 9/9 row is triangle-free unless the two nonzero labels satisfy
+q=p+a for one a in A. In that case the exact same-coordinate partner
+argument in global_sizefive_progress.txt, Section3c, applies: six
+common neighbors and two protected neighbors are explicitly checked
+in the size-four table. Thus this row is proved in every rank.
+
+The disjoint8/7 row is triangle-free, hence TF8, unless a cross-label
+difference equals a. Normalize the latter to P={0,r}, Q={a}.
+Together with the other two low-degree rows, the three independent
+parameter models are
+
+  A={a,-a}, P={0,r}, Q empty;
+  A={a}, P={0,r}, Q={0};
+  A={a}, P={0,r}, Q={a}.
+
+For independent a,r they are proved in matrix_size4_proof.txt. For
+dependent directions, sum-freeness leaves r/a respectively in
+{2,3}, {2,3}, and {3}. The five bounds in
+global_rank1_certificate.txt are162,162,211,236,217, all below243.
+No other distribution of four seeds with z>0 exists.
+
+3.6 Mixed seeds of size five.
+
+The exact exhaustive classification is global_sizefive_progress.txt.
+If a0>=6, or a0=4 with nonnested nonzero color sets, theorem C applies.
+For a0=4 the remaining patterns are:
+
+  z2, two nonopposite zero seeds, nested: 12/9 or10/9, triangle-free;
+  z3, an opposite zero pair, nested: 11/9 or9/9, triangle-free;
+  z4, A=-A, one nonzero seed: symmetric background plus one.
+
+The displayed triangle-free pairs satisfy TF12 or TF10. This exhausts
+a0=4 because A union -A has two opposite pairs.
+
+If a0=2,z2, then A={a,-a} and every generic graph is triangle-free.
+With p+r=3 its pairs are10/7,8/7,9/8. The first and third use TF10;
+the middle is symmetric background plus one.
+
+If a0=2,z1, then A={a} and p+r=4. All possibilities are:
+
+  (p,r)=(4,0): 11/7, triangle-free, TF12;
+  (3,1), nested: 9/7, CAP9;
+  (3,1), disjoint: 10/8, global_ten_eight_proof.txt;
+  (2,2), equal: symmetric cross background plus one zero seed;
+  (2,2), disjoint: 9/9, the complete partner proof in Section3 of
+      global_sizefive_progress.txt;
+  (2,2), intersection size1: 8/8, treated next.
+
+For the last row, a triangle-free graph uses TF8. Otherwise the exclusive
+labels have the unique allowed relation q=p+a. Normalize the common label
+to zero, obtaining A={a}, P={0,r}, Q={0,r+a}. Independent a,r give the
+model in matrix_size5_triangle_proof.txt. Dependent a,r force r=2a and
+give the20-vertex certificate205<243 in global_rank1_certificate.txt.
+All size-five cases are therefore covered.
+
+3.7 Mixed seeds of size six or seven.
+
+The exhaustive proof is global_small_seed_potential.txt, independently
+audited in zero_small_seed_audit.txt. If a0>=4, theorem C applies.
+Otherwise A is a nonempty subset of {a,-a}. For s7, every nonnested pair
+has b>=10 and is handled by theorem C. The remaining nested pairs are
+triangle-free and have degrees
+
+  z1: (15,9),(13,9),(11,9),(9,9);
+  z2: (14,9),(12,9),(10,9).
+
+All are covered by the triangle-free corollaries.
+
+For s6, d>=p+2 again gives theorem C. If z2, all generic graphs are
+triangle-free; the remaining pairs are(12,8),(10,8),(8,8),(11,9),(9,9).
+The8/8 case is symmetric; the others use the triangle-free corollaries.
+For z1 and nested colors the pairs(13,8),(11,8),(9,8) do likewise.
+The only nonnested residual cases are
+
+  p4,r1,d5: degrees12/9, with six low neighbors per high vertex;
+  p3,r2,d4: degrees10/9, with five low neighbors per high vertex.
+
+The first is Lemma2A of global_small_seed_potential.txt. In the second,
+either the graph is triangle-free or every high-vertex neighborhood
+has at least two edges; these alternatives use TF10 or Lemma2B. The
+fixed original caps and fixed potential parameters are retained in
+all residual induced subgraphs. This completes both sizes.
+
+Sections3.1--3.7 exhaust every seed with z>0. Together with Section2,
+they prove (GB). QED.
+
+4. WHY PREVIOUS FULL-LINK THEOREMS APPLY TO GENERIC BLOCKS
+--------------------------------------------------------
+
+The symmetric-background theorems used above are:
+
+  round3/paper_algebra_lowrank.txt, Section8: symmetric seeds;
+  round4/one_defect_application.txt: symmetric background plus at most
+      one unpaired seed;
+  round4/two_opposite_defects_application.txt: symmetric background
+      plus two unpaired seeds in opposite nonzero layers;
+  round4/colored_dd_proof.txt: their colored dominating-dissociation
+      counting input.
+
+If one uses a full-link version of any such theorem, the following
+argument justifies the generic conclusion without ignoring a core.
+Keep the seed fixed over K and extend H=K direct-sum F_5^m. If its
+generic-block MIS count is C, the generic block occurs(5^m-1)/2 times,
+and the core has at least one MIS. A full-link bound3^(|H|/2) gives
+
+                 C^((5^m-1)/2)<=3^(kappa 5^m/2).
+
+Let m tend to infinity. It follows that C<=3^kappa. Stronger full-link
+bounds only improve this conclusion. The seed remains sum-free in
+every extension. This is an explicit amplification argument; it is not
+an assumption that a generic-block count equals a full-link count.
+
+5. EXACT FINITE CERTIFICATES RETAINED IN THE MAIN PROOF
+-----------------------------------------------------
+
+The finite parts of this proof are small, explicit integer/rational
+certificates. They certify the stated upper bounds through proved
+recurrences or transfer definitions. No unverified numerical optimizer
+or exhaustive list of maximal independent sets is used as a premise.
+
+No-zero three-seed rank2:
+  matrix_rank2_transfer_proof.txt;
+  matrix_rank2_transfer_table.txt;
+  matrix_rank2_transfer_verify.py.
+  83 carry states,19 rational orbit rows; bound above.
+
+Mixed three-seed rank2 (two models):
+  matrix_mixed3_strip_proof.txt and its verifier/certificate;
+  upper bounds112742891520 and128849018880.
+
+Mixed size4 rank2 (three models):
+  matrix_size4_proof.txt and its verifier/certificate;
+  bounds4534963200,7168000000,342285734375.
+
+Mixed size5 rank2 (one model):
+  matrix_size5_triangle_proof.txt and its verifier/certificate;
+  bound198642237440.
+
+All seven hundred-vertex bounds above are below3^25=847288609443.
+
+Mixed rank1:
+  global_rank1_certificate.txt and global_rank1_verify.py;
+  eleven20-vertex models, deterministic depth6 or7 include/exclude
+  branches with Moon--Moser integer bounds at leaves; every bound<243.
+  The proof file prints all residual-size histograms and tie-breaking.
+
+Final entropy models:
+  root_entropy_ac_proof.txt and root_entropy_ac_verify.py,
+      independently checked by zero_entropy_ac_audit.py;
+  matrix_typeB_entropy_proof.txt and matrix_typeB_entropy_verify.py,
+      with its separate independent audit.
+  Their rational sums are1259/16,279/4,43177189/20736. The B sum has a
+  direct four-row evaluation, so its4^7 tuple check is supplementary.
+
+Scalar potential inequalities are certified by the named proof files'
+companion exact-arithmetic verifiers. The analytic proofs specify the
+recurrences, hereditary hypotheses, and induction constants; the scripts
+check the remaining finite powers or rational identities.
+
+NOT REQUIRED BY THIS FINAL PROOF:
+  round2/two_seed_classification.txt finite enumeration;
+  round2/round2_upper_bdd_certificate.json and its BDD construction;
+  the1024-pair no-zero rank-one enumeration;
+  root_nozero_rank2_models.py/json and all29 rank-two decision DAGs;
+  any unproved arbitrary Boolean paired-matrix inequality;
+  any general C4-factor bound beyond the elementary20-vertex count;
+  any MIS monotonicity under adding ordinary edges.
+
+The corresponding historical files may be kept as optional research
+cross-checks, but they do not belong to the main dependency chain.
+
+6. UNIFORM LOCAL LINK BOUND
+--------------------------
+
+The self-contained fingerprint lemma in global_final_bridge_audit.txt
+shows that every simple graph with delta>=4096 and Delta<=2delta has
+
+        log_3 mis/N <1/4-61409/24166404.
+
+For a full standard-block link, retaining all vertices and ignoring
+loops gives delta>=|S|/2 and Delta<=2delta. The original looped MIS count
+is no larger: its legal-vertex induced graph embeds injectively by
+maximal-independent-set extension into the ordinary graph. Thus
+|S|>=8192 gives the target3^(n/10) directly.
+
+For |S|<=8191, the seed-tail span K has kappa<=5^8191. The full link
+consists of one core on2kappa vertices and(h/kappa-1)/2 generic blocks,
+where h=n/5. Apply Moon--Moser to the core and (GB) to each generic block:
+
+  mis(L_S[B])<=3^(2kappa/3)(3^kappa)^((h/kappa-1)/2)
+              =3^(n/10+kappa/6)
+              <=3^(n/10+C),   C=5^8191/6.                  (10)
+
+Together the two ranges prove (10) for every sum-free seed outside B,
+with the same absolute constant C. It is consequently uniform over
+all seeds supplied by all containers.
+
+7. COMPLETION OF THE GLOBAL PROOF
+--------------------------------
+
+Green--Ruzsa containers and Green's arithmetic removal theorem produce
+2^o(n) pairs(M,E), covering every sum-free set, with M globally maximal
+sum-free, E disjoint from M, and |E|=o(n) uniformly. For a globally
+maximal sum-free X contained in M union E, put S=X intersect E and
+I=X intersect M. Then I is maximal independent in L_S[M]. For each
+pair there are at most2^|E| seed choices, and for each seed the map
+X->I is injective.
+
+If |M|<=3n/10, Moon--Moser bounds the link by3^(n/10). If |M|>3n/10,
+Lev's published Theorem3 puts M inside two opposite cosets of a
+hyperplane. Since M is globally maximal and their union is sum-free,
+M equals that union. A linear automorphism sends it to the standard
+block B={2,3}xF_5^(k-1), and (10) applies. Summing gives
+
+                    f_max(F_5^k)<=3^(n/10+o(n)).
+
+For the lower bound take S={(1,0)}. Its link on B has two forbidden
+core vertices and(h-1)/2 disjoint four-vertex paths. Therefore it has
+3^((h-1)/2) maximal independent sets. Extend S union I to a globally
+maximal sum-free set. No further B-vertex can be added, so the final
+intersection with B is I, and distinct I have distinct extensions.
+Hence
+
+                    f_max(F_5^k)>=3^(n/10-1/2).
+
+These bounds prove (T). The paper proof is complete.
+
+The cited external inputs, their exact formulations, and primary URLs
+are recorded in global_final_bridge_audit.txt Section7. In particular,
+the structure input is Lev's Theorem3 from JCTA205(2024),105865, and
+the removal input is Green's Theorem1.5 with the three sets F,F,-F.

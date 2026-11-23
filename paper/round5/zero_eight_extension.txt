@@ -1,0 +1,65 @@
+ROUND 5: REMOVING THE LOW-NEIGHBOR CONDITION AT MAXIMUM DEGREE EIGHT
+Status: complete paper proof with exact integer certificates.
+The extension uses the proved maximum-degree-seven portion of
+zero_eight_potential_audit.txt. No Lean verification is claimed.
+
+THEOREM.
+For every finite simple triangle-free graph F of maximum degree at most
+eight,
+        mis(F) <= 2^{mu(F)},
+        mu(F)=(16|V(F)|-|E(F)|)/31.                          (1)
+
+PROOF.
+Induct on the number of vertices, using additivity of mu and
+multiplicativity of mis to reduce to a connected graph. Graphs of
+maximum degree at most seven satisfy (1) by Sections 2--4 of
+zero_eight_potential_audit.txt; no low-neighbor assumption occurs there.
+Thus the current maximum degree is eight.
+
+First suppose the graph is not eight-regular. A path from a degree-eight
+vertex to a smaller-degree vertex contains an edge vw with deg(v)=8 and
+deg(w)<=7. Deleting v drops the potential by 8/31. Since the graph is
+triangle-free, at most 7*8+7=63 edges meet N[v], and deleting N[v] drops
+the potential by at least (16*9-63)/31=81/31. The branch coefficient is
+strictly smaller than
+        46/55+9/55=1,
+by the exact comparisons 2^(-8/31)<46/55 and 2^(-81/31)<9/55.
+
+It remains to handle an eight-regular connected graph. Fix a vertex u
+and four distinct neighbors v_0,v_1,v_2,v_3 of u. Triangle-freeness makes
+these four vertices pairwise nonadjacent. Define
+        F_j=F-{v_0,...,v_{j-1}},       j=0,1,2,3,4.
+At stage j<=3 the vertex v_j still has degree eight, while u has degree
+8-j. All other neighbors of v_j have degree at most eight. Therefore
+  mu(F_j)-mu(F_{j+1}) = 8/31,
+  mu(F_j)-mu(F_j-N_{F_j}[v_j]) >= (80+j)/31.
+The second assertion uses the exact triangle-free closed-neighborhood
+edge count: at most (8-j)+7*8=64-j edges are removed.
+
+Expand include/exclude branching successively at v_0,...,v_3, continuing
+only the exclude branch. Every resulting graph is a proper induced
+subgraph, so the inductive hypothesis gives
+
+  mis(F)/2^{mu(F)}
+      <= 2^(-32/31)+sum_{j=0}^3 2^{-(80+9j)/31}.
+
+The five terms, in the order with numerators 32,80,89,98,107, are
+strictly smaller than
+        489/1000, 21/125, 137/1000, 14/125, 23/250,
+respectively. These rational bounds sum to 499/500<1. This closes the
+eight-regular case and proves (1).
+
+TWO-DEGREE COROLLARY.
+If F is triangle-free, half its vertices have degree a and half degree
+b, where max(a,b)<=8 and a+b>=15, then
+        mu(F)/|V(F)| <= 49/124 < log_2(3)/4.
+The strict comparison is exactly 2^49<3^31. Consequently
+        mis(F)<3^{|V(F)|/4}
+for every nonempty such graph. This includes all eight-regular graphs
+and the previously proved 8/7 generic component.
+
+CERTIFICATE.
+Every inequality 2^(-a/31)<p/q is certified by the integer comparison
+        q^31 < p^31*2^a.
+The seven required comparisons, the rational sum 499/500, and the final
+target comparison are checked in zero_verify_eight_extension.py.

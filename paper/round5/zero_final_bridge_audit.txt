@@ -1,0 +1,273 @@
+INDEPENDENT ADVERSARIAL AUDIT OF THE FINAL GLOBAL BRIDGE
+======================================================
+
+Auditor: zero agent. Date: 2026-11-22.
+Files examined: global_final_bridge_audit.txt, global_final_coverage.txt,
+global_zero_layer_generic_theorem.txt, and the cited primary sources below.
+
+VERDICT: PASS. No mathematical gap was found in the passage from the proved
+generic-block theorem (GB) to the global asymptotic formula. In particular,
+the degree argument is performed before deleting looped vertices; the
+fingerprint genuinely determines the residual graph; the bounded-seed
+exceptional core has a single absolute bound; and the maximal completion of
+containers is valid. None of these steps requires edge monotonicity of mis.
+
+Scope: This audit checks the global implication and its external theorem
+inputs. The local generic-block theorem is proved in the separate coverage
+and component proof files. Its A/B/C entropy arguments were independently
+audited earlier in zero_entropy_ac_audit.txt and zero_entropy_b_audit.txt;
+their finite enumerations were not repeated in this audit. This document
+does not claim a new Lean verification or external peer review.
+
+1. Exact link interpretation and loop deletion
+--------------------------------------------
+
+Let B,S be disjoint sum-free sets. An obstruction in S union I, with I
+subset B, necessarily uses both parts. If it uses two distinct B-vertices
+x,y, it is one of x+y in S, x-y in S, y-x in S, exactly an ordinary link
+edge. If it uses only one distinct B-vertex, it is exactly a loop at that
+vertex. This includes repeated summands, such as 2x in S. Thus independent
+sets of the looped link are exactly the admissible extensions of S into B.
+
+For an induced subgraph J of a finite simple graph F, choose a deterministic
+maximal independent extension E(I) in F of every maximal independent set I
+of J. Every vertex of J outside I already has a neighbour in I. Consequently
+E(I) intersect V(J)=I, so the extension map is injective. This proves
+mis(J)<=mis(F), including empty graphs.
+
+If U is the set of unlooped vertices of a looped graph L and F is its graph
+of ordinary edges on ALL original vertices, then
+
+  mis(L)=mis(F[U])<=mis(F).
+
+Therefore the full ordinary graph may safely be used for a degree bound.
+No minimum-degree claim about the graph after loop deletion is needed.
+
+2. Full ordinary-link degree accounting
+--------------------------------------
+
+Write G=F_5 x H and B={2,3} x H. For a sum-free S outside B, let
+A=S_0, P=S_1, Q=-S_4 and d=|A union (-A)|+|P union Q|.
+
+The zero vector does not belong to S: otherwise 0+0=0 would be a forbidden
+Schur triple. The ordinary difference-edge graph is therefore d-regular.
+Its same-layer neighbours have the nonzero displacements A union (-A),
+and its opposite-layer neighbours have displacements P union Q, with the
+appropriate reversed sign from the other layer. These two sets of neighbours
+are disjoint because they belong to different B-layers. A zero displacement
+between different layers still gives a distinct vertex and is a valid edge.
+
+At a layer-2 vertex, potential sum neighbours come from S_0 and S_4, at most
+|A|+|Q| in total. At a layer-3 vertex they come from S_0 and S_1, at most
+|A|+|P|. Each summand determines at most one neighbour. An equality with the
+starting vertex produces a loop, not an ordinary edge. Coincidence with a
+difference neighbour only reduces the number of extra neighbours. Thus
+
+  delta(F)>=d>=|A|+(|P|+|Q|)/2>=|S|/2,
+  Delta(F)<=2d<=2 delta(F).
+
+This explicitly accounts for sum/difference overlap, duplicated displacements,
+and self-sums. The argument uses all B-vertices throughout. It passes.
+
+3. Fingerprint construction and injection
+----------------------------------------
+
+Assume delta(F)>=4096 and Delta(F)<=2 delta(F), with N vertices. Fix one
+ordering of V(F). For a maximal independent set I, start T empty and put
+A=V(F)\N_F(T). Repeatedly add the first vertex v in I having at least
+512 neighbours in F[A].
+
+At every stage I is contained in A, because T is a subset of the independent
+set I. Previously selected vertices are isolated in F[A], so cannot be
+selected again. Each new selection removes at least 512 fresh neighbours;
+all removed neighbours are disjoint from the final T. Hence 513|T|<=N.
+
+At termination, U={v in A:deg_{F[A]}(v)<=511} contains I. A vertex of U
+outside I already has a neighbour in I by global maximality, so I is maximal
+independent in F[U]. Crucially, the final SET T determines A and U; there is
+no need to reconstruct the selection order. For each fixed fingerprint T,
+the possible I are a subset of MIS(F[U]), with the identity map injective.
+
+Every u in U has at least delta-511 neighbours outside A=N(T)^c. Counting
+these edges gives
+
+  (delta-511)|U|<=Delta |N(T)|<=Delta(N-|U|),
+  |U|<=Delta N/(delta+Delta-511)<=8192 N/11777.
+
+The middle expression is increasing in Delta because delta>511; after
+substituting Delta=2delta it is decreasing in delta. Both substitutions
+used in the bridge are justified.
+
+Moon--Moser contributes 3^(8192N/35331). The number of fingerprints is at
+most sum_{j<=N/513} binom(N,j), which is at most exp(N H(1/513)) and strictly
+less than 3^(8N/513). The binomial entropy estimate is valid with the floor
+implicit in j<=N/513. The elementary numerical justifications ln513<7
+and ln3>1 are valid.
+
+The exact arithmetic was independently checked with Fraction integers:
+
+  8192/35331+8/513 = 1495048/6041601,
+  1/4-(8192/35331+8/513) = 61409/24166404 > 0,
+  8^7 > 513*3^7.
+
+Thus every seed of size at least 8192 gives mis(L_S[B])<3^(|B|/4), without
+a seed rank hypothesis and without assuming that |S| is asymptotically small.
+
+4. Bounded seeds, residual decomposition, and uniformity
+-------------------------------------------------------
+
+For |S|<8192, the linear span K of its tail coordinates has dimension at
+most 8191 and q=|K|<=5^8191. Choose a complement W in H.
+
+Difference edges preserve the W-coordinate and sum edges negate it. A loop
+arising from one B-vertex and two S-elements expresses that vertex as a sum
+or difference of seed elements, so its W-coordinate is zero. A loop from
+2x in S also has zero residual coordinate, since 2 is invertible. There are
+no remaining loop types because S and B are themselves sum-free.
+
+The odd-order group W has only one fixed point of negation, namely zero.
+Consequently the link is the disjoint union of one core on 2q vertices and
+(|W|-1)/2=(h/q-1)/2 loopless generic blocks on 4q vertices. Their adjacency
+patterns agree after labelling the two residual signs. The individual
+parts may themselves be disconnected; this does not affect multiplication
+of maximal-independent-set counts.
+
+Using Moon--Moser on the core and the established theorem (GB) on each
+generic block gives
+
+  mis(L_S[B])<=3^(2q/3+q(h/q-1)/2)=3^(h/2+q/6)
+              <=3^(n/10+C),  C=5^8191/6.
+
+The argument includes W=0 and the empty seed. In particular, C is one
+absolute constant, independent of k and of the seed selected from any
+container. Even though the constant is extremely large, C=o(n) as
+n=5^k tends to infinity. There is no hidden use of a nonuniform O_S(1).
+
+The coverage file also handles the case where normalized seed tails span
+a proper subspace of a nominal K: the generic block splits over the unused
+coordinates into smaller generic blocks. The external nonzero residual
+coordinate remains external throughout, so this reduction creates no extra
+exceptional core. The generic-block input has precisely the strength needed
+here.
+
+5. External statements checked in primary sources
+------------------------------------------------
+
+(a) Hassler--Treglown, On the number of maximal sum-free sets in abelian
+groups (2022 accepted manuscript), Lemma 2.3, printed page 3:
+https://web.mat.bham.ac.uk/A.Treglown/EJCaccepted.pdf
+
+The lemma gives a covering family of at most
+2^[n(log n)^(-1/18)] containers, with at most n^2(log n)^(-1/9) Schur triples
+per container. The paper's definition allows repeated entries in a Schur
+triple. Its additional container-size assertion is not required here.
+Lemma 2.8 agrees with the link-maximality injection used below. Lemma 2.10
+also agrees with the residual-coset decomposition above, though that
+decomposition was checked directly and does not depend on citing it.
+
+(b) Ben Green, A Szemeredi-type regularity lemma in abelian groups,
+arXiv:math/0310476v2, Theorem 1.5, printed page 2:
+https://arxiv.org/pdf/math/0310476
+
+The theorem is explicitly for fixed k>=3, not k>3. This was checked both
+by extracting the PDF glyph and visually inspecting the theorem in the
+downloaded primary PDF. It applies to subsets A_1,...,A_k of a finite
+abelian group of order N with o(N^(k-1)) zero-sum k-tuples, allowing deletion
+of o(N) elements from each set to remove every such tuple. Its own proof
+applications also explicitly use k=3.
+
+For our application use A_1=A_2=F and A_3=-F. If the respective deletions
+are D_1,D_2,D_3, delete D_1 union D_2 union (-D_3) from F. This costs at
+most three times the removal error and removes every solution x+y=z,
+including repeated entries. Since all containers have the same common
+Schur-triple bound, the resulting o(n) deletion bound is uniform over
+the entire family. Equivalently, a single removal modulus rho(t)->0 may
+be used, absorbing the factor three.
+
+(c) Vsevolod F. Lev, Large sum-free sets in Z_5^n, Theorem 3:
+https://math.haifa.ac.il/seva/Papers/SFF5n.pdf
+
+The exact strict threshold is (3/2)5^(k-1)=3n/10. Above this threshold,
+a sum-free set lies in (e+H_0) union (-e+H_0), for a proper subgroup H_0
+and e outside H_0. This is the statement used in the bridge; no stronger
+stability assertion or quantitative approximation is assumed.
+
+6. Container enlargement and global maximality
+----------------------------------------------
+
+For each original container F, remove its chosen error set E_F to obtain
+the sum-free set A_F. Fix one globally maximal sum-free extension M_F of
+A_F, and put E'_F=E_F\M_F. Then
+
+  E'_F intersect M_F=empty,
+  F subset M_F union E'_F,
+  |E'_F|<=|E_F|=o(n) uniformly.
+
+Only one extension is fixed per original container, so there are at most
+as many pairs (M_F,E'_F) as original containers. An extension may contain
+many points outside F; this is harmless because an upper cover may be
+enlarged. There is no claim that graph MIS counts are monotone under
+the corresponding edge changes.
+
+If X is a globally maximal sum-free set contained in M union E, with M,E
+disjoint, then S=X intersect E and I=X intersect M partition X. The set S
+is sum-free and I is maximal independent in L_S[M]. Otherwise an addable
+vertex of M would extend X, contradicting its global maximality. For fixed
+S, I determines X uniquely. Only this direction is needed; the proof does
+not assert that every maximal independent set of the link gives a globally
+maximal sum-free set.
+
+If |M|<=3n/10, the loop deletion argument and Moon--Moser bound every link
+by 3^(n/10). If |M|>3n/10, apply Lev's theorem. Every subgroup of the
+elementary abelian group is an F_5-subspace. Codimension at least two would
+give a union of two cosets of size at most 2n/25, a contradiction. Hence
+H_0 is a hyperplane. Its two opposite nonzero cosets form a sum-free set:
+in the quotient F_5 the sums of indices in {e,-e} belong to {0,2e,-2e},
+disjoint from {e,-e}. Global maximality of M therefore forces equality
+with this entire union.
+
+A nonzero linear functional with kernel H_0 and value 2 on e extends to
+linear coordinates sending M to {2,3} x F_5^(k-1). It sends S outside M
+to a sum-free seed outside the standard B, and preserves the full looped
+link. The uniform bound in Section 4 now applies.
+
+There are at most 2^{|E|}=2^{o(n)} seed choices for each pair, uniformly,
+and 2^{o(n)} pairs. The resulting upper bound is
+
+  f_max(F_5^k)<=
+  2^[n(log n)^(-1/18)+rho((log n)^(-1/9))n] 3^(n/10+C)
+  =3^(n/10+o(n)).
+
+Counting the same X in more than one pair only enlarges this upper bound.
+
+7. Matching lower bound and its extension injection
+--------------------------------------------------
+
+For S={(1,0)} the only looped B-vertices are (2,0), from s+s, and (3,0),
+from 2(3,0)=s. Over each nonzero pair {x,-x} in H the ordinary edges are
+exactly the path
+
+  (2,x)--(3,x)--(3,-x)--(2,-x).
+
+Different residual pairs have no edges between them. A four-vertex path has
+three maximal independent sets. Hence the looped link has exactly
+3^((h-1)/2)=3^(n/10-1/2) maximal independent sets.
+
+Extend each S union I to a globally maximal sum-free set X_I, fixing an
+arbitrary deterministic extension rule. No missing B-vertex can enter
+X_I, since it was already blocked by S union I. Thus X_I intersect B=I,
+so distinct I give distinct global maximal extensions. This proves the
+matching lower bound without assuming any converse to the link lemma.
+
+CONCLUSION
+----------
+
+The complete global implication is valid:
+
+  (GB) for every generic block
+       ==> uniform link bound for arbitrary seeds
+       ==> f_max(F_5^k)=3^(5^k/10+o(5^k)).
+
+All error terms, source thresholds, loops, maximality injections, and
+degree comparisons required by this implication have been checked. No
+unresolved global-bridge gap was found.

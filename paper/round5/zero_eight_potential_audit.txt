@@ -1,0 +1,228 @@
+ROUND 5: INDEPENDENT AUDIT OF THE DEGREE-EIGHT TRIANGLE-FREE POTENTIAL
+Status: all stated claims below proved and independently checked.
+The certificate zero_verify_eight.py uses integers and rational numbers only.
+No Lean formalization or claim about research novelty is made.
+
+1. THE HEREDITARY CLASS AND THE THEOREM
+
+Let C_8 be the class of finite simple triangle-free graphs F such that
+  (i) maximum degree is at most eight;
+  (ii) every degree-eight vertex has at least three neighbors of degree
+       at most seven.
+Set
+        mu(F) = (16 |V(F)| - |E(F)|)/31.
+Then
+        mis(F) <= 2^{mu(F)}.                                  (1)
+
+The class is hereditary under induced subgraphs. Indeed, if a vertex
+has degree eight in an induced subgraph, it had degree exactly eight
+in F, and all its original neighbors remain. At least three of those
+neighbors had degree at most seven in F, and vertex deletion cannot
+increase their degrees. Triangle-freeness is also hereditary.
+
+The potential is additive over components, and maximal-independent-set
+counts multiply over components. It therefore suffices to deal with
+connected graphs. The proof below is induction on the number of vertices;
+every application of an inductive estimate is to a proper induced graph.
+The intermediate strengthened estimates are obtained directly by applying
+that induction to their branches, so there is no circularity.
+
+For a vertex v of degree d,
+        mu(F)-mu(F-v) = (16-d)/31.                            (2)
+In a triangle-free graph, the number of edges removed with N[v] is
+exactly sum_{u in N(v)} deg(u). Hence, if d is the current maximum degree,
+        mu(F)-mu(F-N[v]) >= [16(d+1)-d^2]/31.                 (3)
+Use the usual inequality
+        mis(F) <= mis(F-v)+mis(F-N[v]).
+
+2. CURRENT MAXIMUM DEGREE FIVE THROUGH EIGHT
+
+For d=5,6,7, the drops in (2),(3) and rational upper bounds for the
+corresponding powers of two are:
+
+    d       numerator drops /31      first bound    second bound
+    5             11,71                 79/100         21/100
+    6             10,76                 81/100         19/100
+    7              9,79                 41/50           9/50
+
+Every displayed exponential bound is strict, and each pair sums to one.
+
+For d=8, at least three neighbors have degree at most seven. Thus the
+number of edges removed with N[v] is at most
+        5*8+3*7=61.
+The two potential drops are at least 8/31 and 83/31. The exponential
+factors are strictly smaller than 21/25 and 4/25, respectively. This
+also closes the induction.
+
+3. CURRENT MAXIMUM DEGREE FOUR
+
+First consider a connected graph with maximum degree four that is not
+four-regular. Along a path from a degree-four vertex to a smaller-degree
+vertex, there is a degree-four vertex v with a neighbor of degree at
+most three. Thus at most 15 edges meet N[v], and the two drops are
+12/31 and at least 65/31. The factors are strictly below 49/64 and 15/64,
+whose sum is one.
+
+The four-regular case uses an ordered closed-neighborhood branching
+estimate, recorded next in a form that will also treat cubic graphs.
+
+ORDERED-NEIGHBORHOOD ESTIMATE.
+Let F be triangle-free, with maximum degree at most d. Suppose x has
+degree d-1 and its neighbors y_1,...,y_{d-1} all have degree d.
+Partition the maximal independent sets according to the first selected
+vertex in the list x,y_1,...,y_{d-1}. For index r=0, delete N[x]. For
+r>=1, delete
+        N[y_r] union {y_1,...,y_{r-1}}.
+The count in each part injects into the maximal independent sets of the
+corresponding induced remaining graph: the selected vertex dominates its
+closed neighborhood, and the extra deleted vertices were excluded.
+Every remaining unselected vertex still has a selected neighbor in the
+remaining graph.
+
+For r=0, the deleted set has d vertices and meets d(d-1) edges. For
+r>=1, triangle-freeness makes the y_i pairwise nonadjacent, so the
+deleted set has exactly d+r vertices. The closed neighborhood N[y_r]
+meets at most d^2-1 edges, because one neighbor is x of degree d-1.
+Each of the r-1 extra vertices adds at most d-1 incident edges: its
+edge to x has already been counted. Therefore the total is at most
+        d^2-1+(r-1)(d-1)=(d+r)(d-1).
+In every case the potential drop is at least
+        (d+r)(17-d)/31,       r=0,...,d-1.                    (4)
+
+Apply this with d=4. The four drops have numerators 52,65,78,91.
+The exponential factors are strictly below
+        8/25, 6/25, 9/50, 27/200,
+whose sum is 7/8. Thus any such local degree-three configuration gives
+        mis(F) < (7/8) 2^{mu(F)}.                            (5)
+
+Now let F be connected, triangle-free and four-regular. Delete any v.
+Every neighbor x of v has degree three in F-v, and each of x's remaining
+neighbors has degree four: otherwise such a neighbor was adjacent to v,
+forming a triangle in F. Therefore (5) applies to F-v. Deleting v drops
+the potential by 12/31; deleting N[v] drops it by 64/31>2. The total
+coefficient is strictly below
+        (7/8)(49/64)+1/4 = 471/512 < 1.
+This completes the maximum-degree-four cases.
+
+4. SUBCUBIC GRAPHS
+
+Isolated vertices contribute count one and positive potential. An
+isolated edge has potential one and count two, so is exact.
+
+NON-ISOLATED LEAF.
+Let x be a leaf with neighbor y of degree d=2 or 3. Exactly
+        mis(F)=mis(F-{x,y})+mis(F-N[y]).
+For the first branch, at most d edges are removed, giving drops 30/31
+for d=2 and 29/31 for d=3. In the second branch, the sum of the degrees
+of y's neighbors is at most 1+3(d-1), so the drops are at least 44/31
+and 57/31, respectively. Consequently the two factors are uniformly
+strictly below 21/40 and 3/8, whose sum is 9/10. Thus
+        mis(F) < (9/10) 2^{mu(F)}                            (6)
+whenever a subcubic graph contains a leaf whose neighbor is not a leaf.
+
+MIXED DEGREES TWO AND THREE.
+If a connected subcubic graph has minimum degree at least two and is
+neither a cycle nor cubic, choose a degree-three vertex y adjacent to
+a degree-two vertex x. Let z be x's other neighbor. Triangle-freeness
+ensures yz is absent, so in F-y the vertex x is a leaf whose neighbor z
+still has degree at least two. Apply (6) to this branch. The delete-y
+drop is 13/31, and the closed-neighborhood drop is at least 56/31,
+since the neighbor-degree sum is at most 2+3+3=8. The ordinary factors
+are strictly below 3/4 and 3/10. The resulting coefficient is less than
+        (9/10)(3/4)+3/10=39/40<1.                           (7)
+
+CUBIC GRAPHS.
+Use the ordered estimate (4) with d=3. Its drops have numerators
+42,56,70, and their factors are strictly below
+        2/5, 29/100, 21/100,
+whose sum is 9/10. In a triangle-free cubic graph, deleting any v leaves
+one of its former neighbors with degree two and both remaining
+neighbors of degree three. Thus this 9/10 estimate applies to F-v.
+The root drops are 13/31 and 55/31, with factors below 3/4 and 3/10.
+Again the total is less than 39/40.
+
+CYCLES.
+For C_l, l>=4, write a_l=mis(C_l). Then
+        a_4=2, a_5=5, a_6=5,
+        a_l=a_{l-2}+a_{l-3} for l>=7.
+For example, encode each selected vertex by state 0 and the one or two
+unselected vertices following it by states 1 and 2. The allowed cyclic
+transition matrix is
+        T=[[0,1,0],[1,0,1],[1,0,0]].
+The count is tr(T^l), and T^3=T+I proves the recurrence. Set rho=25/18.
+The three initial counts are strictly smaller than rho^l, and
+        rho^(-2)+rho^(-3)=13932/15625<1.
+Thus a_l<rho^l by induction. The integer comparison
+        25^31 < 18^31 * 2^15
+implies rho<2^{15/31}. As E(C_l)=l, this gives a_l<2^{mu(C_l)}.
+
+These cases exhaust all graphs of maximum degree at most three.
+Together with Sections 2 and 3, they prove (1).
+
+5. APPLICATION: TWO INDEPENDENT ZERO SEEDS AND ONE NONZERO SEED
+
+Let G=F_5 x H, B={2,3} x H, and
+        S={(0,e_1),(0,e_2),(1,0)},
+where e_1,e_2 are linearly independent in H. A nonzero seed in layer one
+can always be put into this form by a shear preserving the zero layer
+and B; a seed in layer four is reduced to layer one by negation first.
+Set K=span{e_1,e_2}. Choose t not in K and consider the component over
+the two distinct cosets t+K and -t+K. It consists of the following four
+rows, indexed by x in K:
+
+        a_x=(2,t+x),       b_x=(3,t+x),
+        c_x=(3,-t-x),      d_x=(2,-t-x).
+
+The complete edge list is:
+  * within each row, x is joined to x+/-e_1 and x+/-e_2;
+  * a_x c_{x-e_i} and b_x d_{x-e_i}, i=1,2;
+  * a_x b_x, b_x c_x, c_x d_x.
+
+These formulas follow directly from the link conditions u+v in S or
+u-v in S or v-u in S. There are no loops in this component: all loop
+vertices arising from S lie over K (in fact the only loop vertices here
+are (2,0) and (3,0), both in the exceptional core).
+
+The a,d rows have degree seven and the b,c rows have degree eight.
+Every b_x has exactly the following three degree-seven neighbors:
+        a_x, d_{x-e_1}, d_{x-e_2}.
+Every c_x has exactly the following three degree-seven neighbors:
+        d_x, a_{x+e_1}, a_{x+e_2}.
+
+The graph is triangle-free, as follows.
+  * A single row is C_5 square C_5 and contains no triangle.
+  * A two-row triangle cannot use an identity matching. For the a,c or
+    b,d row pairs, two cross neighbors differ by e_1-e_2, which is not
+    one of +/-e_1,+/-e_2 by linear independence.
+  * The only possible triples of distinct rows are a,b,c and b,c,d.
+    The two identity-matching edges force all three indices to coincide,
+    whereas the remaining cross edge requires a nonzero shift e_i.
+    This is impossible.
+
+Thus the component lies in C_8. It has 100 vertices, 50 in each degree
+class, and 375 edges. Theorem (1) gives the requested paper bound
+        mis(component) <= 2^{(1600-375)/31}
+                       = 2^{1225/31}
+                       < 3^{25}.                            (8)
+The strict comparison in (8) is exactly 2^49<3^31.
+
+This argument proves the generic-component assertion requested in the
+audit. The exceptional core over K is not claimed to obey (8), and no
+new bound on that core is inferred from generic-component estimates.
+If the two zero seeds are dependent and sum-free, they are opposite;
+that separate case is already covered by the symmetric-core plus one
+defect theorem from round 4.
+
+6. EXACT CERTIFICATE CONVENTION
+
+Every exponential bound 2^{-a/31}<p/q in this proof is equivalent to
+        q^31 < p^31 * 2^a.
+All these comparisons, all rational coefficient sums, the three cycle
+initial values, the cycle growth comparison, and the final target
+comparison are verified with integers/rational numbers in
+zero_verify_eight.py. The script additionally reconstructs the 100-point
+graph both from the row formulas and independently from the original
+F_5^4 link conditions, compares the two adjacency lists, and verifies
+its exact degree counts, its three low-degree neighbors per high-degree
+vertex, and the absence of triangles. It does not enumerate maximal
+independent sets, and the numerical checks do not replace the proof.

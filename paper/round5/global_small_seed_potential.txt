@@ -1,0 +1,145 @@
+ROUND 5: COMPLETING ALL GENERIC MIXED SEEDS OF SIZE SIX AND SEVEN
+Status: paper proof. Integer inequalities are checked by
+global_small_seed_certificates.py. No Lean verification or novelty
+claim is made. This concerns generic components; the previously proved
+exceptional-core argument remains necessary in the global reduction.
+
+0. COORDINATES AND DEGREE DATA
+Write A=S_0, P=S_1, Q=-S_4, U=P union Q; put z=|A|, p=|P|, q=|Q|,
+a0=|A union -A|, d0=|U|. Let K be their linear span in H. A generic
+component uses coordinates x in (g+K) union (-g+K), with g not in K,
+and vertices X_x=(2,x), Y_x=(3,-x).
+Its edges have the following forms:
+  X_x X_y: x-y in A union -A, or x+y in -Q;
+  Y_x Y_y: x-y in A union -A, or x+y in -P;
+  X_x Y_y: x-y in A, or x+y in -U.
+Call the first (difference) type translation edges and the second
+(sum) type reflection edges. Translation edges preserve the coset sign;
+reflection edges exchange g+K and -g+K. All listed contributions are
+distinct in a generic component.
+Assume p>=q by swapping the rows if necessary. Then the Y-vertices
+have degree a=a0+z+d0+p, the X-vertices degree b=a0+z+d0+q. There are
+equally many of each. Every vertex has exactly h=z+d0 neighbors in the
+other row. The larger degree is at most twice the smaller degree.
+
+1. A TRIANGLE-FREE LEMMA FOR ONE ANTIPODAL ZERO DIRECTION
+Suppose A is a nonempty subset of {t,-t}, t!=0, and
+    (U-U) intersect {t,-t} is empty.
+Then every generic component is triangle-free.
+Proof: a closed triangle uses an even number of reflection edges, because
+the two cosets are distinct. If it uses none, its three coordinate
+increments are in {t,-t}; their sum is one of +/-t,+/-3t, never zero in
+characteristic five. If it uses two reflection edges, the remaining
+translation edge forces the two reflection labels to differ by t or
+-t, contrary to the assumption. QED.
+
+Two useful consequences of seed sum-freeness are:
+(i) If P and Q are nested, then the displayed assumption holds. Indeed,
+U is the larger one, and adding t to two seed elements in the same
+nonzero layer is forbidden; this excludes both differences +/-t.
+(ii) If A={t,-t}, the assumption holds without nesting. Differences
+within P or Q are forbidden as in (i), and differences between P and Q
+are forbidden because P-Q cannot meet A: such a pair would sum from
+layers 1 and 4 into S_0.
+
+2. TWO HEREDITARY DEGREE-CAP LEMMAS
+Let c=log_2(3)/3 and mu_beta=(c+beta)n-beta e. We use the independently
+proved general-graph master lemma and its subcubic proof. In each
+lemma below beta is fixed once and for all, including in induced
+subgraphs. Vertex types and their original degree caps are retained.
+
+LEMMA 2A.
+Let G have equally many high and low vertices, of degrees 12 and 9,
+respectively. Suppose every high vertex has six low neighbors.
+Then m(G)<=3^{n/4}.
+Set beta=c/17. In any induced subgraph whose maximum degree is d>9,
+a vertex of degree d must be high. It originally had only six high
+neighbors, so at least d-6 of its surviving neighbors are low, of
+current degree at most 9. All other neighbors have degree at most d.
+Hence the number of edges meeting its closed neighborhood is at most
+    d^2-(d-9)(d-6)=15d-54.
+The two potential drops for 10<=d<=12 are consequently at least
+    A=c(18-d)/17, B=c(3d+72)/17.
+Their exponential terms are uniformly less than 8/9 and at most 1/9:
+the first uses d<=12 and the certificate 2^51>3^32, and the second uses
+d>=10, giving B>=6c=2log_2(3).
+If the current maximum degree is at most 9, the general master lemma
+applies with the same beta and D=9. Its endpoint terms are
+    3^(-3/17)<5/6, 3^(-33/17)<1/6.
+Also beta<1/25. Thus induction proves m<=2^mu for the entire hereditary
+class. Initially e/n=(12+9)/4, so mu/n=3c/4, giving the claim.
+
+LEMMA 2B.
+Let G have equally many high and low vertices, of degrees 10 and 9.
+Suppose each high vertex has five low neighbors and at least two edges
+inside its open neighborhood. Then m(G)<=3^{n/4}.
+Set beta=c/15<1/25. An induced subgraph's degree-10 vertex must be high
+and must retain its entire original neighborhood, including its five
+low neighbors and the two neighborhood edges. Thus the number of
+edges meeting its closed neighborhood is at most
+    5*10+5*9-2=93.
+The exclude and include drops are at least 2c/5 and 83c/15; the two
+terms are less than 13/15 and 2/15. In any residual graph of maximum
+degree at most 9, the master lemma with the fixed beta and D=9 applies:
+its endpoint terms are 3^(-7/45)<17/20 and 3^(-79/45)<3/20.
+This proves m<=2^mu, and the original average degree again makes
+mu/n=3c/4. QED.
+
+3. A UNIFORM LOCAL TRIANGLE DICHOTOMY WHEN A={t}
+If U-U avoids +/-t, lemma 1 gives triangle-freeness. Otherwise choose
+u,v in U with v=u+t (reverse their order if necessary). For every
+high vertex Y_y, the following two edges lie inside its neighborhood:
+    {Y_{y+t}, X_{-y-v}},  {Y_{y-t}, X_{-y-u}}.
+The edges from Y_y to the Y-vertices are translation edges; those to the
+X-vertices and the two displayed edges are reflection edges with labels
+u or v. The displayed edges are distinct, since t!=-t and u!=v.
+Thus every high vertex has at least two neighborhood edges. This
+observation is valid on both coset signs and in every generic component.
+
+4. ALL MIXED SEEDS OF SIZE SEVEN
+Here z>=1. If a0>=4, then b>=a0+|S|>=11 and theorem C of
+global_general_potential_audit.txt applies. Otherwise a0=2, so A is a
+nonempty subset of {t,-t}. If d0>max(p,q), again b>=10 and theorem C
+applies. Thus only nested P,Q need consideration, and lemma 1 makes
+their generic components triangle-free.
+For z=1, p+q=6, the unordered degree pairs are
+    (15,9), (13,9), (11,9), (9,9).
+The first two use the D>=12 triangle-free potential, the third the
+maximum-degree-12/degree-sum>=18 corollary. The last has P=Q, so S is
+a symmetric core plus a single zero-layer element, already covered by
+the colored dominating-dissociation theorem. (It is also triangle-free
+and covered by the maximum-degree-10/degree-sum>=17 corollary.)
+For z=2, p+q=5, the pairs are
+    (14,9), (12,9), (10,9),
+all covered by the triangle-free potential corollaries.
+Thus every generic component from a mixed seed of size seven meets
+the required bound.
+
+5. ALL MIXED SEEDS OF SIZE SIX
+Again a0>=4 implies b>=10, so theorem C applies. Assume a0=2.
+If d0>=max(p,q)+2, the same b>=10 argument applies.
+
+For z=2, A={t,-t}. Lemma 1 gives triangle-freeness regardless of nesting.
+If p+q=4 and d0-max(p,q) is zero or one, the possible degree pairs are
+    (12,8), (10,8), (8,8), (11,9), (9,9).
+All except (8,8) are covered by the triangle-free corollaries. In (8,8)
+one has P=Q and A=-A, so the entire seed is symmetric, already proved.
+
+For z=1, p+q=5. If P,Q are nested, lemma 1 gives triangle-freeness and
+the pairs are (13,8), (11,8), (9,8), all covered by those corollaries.
+The remaining nonnested case has d0=max(p,q)+1. It has either
+    p=4,q=1,d0=5: (a,b,h)=(12,9,6),
+or p=3,q=2,d0=4: (a,b,h)=(10,9,5).
+The first uses lemma 2A. For the second, the dichotomy in section 3
+gives either a triangle-free graph (handled by the degree-10 theorem)
+or the neighborhood-edge hypothesis of lemma 2B. Both meet the target.
+This exhausts mixed seeds of size six.
+
+CONCLUSION.
+Combined with theorem C for |S|>=8, every generic component of every
+mixed seed with |S|>=6 satisfies m<=3^{n/4}. Pure-zero seeds are handled
+in full by zero_pure_layer_theorem.txt. The smaller mixed sizes are now
+covered in global_zero_layer_generic_theorem.txt, and all no-zero seeds
+in matrix_nozero_remaining.txt with the final entropy proofs. The
+completed joint theorem and its global bridge are assembled in
+global_final_coverage.txt and global_final_bridge_audit.txt.

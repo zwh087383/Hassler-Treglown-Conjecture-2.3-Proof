@@ -1,0 +1,44 @@
+all rank-zero seeds (generic block): 4 maximum 3 empty seed 1
+all rank-one seeds (generic block): 1470 maximum 243 size distribution [(0, 1), (1, 14), (2, 87), (3, 260), (4, 380), (5, 332), (6, 220), (7, 120), (8, 45), (9, 10), (10, 1)]
+20 vertices 86 r2 25
+20 vertices 86 r3 25
+20 vertices 76 r2 15
+20 vertices 76 r3 25
+20 vertices 87 r3 35
+20 vertices 88 r2 30
+20 vertices same r2 30
+20 vertices same r3 30
+20 vertices opp q1 75
+20 vertices opp q2 45
+20 vertices opp q3 10
+100 vertices same triple exact MIS 312606470 states [90, 90]
+100 vertices opposite triple exact MIS 178640785 states [120, 120]
+100 vertices nested four exact MIS 74668930 states [70, 70]
+100 vertices triangle four exact MIS 770498435 states [285, 285]
+100 vertices two zero four exact MIS 30758595 states [75, 75]
+100 vertices triangle five exact MIS 428140310 states [185, 185]
+100 vertices no-zero triple: carry states 83 labeled trace upper 142457592583 weighted norm squared 1433053/32
+local entropy A 193 [Fraction(571, 16), Fraction(19, 1), Fraction(8, 1), Fraction(16, 1)] sum 1259/16
+local entropy C 193 [Fraction(191, 4), Fraction(10, 1), Fraction(4, 1), Fraction(8, 1)] sum 279/4
+local entropy B 16384 sum 43177189/20736
+B collision 0122334 partition 55757341/254016 < 243
+B collision 0122341 partition 290494354889/1446700500 < 243
+B collision 0122345 partition 2052027525413/3136589568 < 729
+B collision 0123214 partition 290494354889/1446700500 < 243
+B collision 0123243 partition 55757341/254016 < 243
+B collision 0123245 partition 2052027525413/3136589568 < 729
+B collision 0123413 partition 55757341/254016 < 243
+B collision 0123415 partition 2556241016659/3920736960 < 729
+B collision 0123441 partition 55757341/254016 < 243
+B collision 0123445 partition 868619894/1265625 < 729
+B collision 0123451 partition 2556241016659/3920736960 < 729
+B collision 0123453 partition 868619894/1265625 < 729
+scalar patterns 30 all-dimensional closure 37 valid collision certificates 12
+global F5 dimension 0 maximal sum-free sets 1 by size [(0, 1)]
+global F5 dimension 1 maximal sum-free sets 2 by size [(2, 2)]
+global F5 dimension 2 maximal sum-free sets 372 by size [(5, 360), (10, 12)]
+pure zero-sum triple: connected components and exact MIS [(50, 19245), (50, 19245)]
+10/8 actual neighborhood certificates: dimension 2 vertices 100 models 18
+10/8 actual neighborhood certificates: dimension 3 vertices 500 models 1
+four-point models: dimension 2 inputs 225 valid seeds 181 zero-sum-free 173
+four-point models: dimension 3 inputs 9 valid seeds 9 zero-sum-free 9

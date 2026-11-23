@@ -1,0 +1,289 @@
+ROUND 5: TEN-SLICE TRANSFERS FOR THE TWO REMAINING RANK-TWO TRIPLES
+
+Status: the two generic-component bounds below are proved by an explicit
+integer certificate. All state definitions, transitions and weights are
+specified here. The accompanying standard-library verifier reconstructs
+the original group link independently, checks the strip isomorphism and
+checks every integer inequality. No floating-point bound is used.
+
+Files:
+  matrix_mixed3_verify.py                 original link versus four rows
+  matrix_mixed3_strip_verify.py           complete transfer certificate
+  matrix_mixed3_strip_table.txt           the 66 orbit rows
+  matrix_mixed3_strip_certificate.json    states and all transitions
+
+1. THE TWO NORMAL FORMS
+
+Let u,v be linearly independent in a vector space H over F_5. Set
+K=span{u,v}. The two seeds considered are
+
+  same:      S={(0,u),(1,0),(1,v)},
+  opposite:  S={(0,u),(1,0),(4,v)}.
+
+The first coordinate is the distinguished F_5 factor, and the link is
+on {2,3} x H. A shear (a,x) -> (a,x-a p) puts any chosen layer-one seed
+(1,p) at (1,0), preserves the zero seed, and preserves {2,3} x H.
+Negation first reduces layer four to layer one when necessary. Thus
+these are precisely the two rank-two possibilities with one zero-layer
+seed and two nonzero-layer seeds, after the rank-one cases are removed.
+
+Fix t with t+K != -t+K. The generic component consists of four rows
+indexed by x in K:
+
+  a_x=(2,t+x),       b_x=(3,t+x),
+  c_x=(3,-t-x),      d_x=(2,-t-x).
+
+All vertices have distinct quotient coordinate +/-t, so none is a loop
+vertex. The link rule is an edge yz when y+z, y-z or z-y belongs to S.
+The zero seed gives, in each row, edges x--(x+u), and also
+
+              a_x c_{x-u},       b_x d_{x-u}.                 (1)
+
+A layer-one seed (1,p) gives
+
+              a_x b_{x+p}, c_x d_{x+p}, b_x c_{x-p}.           (2)
+
+A layer-four seed (4,q) gives
+
+              a_x b_{x-q}, c_x d_{x-q}, a_x d_{x-q}.           (3)
+
+These formulas are also checked independently from the original F_5^4
+sum/difference conditions by matrix_mixed3_verify.py. Both graphs are
+triangle-free, though the transfer proof below does not need that fact.
+The same graph has 50 vertices of degree five and 50 of degree seven;
+the opposite graph is six-regular. Both have 100 vertices and 300 edges.
+
+2. AN EXACT TEN-SLICE DESCRIPTION
+
+Use x=x_0 u+x_1 v and label a,b,c,d by row=0,1,2,3. Every vertex will
+receive coordinates (r,(h,j)) in Z_10 x ({0,1} x Z_5).
+
+For the opposite case put
+  j=x_0+2x_1+offset_row mod 5, offsets=(0,1,0,1),
+  r=2x_1+(row mod 2) mod 10,
+  h=floor(row/2).
+
+For the same case put
+  j=x_0+2x_1+offset_row mod 5, offsets=(0,4,0,4),
+  r=2x_1+1-(row mod 2) mod 10,
+  h=floor(row/2).
+
+Each map is a bijection. Define two directed 10 by 10 relations on
+W={0,1} x Z_5:
+
+  C_-: (h,j) -> (k,j+1) if k<=h;
+  C_+: (h,j) -> (k,j+1) if h<=k.                              (4)
+
+Let F be the undirected graph with adjacency C_- union C_-^T. It has
+two 5-cycles and the matching (1,j)--(0,j+1); hence it is a pentagonal
+prism C_5 square K_2. Under the coordinates above, each fixed-r slice
+induces F. There are no edges between nonadjacent distinct slices.
+
+Between r and r+1 the directed relation is
+
+  opposite: C_- for all r;
+  same:     C_+ if r is even, C_- if r is odd.                 (5)
+
+The coordinate formulas and (1)--(3) prove this assertion directly.
+The verifier also compares all 100 adjacency lists, not merely the
+degree distributions. Thus the strip identification is exact.
+
+3. A GENERAL INDEPENDENT-DOMINATING-SET TRANSFER
+
+Write I(F) for the 81 independent subsets of the ten-vertex graph F.
+For an independent set S in one slice let
+
+                   D(S)=W \ (S union N_F(S)).                 (6)
+
+These are precisely the vertices still requiring domination from an
+adjacent slice. For a directed interface C write
+
+  Out_C(L)={y: xCy for some x in L},
+  In_C(T) ={x: xCy for some y in T}.
+
+At a slice of phase p, let C_prev be the incoming interface and C_p the
+outgoing interface. A state is a pair (S,U) with S in I(F) and
+
+       U=D(S) \ Out_Cprev(L)                                 (7)
+
+for some L in I(F) satisfying Out_Cprev(L) intersect S=empty.
+Keep only states having some T in I(F) with
+
+  Out_Cp(S) intersect T=empty,    U subset In_Cp(T).            (8)
+
+Removing states failing (8) cannot remove a closed walk. A transition
+from (S,U) at phase p to a state (T,V) at the next phase exists exactly
+when (8) holds and
+
+                     V=D(T) \ Out_Cp(S).                     (9)
+
+All transition entries are zero or one. In particular two different
+choices of T cannot create the same target state.
+
+CLAIM. Maximal independent sets of the ten-slice graph are in bijection
+with length-ten closed walks in this phased transfer, starting at phase
+zero.
+
+Proof. A maximal independent set specifies its selected vertices S_r in
+each slice. Each S_r is independent in F, and consecutive slices obey
+the independence condition in (8). Put
+  U_r=D(S_r) \ Out_Cprev(S_{r-1}).
+Maximality means that every vertex not selected has a selected neighbor;
+for vertices in U_r this is exactly U_r subset In_Cr(S_{r+1}). Therefore
+the states form a closed walk satisfying (9).
+
+Conversely a closed walk gives independent S_r and forbids every edge
+between consecutive selected slices. Equations (6)--(9) say that every
+unselected vertex is dominated internally, from the preceding slice,
+or from the following slice. The resulting independent set is maximal.
+Finally U_r is determined by S_{r-1},S_r, so the two constructions are
+inverse: no auxiliary-state multiplicity is introduced. QED.
+
+4. THE FINITE INTEGER CERTIFICATE
+
+Encode W by bit 5h+j, with bit zero the least significant bit. Thus a
+subset of W is an integer from zero to 1023. The interface row masks are
+
+  C_- = (2,4,8,16,1,66,132,264,528,33),
+  C_+ = (66,132,264,528,33,64,128,256,512,32).
+
+All 81 choices in I(F), and then all states and transitions, are
+obtained from the explicit set conditions (6)--(9). The results are
+
+  opposite: one phase, 120 states, 725 transitions;
+  same:     two phases, 105 states in each, 710 transitions each way.
+
+Let A be the one-phase transition matrix for the opposite case. For the
+same case use the 210 by 210 block matrix with the two transition
+matrices as off-diagonal blocks. In either case put
+
+                  w=A^2 1,      a=Aw=A^3 1.                  (10)
+
+The certificate is
+
+                     0<w_i,       a_i<=8w_i                 (11)
+
+for every state. Rotation j->j+1 acts freely on all retained states.
+There are 24 orbits for the opposite graph, and 21 in each phase of the
+same graph. The companion table lists one representative from each
+orbit, its outdegree, w_i and a_i. Every row is an integer calculation
+from (4), (6)--(10). The complete table is included below.
+
+The verifier explicitly generates every state, every transition, the
+three integer vectors 1,A1,A^2 1,A^3 1, and all rotation orbits. It checks
+the asserted state/edge counts, positivity, every inequality in (11),
+and that all five entries in each orbit have the displayed values.
+
+5. FROM THE CERTIFICATE TO THE REQUIRED BOUNDS
+
+Since A is nonnegative and Aw<=8w, induction gives A^10 w<=8^10 w.
+For every state i,
+
+       (A^10)_{ii} w_i <= (A^10 w)_i <= 8^10 w_i.
+
+Positivity of w_i therefore implies (A^10)_{ii}<=8^10. By the bijection
+in Section 3, summing only over the states at phase zero gives
+
+  opposite: mis <= 120 * 8^10 = 128,849,018,880;
+  same:     mis <= 105 * 8^10 = 112,742,891,520.
+
+Both are strictly smaller than
+
+                         3^25 = 847,288,609,443.              (12)
+
+There is no use of a floating-point eigenvalue, asymptotic spectral
+estimate, or unproved maximal-independent-set monotonicity here.
+
+As a supplementary check, exact integer transfer multiplication gives
+
+  opposite: mis = 178,640,785;
+  same:     mis = 312,606,470.
+
+These exact counts are not needed for (12). They are derived from the
+same rigorously specified transfer and should not be described as an
+independent counting algorithm.
+
+In arbitrary ambient dimension, every pair of nonzero quotient cosets
+of H/K gives an isomorphic 100-vertex generic component. Thus (12)
+applies to every such component. The exceptional component over K has
+50 vertices and remains the bounded-size core in the existing global
+reduction; the generic estimate is not asserted for that core.
+
+6. CERTIFICATE TABLE CONVENTION
+
+The following rows have columns phase, S, U, outdegree, w, Aw. Each row
+represents exactly five cyclic rotations. The other four rows of an
+orbit are recovered by rotating the low five bits and the high five
+bits of both S and U simultaneously.
+
+OPPOSITE
+0    0 361  2  16  89
+0    1 164  4  34 181
+0    1 420  1  12  59
+0    5 160  2  18  92
+0   32 144  6  39 244
+0   32 148  4  23 155
+0   33 128  9  63 429
+0   33 132  6  43 302
+0   33 264  6  41 271
+0   33 388  1  14 104
+0   36 144  4  26 148
+0   37 128  6  34 209
+0   40 256  3  29 207
+0   41 256  3  29 207
+0   48   0 14 104 703
+0   48 128  6  56 385
+0   48 132  4  38 270
+0   52 128  4  30 187
+0  160  16  6  33 232
+0  161   0 12  74 503
+0  164  16  6  33 232
+0  165   0 12  74 503
+0  176   0 12  59 395
+0  180   0 12  59 395
+
+SAME, PHASE ZERO
+0   32 144  4  34 199
+0   32 148  4  34 199
+0   32 265  3  36 204
+0   33 128  6  41 269
+0   33 132  6  41 269
+0   33 264  4  36 255
+0   48   0 15 109 770
+0   48 128  3  34 248
+0   48 132  3  34 248
+0  160   1  7  54 351
+0  160   5  2  24 153
+0  160  16  9  62 444
+0  160  20  2  20 152
+0  161   0 13  98 699
+0  161   4  3  35 261
+0  164   1  6  34 232
+0  164  16  9  49 364
+0  165   0 12  70 510
+0  176   0 15  91 654
+0  176   4  4  31 221
+0  180   0 12  64 467
+
+SAME, PHASE ONE
+1    1  72  4  34 199
+1    1 164  3  36 204
+1    1 328  4  34 199
+1    5 128  7  54 351
+1    5 160  2  24 153
+1    5 256  9  62 444
+1    5 288  2  20 152
+1   33   8  6  41 269
+1   33 132  4  36 255
+1   33 264  6  41 269
+1   37 128  6  34 232
+1   37 256  9  49 364
+1   41   0 13  98 699
+1   41 256  3  35 261
+1   48   0 15 109 770
+1   48   4  3  34 248
+1   48 132  3  34 248
+1   52   0 15  91 654
+1   52 128  4  31 221
+1  165   0 12  70 510
+1  180   0 12  64 467

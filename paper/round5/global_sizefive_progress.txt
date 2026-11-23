@@ -1,0 +1,172 @@
+ROUND 5: SIZE-FIVE PROGRESS, INCLUDING THE NINE-REGULAR SINGLE-P4 CASE
+Status: complete size-five classification. The lemmas below, together
+with the two completion references at the end, cover every mixed seed
+of size five. Exact powers are checked by global_sizefive_certificates.py.
+
+Use the generic-component coordinates and notation of
+global_small_seed_potential.txt. In particular X_x,Y_x lie over the two
+cosets +/-g+K, translation edges preserve coset sign, and reflection
+edges reverse it. Put c=log_2(3)/3.
+
+1. GENERALIZED NESTED TRIANGLE-FREE OBSERVATION
+If the pure-zero translation subgraph for A is triangle-free and
+(P union Q)-(P union Q) avoids A union -A, then the entire generic
+component is triangle-free. A triangle has zero or two reflection
+edges. The first possibility lies in the zero subgraph; the second
+forces a forbidden difference of reflection labels.
+For a sum-free A of size two, the zero subgraph is triangle-free.
+Indeed, a same-row triangle with mixed signs would give a forbidden
+sum within A; an all-equal-sign relation would require 2a+b=0 or
+2b+a=0 (or 3a=0), and in characteristic five the first two imply
+2b=a or 2a=b, again forbidden. Mixed-row triangles likewise give a
+forbidden sum in A. The same argument applies to a size-three A
+containing an opposite pair: an all-positive zero sum cannot use
+three distinct elements, and repetitions are ruled out as just above.
+If P,Q are nested, the required difference avoidance follows from
+sum-freeness in the larger layer set.
+
+2. TRIANGLE-FREE 9/6 AND 9/7 DEGREE-CAP LEMMA
+Suppose a triangle-free graph has equally many high vertices of degree
+9 and low vertices of a fixed degree l in {6,7}. Suppose every high
+vertex has at least four low neighbors, hence at most five high
+neighbors. Then
+    m(G)<=2^{(16n-e)/31}<3^{n/4}.
+Use the fixed potential mu=(16n-e)/31. In any induced subgraph of
+maximum degree at most eight, each degree-eight vertex must be high
+and must retain at least three low neighbors of degree at most seven.
+Therefore the already established class-C8 theorem applies (the later
+extension to every triangle-free maximum-degree-eight graph also
+suffices). If the current maximum degree is nine, choose a degree-nine
+vertex. Its neighborhood meets at most 5*9+4*7=73 edges. The two drops
+are at least 7/31 and 87/31, whose terms are respectively less than
+107/125 and 18/125. This closes induction. Initially e/n=(9+l)/4;
+the worst exponent is l=6, namely 49/124, and 2^49<3^31 proves the
+strict comparison. This includes both the size-four 9/6 and the
+size-five nested 9/7 generic families.
+
+3. SINGLETON-ZERO, DISJOINT TWO-BY-TWO LAYERS: ALL NINE-REGULAR CASES
+Assume A={t}, P={p,r}, Q={q,s}, and P intersect Q is empty. The generic
+component is nine-regular. Seed sum-freeness forbids differences +/-t
+within P or within Q, and forbids p'-q'=t for p' in P,q' in Q. Thus
+every +/-t adjacency within U=P union Q has the orientation q'=p'+t.
+There are zero, one, or two such pairs, and they form a matching.
+
+If there are no pairs, the generic component is triangle-free and is
+covered by the triangle-free maximum-degree-ten theorem.
+For the remaining cases fix
+    beta=c/14, mu=(c+beta)n-beta e.
+Since the original graph is nine-regular, mu/n=3c/4 exactly. We prove
+the potential bound for every induced subgraph of this fixed original
+component, using induction on the number of surviving vertices.
+
+3a. Residual maximum degree at most eight.
+The general master lemma applies with D=8 and the same beta. Its high
+endpoint terms are
+    3^(-1/6)<5/6, 3^(-71/42)<1/6.
+Also beta<1/25. Hence all such residual graphs satisfy the required
+potential bound, without any inherited regularity assumption.
+
+3b. Two cross pairs.
+Each cross pair q'=p'+t supplies three different edges inside every
+vertex neighborhood. For a Y-center y, these are
+    {Y_{y+t},X_{-y-q'}},
+    {X_{-y-q'},X_{-y-p'}},
+    {X_{-y-p'},Y_{y-t}}.
+For an X-center the corresponding three edges have the rows reversed
+and the signs reversed in the natural way. Different pairs supply
+different edges. Thus every original neighborhood has at least six
+edges. Any degree-nine vertex in an induced subgraph retains its whole
+original neighborhood and those six edges. Its closed neighborhood
+meets at most 81-6=75 edges. The branch terms are
+    3^(-1/7)<6/7, 3^(-25/14)<1/7.
+Together with 3a this completes this case.
+
+3c. Exactly one cross pair, say q=p+t.
+Each original neighborhood contains the three-edge P4 displayed in 3b.
+Take any degree-nine vertex v in a residual graph F. If at least two
+of its neighbors have current degree at most eight, its closed
+neighborhood meets at most 81-2-3=76 edges. The branch terms are
+    3^(-1/7)<171/200,
+    3^(-37/21)<29/200,
+so their sum is strictly less than one.
+
+Suppose instead that at most one neighbor of v has degree at most eight.
+Let w be its same-coordinate opposite-row partner. They are nonadjacent.
+Their original common neighborhood has exactly six vertices. For
+v=X_x,w=Y_x those six are
+    X_{x+t}, Y_{x-t},
+    Y_{-x-p},Y_{-x-r},X_{-x-q},X_{-x-s}.
+All six survive since v retains degree nine. If w were absent, all six
+would have lost an original neighbor, contradicting the assumption.
+Thus w survives.
+
+Two further neighbors of w, namely
+    u1=Y_{x+t}, u2=X_{-x-p},
+must also survive. Indeed u1 has two neighbors in N(v),
+    X_{-x-q},Y_{-x-q},
+and u2 has two neighbors in N(v),
+    X_{x-t},Y_{x-t}.
+All four asserted incidences follow from q=p+t and the reflection-edge
+labels. Removing either u_i would therefore create at least two
+degree-at-most-eight vertices in N(v), a contradiction.
+Hence w has degree k=8 or 9. Moreover the three neighborhood edges
+    {Y_{x+t},X_{-x-q}},
+    {X_{-x-q},X_{-x-p}},
+    {X_{-x-p},Y_{x-t}}
+all survive.
+
+For v=Y_x,w=X_x the analogous two protected neighbors are
+    X_{x-t}, Y_{-x-q}.
+The first is adjacent to X_{-x-p},Y_{-x-p} in N(v); the second is
+adjacent to X_{x+t},Y_{x+t} in N(v). This proves the same conclusion
+in both rows. Opposite coset signs obey the same formulas.
+
+Now exclude v, leaving F-v. The partner w still has degree k, and its
+six common neighbors with v have degree at most eight. The three
+neighborhood edges survive, since v and w are nonadjacent. Therefore
+at most 9k-6-3=9k-9 edges meet N_{F-v}[w]. Branching at w gives the
+coefficient
+    C_k=3^{-(15-k)/42}+3^{-(k+4)/7}.
+For k=8, bound its terms by 5/6 and 47/300; their sum is 99/100.
+For k=9, bound its terms by 171/200 and 27/200; again 99/100.
+Thus m(F-v)<(99/100)2^{mu(F-v)}.
+In the original branch at v, the exclude term is 3^(-1/7) and the
+include term is at most 3^(-12/7), because the three neighborhood
+edges are retained. Consequently the total factor is less than
+    (99/100)(171/200)+153/1000=19989/20000<1.
+Every subsidiary branch uses strictly smaller induced subgraphs, so
+this proves the induction and the full nine-regular family. QED.
+
+4. SIZE-FIVE CLASSIFICATION AFTER THESE RESULTS
+For a mixed seed |S|=5, if a0>=6 the smaller degree is at least 11,
+so the general two-degree theorem applies. If a0=4 and the nonzero
+layers are not nested, the smaller degree is at least 10 and the same
+theorem applies. The remaining a0=4 patterns are:
+  z=2, A two nonopposite vectors: nested degrees (12,9) or (10,9);
+  z=3, A has an opposite pair: nested degrees (11,9) or (9,9);
+  z=4, A=-A: one nonzero-layer seed, hence symmetric core plus one.
+The first two lines are triangle-free by section 1, and all listed
+degree pairs are already covered. The last is a prior colored-DD case.
+
+If a0=2 and z=2, A={t,-t}; the generic graph is triangle-free for any
+P,Q. With p+q=3 its degree pairs are (10,7), (8,7), (9,8). The first
+and third satisfy the maximum-degree-ten/degree-sum>=17 corollary;
+the middle is symmetric core plus one.
+
+If a0=2 and z=1, p+q=4. Up to swapping layers:
+  p=4,q=0: degrees (11,7), triangle-free, degree-sum 18 with max<=12;
+  p=3,q=1, nested: degrees (9,7), handled by section 2;
+  p=q=2, P=Q: symmetric cross core plus one zero seed;
+  p=q=2, P and Q disjoint: all nine-regular cases handled by section 3.
+
+COMPLETION OF THE LAST TWO FAMILIES.
+  A={t}, p=3,q=1, P and Q disjoint: degree pair (10,8), proved in
+     global_ten_eight_proof.txt, with fixed-cap deficit induction.
+  A={t}, p=q=2, |P intersect Q|=1: degree pair (8,8).
+     If U-U avoids +/-t, use the full maximum-degree-eight triangle-free
+     theorem zero_eight_extension.txt. Otherwise the exclusive elements
+     have the unique relation q=p+t. Shear the common element to zero.
+     If t,p are independent, use matrix_size5_triangle_proof.txt;
+     if dependent, the only allowed ratio is p=2t and the 20-point
+     certificate is in global_rank1_certificate.txt.
+Thus the complete mixed size-five classification is now covered.

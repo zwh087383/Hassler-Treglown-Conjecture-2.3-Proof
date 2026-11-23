@@ -1,0 +1,376 @@
+✔ [1981/2088] Built Sumfree.Graph
+✔ [1982/2088] Built Audit.Global
+✔ [1983/2088] Built Audit.Entropy
+✔ [1984/2088] Built Sumfree.Induced
+✔ [1985/2088] Built Sumfree.Twins
+✔ [1986/2088] Built Audit.Link
+✔ [1987/2088] Built Sumfree.Folding
+✔ [1988/2088] Built Sumfree.Counter
+✔ [1989/2088] Built Audit.Bipartite
+✔ [1990/2088] Built Sumfree.Bounds
+✔ [1991/2088] Built Audit.Windows
+✔ [1992/2088] Built Sumfree.CountMemo
+✔ [1993/2088] Built Sumfree.Blocks
+✔ [1994/2088] Built Audit.Balance
+✔ [1995/2088] Built Sumfree.Symmetric
+✔ [1996/2088] Built Sumfree.Transport
+✔ [1997/2088] Built Audit.Stars
+✔ [1998/2088] Built Sumfree.Exponents
+✔ [1999/2088] Built Audit.PlaneCert
+✔ [2000/2088] Built Audit.Fingerprint
+✔ [2001/2088] Built Audit.Removal
+✔ [2002/2088] Built Sumfree.SmallCounts
+✔ [2003/2088] Built Audit.Weights
+✔ [2004/2088] Built Audit.Lower
+✔ [2005/2088] Built Sumfree.Orbit
+✔ [2006/2088] Built Audit.ContainerStep
+✔ [2007/2088] Built Audit.TriangleBase
+✔ [2008/2088] Built Audit.Potential
+✔ [2009/2088] Built Audit.CollisionData
+✔ [2010/2088] Built Audit.FinalTypes
+✔ [2011/2088] Built Audit.PlaneData
+✔ [2012/2088] Built Sumfree.FiniteCells
+✔ [2013/2088] Built Audit.Asymptotic
+✔ [2014/2088] Built Audit.Band
+✔ [2015/2088] Built Audit.ContainerCover
+✔ [2016/2088] Built Audit.TriangleLocal
+✔ [2017/2088] Built Audit.GraphMeasure
+✔ [2018/2088] Built Audit.TriangleCubic
+✔ [2019/2088] Built Audit.Subcubic
+✔ [2020/2088] Built Audit.TriangleParam
+⚠ [2021/2088] Built Audit.Blocks
+warning: .\.\.\.\Audit\Blocks.lean:187:46: exponent 8191 exceeds the threshold 256, exponentiation operation was not evaluated, use `set_option exponentiation.threshold <num>` to set a new threshold
+✔ [2022/2088] Built Audit.Collisions
+✔ [2023/2088] Built Audit.TriangleTen
+✔ [2024/2088] Built Audit.TriangleEightBase
+⚠ [2025/2088] Built Audit.Colored
+warning: .\.\.\.\Audit\Colored.lean:49:5: unused variable `bi`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+warning: .\.\.\.\Audit\Colored.lean:49:29: unused variable `ri`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [2026/2088] Built Audit.CubeCases
+warning: .\.\.\.\Audit\CubeCases.lean:29:83: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: .\.\.\.\Audit\CubeCases.lean:31:81: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: .\.\.\.\Audit\CubeCases.lean:33:81: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+✔ [2027/2088] Built Audit.Matrix
+✔ [2028/2088] Built Sumfree.Charts
+✔ [2029/2088] Built Sumfree.HardBlock
+✔ [2030/2088] Built Audit.Assembly
+✔ [2031/2088] Built Audit.Hyperplanes
+✔ [2032/2088] Built Audit.TriangleLarge
+✔ [2033/2088] Built Audit.TriangleEightCubic
+✔ [2034/2088] Built Audit.TriangleStar
+✔ [2035/2088] Built Audit.DefectsSupport
+⚠ [2036/2088] Built Audit.ColoredWeights
+warning: .\.\.\.\Audit\ColoredWeights.lean:29:30: unused variable `nonneg`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+✔ [2037/2088] Built Audit.Master
+✔ [2038/2088] Built Audit.Sparse
+✔ [2039/2088] Built Audit.Limit
+✔ [2040/2088] Built Sumfree.CellCertificate
+✔ [2041/2088] Built Audit.Coverage
+✔ [2042/2088] Built Audit.Raw
+✔ [2043/2088] Built Audit.PlaneFibers
+✔ [2044/2088] Built Audit.TriangleTwelve
+✔ [2045/2088] Built Audit.TriangleEight
+✔ [2046/2088] Built Audit.ColoredBound
+✔ [2047/2088] Built Audit.StandardCoordinates
+✔ [2048/2088] Built Sumfree.TheoremA
+✔ [2049/2088] Built Audit.Generic
+✔ [2050/2088] Built Audit.Structure
+✔ [2051/2088] Built Audit.SeedFamilies
+✔ [2052/2088] Built Audit.StripFormula
+✔ [2053/2088] Built Audit.DefectsGeometry
+✔ [2054/2088] Built Audit.Unconditional
+✔ [2055/2088] Built Audit.Reduction
+✔ [2056/2088] Built Audit.DefectsNonzero
+✔ [2057/2088] Built Audit.Defects
+✔ [2058/2088] Built Audit.StripTransport
+✔ [2059/2088] Built Audit.Degrees
+✔ [2060/2088] Built Audit.MasterTable
+✔ [2061/2088] Built Audit.Mixed
+✔ [2062/2088] Built Audit.TriangleExceptional
+✔ [2063/2088] Built Audit.TriangleMixedCaps
+✔ [2064/2088] Built Audit.TrianglePartner
+✔ [2065/2088] Built Audit.MixedCounts
+⚠ [2066/2088] Built Audit.MixedNeighbors
+warning: .\.\.\.\Audit\MixedNeighbors.lean:43:55: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+✔ [2067/2088] Built Audit.CrossTriangle
+✔ [2068/2088] Built Audit.TriangleRaw
+✔ [2069/2088] Built Audit.MixedFive
+✔ [2070/2088] Built Audit.StripNoZeroData
+✔ [2071/2088] Built Audit.StripSemantics
+⚠ [2072/2088] Built Audit.SmallMixedZeroData
+warning: .\.\.\.\Audit\SmallMixedZeroData.lean:33:29: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+✔ [2073/2088] Built Audit.StripCounts
+✔ [2074/2088] Built Audit.CrossProfiles
+✔ [2075/2088] Built Audit.Strip
+✔ [2076/2088] Built Audit.SmallProfiles
+✔ [2077/2088] Built Audit.StripNoZero
+✔ [2078/2088] Built Audit.MixedSix
+✔ [2079/2088] Built Audit.SmallMixedZeroSemantics
+✔ [2080/2088] Built Audit.SmallMixedZeroCount
+✔ [2081/2088] Built Audit.RankOne
+✔ [2082/2088] Built Audit.RankOneBridge
+✔ [2083/2088] Built Audit.StripFamily
+✔ [2084/2088] Built Audit.SmallMixedNormalize
+✔ [2085/2088] Built Audit.NoZero
+✔ [2086/2088] Built Audit.SmallMixedThree
+ℹ [2087/2088] Built Audit.MixedEightEight
+info: .\.\.\.\Audit\MixedEightEight.lean:53:61: Try this: abel_nf
+✔ [2088/2088] Built Audit.SmallMixedPure
+Build completed successfully.
+⚠ [1948/2118] Replayed Audit.Blocks
+warning: .\.\.\.\Audit\Blocks.lean:187:46: exponent 8191 exceeds the threshold 256, exponentiation operation was not evaluated, use `set_option exponentiation.threshold <num>` to set a new threshold
+⚠ [2036/2118] Replayed Audit.Colored
+warning: .\.\.\.\Audit\Colored.lean:49:5: unused variable `bi`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+warning: .\.\.\.\Audit\Colored.lean:49:29: unused variable `ri`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [2038/2118] Replayed Audit.ColoredWeights
+warning: .\.\.\.\Audit\ColoredWeights.lean:29:30: unused variable `nonneg`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [2044/2118] Replayed Audit.CubeCases
+warning: .\.\.\.\Audit\CubeCases.lean:29:83: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: .\.\.\.\Audit\CubeCases.lean:31:81: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: .\.\.\.\Audit\CubeCases.lean:33:81: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+✔ [2048/2118] Built Audit.Asymptotic
+✔ [2049/2118] Built Audit.Assembly
+✔ [2050/2118] Built Audit.Sparse
+✔ [2051/2118] Built Audit.Limit
+✔ [2052/2118] Built Audit.Generic
+✔ [2053/2118] Built Audit.Structure
+✔ [2054/2118] Built Audit.StripFormula
+✔ [2055/2118] Built Audit.Main
+✔ [2056/2118] Built Audit.Reduction
+✔ [2057/2118] Built Audit.DefectsGeometry
+✔ [2058/2118] Built Audit.StandardCoordinates
+✔ [2059/2118] Built Audit.RankOneBridge
+✔ [2060/2118] Built Audit.Unconditional
+✔ [2061/2118] Built Audit.TinyGeneric
+✔ [2062/2118] Built Audit.ManuscriptForm
+✔ [2063/2118] Built Audit.BlockTransport
+✔ [2064/2118] Built Audit.StripTransport
+✔ [2065/2118] Built Audit.DefectsNonzero
+✔ [2066/2118] Built Audit.Degrees
+✔ [2067/2118] Built Audit.StripSemantics
+⚠ [2068/2118] Built Audit.SmallMixedZeroData
+warning: .\.\.\.\Audit\SmallMixedZeroData.lean:33:29: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+✔ [2069/2118] Built Audit.StripNoZeroData
+✔ [2070/2118] Built Audit.Defects
+✔ [2071/2118] Built Audit.MasterTable
+✔ [2072/2118] Built Audit.SmallMixedZeroSemantics
+✔ [2073/2118] Built Audit.Mixed
+✔ [2074/2118] Built Audit.TriangleExceptional
+✔ [2075/2118] Built Audit.TriangleMixedCaps
+⚠ [2076/2118] Built Audit.TriangleTenEight
+warning: .\.\.\.\Audit\TriangleTenEight.lean:51:5: unused variable `c`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+✔ [2077/2118] Built Audit.MixedCounts
+✔ [2078/2118] Built Audit.TrianglePartner
+✔ [2079/2118] Built Audit.TenEightLinks
+⚠ [2080/2118] Built Audit.MixedNeighbors
+warning: .\.\.\.\Audit\MixedNeighbors.lean:43:55: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+✔ [2081/2118] Built Audit.CrossTriangle
+⚠ [2082/2118] Built Audit.TenEightModels
+warning: .\.\.\.\Audit\TenEightModels.lean:116:4: try 'simp' instead of 'simpa'
+note: this linter can be disabled with `set_option linter.unnecessarySimpa false`
+✔ [2083/2118] Built Audit.TriangleRaw
+✔ [2084/2118] Built Audit.MixedFive
+✔ [2085/2118] Built Audit.StripCounts
+✔ [2086/2118] Built Audit.TriangleCoordinates
+✔ [2087/2118] Built Audit.CrossProfiles
+✔ [2088/2118] Built Audit.Strip
+✔ [2089/2118] Built Audit.TriangleCommon
+✔ [2090/2118] Built Audit.StripNoZero
+✔ [2091/2118] Built Audit.SmallProfiles
+✔ [2092/2118] Built Audit.TriangleTenEightClass
+✔ [2093/2118] Built Audit.TriangleWitness
+✔ [2094/2118] Built Audit.TenEightData
+✔ [2095/2118] Built Audit.StripFamily
+✔ [2096/2118] Built Audit.MixedSix
+✔ [2097/2118] Built Audit.NoZero
+✔ [2098/2118] Built Audit.MixedStrip
+✔ [2099/2118] Built Audit.SmallMixedFourBases
+✔ [2100/2118] Built Audit.SmallMixedNormalize
+✔ [2101/2118] Built Audit.TenEight
+✔ [2102/2118] Built Audit.SmallMixedThree
+ℹ [2103/2118] Built Audit.MixedEightEight
+info: .\.\.\.\Audit\MixedEightEight.lean:53:61: Try this: abel_nf
+⚠ [2104/2118] Built Audit.TriangleFourGraph
+warning: .\.\.\.\Audit\TriangleFourGraph.lean:34:0: automatically included section variable(s) unused in theorem 'Audit.TriangleFour.legal_of_free':
+  [Fintype K]
+  [DecidableEq K]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype K] [DecidableEq K] in theorem ...
+note: this linter can be disabled with `set_option linter.unusedSectionVars false`
+✔ [2105/2118] Built Audit.SmallMixedFourExtra
+✔ [2106/2118] Built Audit.FiveCases
+✔ [2107/2118] Built Audit.TriangleFourTable
+✔ [2108/2118] Built Audit.SharpFive
+✔ [2109/2118] Built Audit.SmallMixedZeroCount
+✔ [2110/2118] Built Audit.SmallMixedPure
+✔ [2111/2118] Built Audit.Remaining
+✔ [2112/2118] Built Audit.SmallMixedFourReduce
+✔ [2113/2118] Built Audit.SmallMixedFourGlobal
+✔ [2114/2118] Built Audit.SmallMixedFour
+✔ [2115/2118] Built Audit.GenericTheorem
+✔ [2116/2118] Built Audit.Sharp
+ℹ [2117/2118] Built Audit
+info: .\.\.\.\Audit.lean:11:0: 'Audit.Raw.type_A' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+info: .\.\.\.\Audit.lean:12:0: 'Audit.Raw.type_B' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+info: .\.\.\.\Audit.lean:13:0: 'Audit.Raw.type_C' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+info: .\.\.\.\Audit.lean:14:0: 'Audit.Raw.raw_matrix' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: .\.\.\.\Audit.lean:15:0: 'Audit.Raw.no_loops' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: .\.\.\.\Audit.lean:16:0: 'Audit.Collisions.all_dimensions' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+info: .\.\.\.\Audit.lean:17:0: 'Audit.Collisions.weights_checked' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+info: .\.\.\.\Audit.lean:18:0: 'Audit.RankOne.every_seed' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+info: .\.\.\.\Audit.lean:19:0: 'Audit.Entropy.shearer' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: .\.\.\.\Audit.lean:20:0: 'Audit.Coverage.nested_colors' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: .\.\.\.\Audit.lean:21:0: 'Audit.Link.container_count' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: .\.\.\.\Audit.lean:22:0: 'Audit.Fingerprint.large_graph' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+info: .\.\.\.\Audit.lean:23:0: 'Audit.Asymptotic.lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: .\.\.\.\Audit.lean:24:0: 'Audit.Asymptotic.limit_of_upper' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: .\.\.\.\Audit.lean:25:0: 'Audit.Removal.remove' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: .\.\.\.\Audit.lean:26:0: 'Audit.Band.large_seed' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+info: .\.\.\.\Audit.lean:27:0: 'Audit.Blocks.small_seed' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: .\.\.\.\Audit.lean:28:0: 'Audit.Sparse.sparseCovers' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: .\.\.\.\Audit.lean:29:0: 'Audit.Structure.largeSetStructure' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+info: .\.\.\.\Audit.lean:30:0: 'Audit.Main.upper_of_generic_blocks' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+info: .\.\.\.\Audit.lean:31:0: 'Audit.Main.main_of_generic_blocks' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+info: .\.\.\.\Audit.lean:32:0: 'Audit.Unconditional.exponent_window' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+info: .\.\.\.\Audit.lean:33:0: 'Audit.RankOneBridge.all' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+info: .\.\.\.\Audit.lean:34:0: 'Audit.Degrees.many' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: .\.\.\.\Audit.lean:35:0: 'Audit.Strip.model_bound' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+info: .\.\.\.\Audit.lean:36:0: 'Audit.Strip.NoZero.model_bound' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+info: .\.\.\.\Audit.lean:37:0: 'Audit.NoZero.all' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+info: .\.\.\.\Audit.lean:38:0: 'Audit.SmallMixed.three' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+info: .\.\.\.\Audit.lean:39:0: 'Audit.SmallMixed.four' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+info: .\.\.\.\Audit.lean:40:0: 'Audit.Mixed.five' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+info: .\.\.\.\Audit.lean:41:0: 'Audit.Mixed.six' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+info: .\.\.\.\Audit.lean:42:0: 'Audit.Mixed.seven' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+info: .\.\.\.\Audit.lean:43:0: 'Audit.TenEight.crossing' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+info: .\.\.\.\Audit.lean:44:0: 'Audit.GenericTheorem.generic_block' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+info: .\.\.\.\Audit.lean:45:0: 'Audit.GenericTheorem.original_blocks' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+info: .\.\.\.\Audit.lean:46:0: 'Audit.StandardCoordinates.fmax_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: .\.\.\.\Audit.lean:47:0: 'Audit.Sharp.standard_band' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+info: .\.\.\.\Audit.lean:48:0: 'Audit.Sharp.upper' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+info: .\.\.\.\Audit.lean:49:0: 'Audit.Sharp.log_limit' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+info: .\.\.\.\Audit.lean:50:0: 'Audit.Sharp.limit_via_generic_blocks' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+info: .\.\.\.\Audit.lean:51:0: 'Audit.Sharp.main_theorem' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+info: .\.\.\.\Audit.lean:52:0: Audit.Sharp.upper {η : ℝ} (positive : 0 < η) (small : η ≤ 1) :
+  ∀ᶠ (k : ℕ) in Filter.atTop,
+    ↑(Audit.Asymptotic.fmax (k + 1)) ≤
+      2 ^ (2 * η * Audit.Assembly.order k) * 3 ^ (Audit.Assembly.order k / 10 + Audit.Blocks.errorConstant)
+info: .\.\.\.\Audit.lean:53:0: Audit.Sharp.log_limit :
+  Filter.Tendsto (fun k => Real.logb 3 ↑(Audit.Link.maximalSets Finset.univ).card / 5 ^ k) Filter.atTop (nhds (1 / 10))
+info: .\.\.\.\Audit.lean:54:0: Audit.Sharp.main_theorem :
+  ∃ e,
+    (e =o[Filter.atTop] fun k => 5 ^ k) ∧ ∀ (k : ℕ), ↑(Audit.Link.maximalSets Finset.univ).card = 3 ^ (5 ^ k / 10 + e k)
+Build completed successfully.
+⚠ [1948/1975] Replayed Audit.Blocks
+warning: .\.\.\.\Audit\Blocks.lean:187:46: exponent 8191 exceeds the threshold 256, exponentiation operation was not evaluated, use `set_option exponentiation.threshold <num>` to set a new threshold
+⚠ [2055/2119] Replayed Audit.Colored
+warning: .\.\.\.\Audit\Colored.lean:49:5: unused variable `bi`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+warning: .\.\.\.\Audit\Colored.lean:49:29: unused variable `ri`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [2057/2119] Replayed Audit.ColoredWeights
+warning: .\.\.\.\Audit\ColoredWeights.lean:29:30: unused variable `nonneg`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [2067/2119] Replayed Audit.CubeCases
+warning: .\.\.\.\Audit\CubeCases.lean:29:83: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: .\.\.\.\Audit\CubeCases.lean:31:81: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: .\.\.\.\Audit\CubeCases.lean:33:81: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [2072/2119] Replayed Audit.MixedNeighbors
+warning: .\.\.\.\Audit\MixedNeighbors.lean:43:55: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+ℹ [2078/2119] Replayed Audit.MixedEightEight
+info: .\.\.\.\Audit\MixedEightEight.lean:53:61: Try this: abel_nf
+⚠ [2087/2119] Replayed Audit.TriangleTenEight
+warning: .\.\.\.\Audit\TriangleTenEight.lean:51:5: unused variable `c`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [2089/2119] Replayed Audit.TenEightModels
+warning: .\.\.\.\Audit\TenEightModels.lean:116:4: try 'simp' instead of 'simpa'
+note: this linter can be disabled with `set_option linter.unnecessarySimpa false`
+⚠ [2097/2119] Replayed Audit.SmallMixedZeroData
+warning: .\.\.\.\Audit\SmallMixedZeroData.lean:33:29: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [2105/2119] Replayed Audit.TriangleFourGraph
+warning: .\.\.\.\Audit\TriangleFourGraph.lean:34:0: automatically included section variable(s) unused in theorem 'Audit.TriangleFour.legal_of_free':
+  [Fintype K]
+  [DecidableEq K]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype K] [DecidableEq K] in theorem ...
+note: this linter can be disabled with `set_option linter.unusedSectionVars false`
+✔ [2117/2119] Built Audit.DefinitionCheck
+ℹ [2118/2119] Built Audit
+info: .\.\.\.\Audit.lean:12:0: 'Audit.Raw.type_A' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+info: .\.\.\.\Audit.lean:13:0: 'Audit.Raw.type_B' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+info: .\.\.\.\Audit.lean:14:0: 'Audit.Raw.type_C' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+info: .\.\.\.\Audit.lean:15:0: 'Audit.Raw.raw_matrix' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: .\.\.\.\Audit.lean:16:0: 'Audit.Raw.no_loops' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: .\.\.\.\Audit.lean:17:0: 'Audit.Collisions.all_dimensions' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+info: .\.\.\.\Audit.lean:18:0: 'Audit.Collisions.weights_checked' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+info: .\.\.\.\Audit.lean:19:0: 'Audit.RankOne.every_seed' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+info: .\.\.\.\Audit.lean:20:0: 'Audit.Entropy.shearer' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: .\.\.\.\Audit.lean:21:0: 'Audit.Coverage.nested_colors' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: .\.\.\.\Audit.lean:22:0: 'Audit.Link.container_count' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: .\.\.\.\Audit.lean:23:0: 'Audit.Fingerprint.large_graph' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+info: .\.\.\.\Audit.lean:24:0: 'Audit.Asymptotic.lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: .\.\.\.\Audit.lean:25:0: 'Audit.Asymptotic.limit_of_upper' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: .\.\.\.\Audit.lean:26:0: 'Audit.Removal.remove' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: .\.\.\.\Audit.lean:27:0: 'Audit.Band.large_seed' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+info: .\.\.\.\Audit.lean:28:0: 'Audit.Blocks.small_seed' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: .\.\.\.\Audit.lean:29:0: 'Audit.Sparse.sparseCovers' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: .\.\.\.\Audit.lean:30:0: 'Audit.Structure.largeSetStructure' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+info: .\.\.\.\Audit.lean:31:0: 'Audit.Main.upper_of_generic_blocks' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+info: .\.\.\.\Audit.lean:32:0: 'Audit.Main.main_of_generic_blocks' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+info: .\.\.\.\Audit.lean:33:0: 'Audit.Unconditional.exponent_window' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+info: .\.\.\.\Audit.lean:34:0: 'Audit.RankOneBridge.all' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+info: .\.\.\.\Audit.lean:35:0: 'Audit.Degrees.many' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: .\.\.\.\Audit.lean:36:0: 'Audit.Strip.model_bound' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+info: .\.\.\.\Audit.lean:37:0: 'Audit.Strip.NoZero.model_bound' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+info: .\.\.\.\Audit.lean:38:0: 'Audit.NoZero.all' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+info: .\.\.\.\Audit.lean:39:0: 'Audit.SmallMixed.three' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+info: .\.\.\.\Audit.lean:40:0: 'Audit.SmallMixed.four' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+info: .\.\.\.\Audit.lean:41:0: 'Audit.Mixed.five' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+info: .\.\.\.\Audit.lean:42:0: 'Audit.Mixed.six' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+info: .\.\.\.\Audit.lean:43:0: 'Audit.Mixed.seven' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+info: .\.\.\.\Audit.lean:44:0: 'Audit.TenEight.crossing' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+info: .\.\.\.\Audit.lean:45:0: 'Audit.GenericTheorem.generic_block' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+info: .\.\.\.\Audit.lean:46:0: 'Audit.GenericTheorem.original_blocks' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+info: .\.\.\.\Audit.lean:47:0: 'Audit.StandardCoordinates.fmax_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: .\.\.\.\Audit.lean:48:0: 'Audit.Sharp.standard_band' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+info: .\.\.\.\Audit.lean:49:0: 'Audit.Sharp.upper' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+info: .\.\.\.\Audit.lean:50:0: 'Audit.Sharp.log_limit' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+info: .\.\.\.\Audit.lean:51:0: 'Audit.Sharp.limit_via_generic_blocks' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+info: .\.\.\.\Audit.lean:52:0: 'Audit.Sharp.main_theorem' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+info: .\.\.\.\Audit.lean:53:0: 'Audit.DefinitionCheck.paper_statement' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+info: .\.\.\.\Audit.lean:54:0: Audit.Sharp.upper {η : ℝ} (positive : 0 < η) (small : η ≤ 1) :
+  ∀ᶠ (k : ℕ) in Filter.atTop,
+    ↑(Audit.Asymptotic.fmax (k + 1)) ≤
+      2 ^ (2 * η * Audit.Assembly.order k) * 3 ^ (Audit.Assembly.order k / 10 + Audit.Blocks.errorConstant)
+info: .\.\.\.\Audit.lean:55:0: Audit.Sharp.log_limit :
+  Filter.Tendsto (fun k => Real.logb 3 ↑(Audit.Link.maximalSets Finset.univ).card / 5 ^ k) Filter.atTop (nhds (1 / 10))
+info: .\.\.\.\Audit.lean:56:0: Audit.Sharp.main_theorem :
+  ∃ e,
+    (e =o[Filter.atTop] fun k => 5 ^ k) ∧ ∀ (k : ℕ), ↑(Audit.Link.maximalSets Finset.univ).card = 3 ^ (5 ^ k / 10 + e k)
+info: .\.\.\.\Audit.lean:57:0: Audit.DefinitionCheck.paper_statement :
+  ∃ e,
+    (e =o[Filter.atTop] fun k => 5 ^ k) ∧
+      ∀ (k : ℕ), ↑(Audit.DefinitionCheck.paperFamily (Fin k → ZMod 5)).card = 3 ^ (5 ^ k / 10 + e k)
+Build completed successfully.

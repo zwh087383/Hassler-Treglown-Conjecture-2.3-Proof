@@ -1,0 +1,282 @@
+# Colored dominating dissociation sets: independent audit and full-link application
+
+Date: 2026-11-22. Authoring/auditing agent: round4_global.
+
+STATUS. The counting theorem was proposed by the root agent and independently
+checked by both round4_global and round4_zero. The proof below is self-contained.
+The minimum-degree argument is simplified using round4_zero's observation that
+the red-degree tie-break handles both the degree-two and degree-three cases.
+No claim of Lean verification of this new theorem is made.
+
+THE MAIN CONSEQUENCE is a uniform, exact link-graph bound for every sum-free seed
+S=T union {s} with T=-T. It does not require bounded seed size or bounded rank,
+and does not leave an exceptional-core error. It does not cover arbitrary seeds
+with two or more unmatched antipodal elements.
+
+1. Statement
+------------
+
+Let Q and R be simple graphs on the same finite vertex set V, and let G=Q union R.
+Let C(Q,R) be the number of subsets D of V satisfying all three conditions:
+
+  (i) D is independent in Q;
+  (ii) the induced red graph R[D] has maximum degree at most one;
+  (iii) D dominates G: every vertex outside D has a neighbour in D in G.
+
+THEOREM. If R is triangle-free, then
+
+  C(Q,R) <= 3^(|V|/2).                            (1.1)
+
+Equality holds precisely when G is a disjoint union of red edges and Q is empty,
+including the empty graph on zero vertices.
+
+An edge belonging to both Q and R can be removed from R without changing the
+count. Indeed condition (i) forbids both endpoints from lying in D, so that edge
+never occurs in R[D]; it remains present in G through Q. Removing it preserves
+triangle-freeness. Hence it suffices to prove the theorem for disjoint edge sets
+E(Q) and E(R).
+
+For an induced vertex set W, write C(G[W]) for the corresponding count using the
+inherited blue and red edge colours. All induced subgraphs again have triangle-
+free red graph. The empty graph on zero vertices has count one. The count is
+multiplicative over connected components of G.
+
+2. The general branching inequality
+-----------------------------------
+
+For every vertex v,
+
+  C(G) <= C(G-v) + C(G-N_G[v])
+          + sum_{w in N_R(v)} C(G-(N_G[v] union N_G[w])).        (2.1)
+
+Here and below N_G[v] is the closed neighbourhood, and deletion is induced.
+
+Proof. A counted D not containing v remains a counted set in G-v: it dominates
+every remaining vertex, and the two induced-subgraph conditions persist. This
+gives an injection into the first term; sets counted there need not dominate v,
+so only an inequality is asserted.
+
+If v belongs to D, condition (i) and condition (ii) imply that v has either zero
+or exactly one neighbour in G[D]. With zero neighbours, all other vertices of D
+lie outside N_G[v], and D\{v} is counted in G-N_G[v]. Conversely every counted
+set of that smaller graph extends by v to this case.
+
+With one neighbour, it must be a red neighbour w. The pair {v,w} is an isolated
+edge in G[D], because blue adjacency is forbidden and red degree is at most one.
+Every remaining selected vertex lies outside N_G[v] union N_G[w], and the rest
+of D is counted in that induced subgraph. Again the converse extension is valid.
+Different red partners give disjoint cases. This proves (2.1).
+
+3. Proof when the minimum degree is at least two
+------------------------------------------------
+
+Set alpha=sqrt(3), and induct on N=|V|. Let delta be the minimum degree in G.
+Among vertices of degree delta, choose v with its red degree r=d_R(v) as small
+as possible. Assume delta>=2.
+
+CASE A: r<=delta-1.
+
+All closed neighbourhoods N_G[v] union N_G[w] in (2.1) contain N_G[v], which has
+delta+1 vertices. By the induction hypothesis,
+
+  C(G)/alpha^N <= alpha^(-1)+delta*alpha^(-delta-1).              (3.1)
+
+For integers delta>=2, delta*alpha^(-delta-1) decreases: the ratio of successive
+terms is (delta+1)/(delta*alpha)<=3/(2sqrt(3))<1. Thus (3.1) is at most
+
+  alpha^(-1)+2alpha^(-3)=5sqrt(3)/9 < 1,
+
+where the final strict inequality follows from 75<81.
+
+CASE B: r=delta.
+
+All edges incident with v are red. For every red neighbour w, we claim
+
+  |N_G[v] union N_G[w]| >= delta+2.              (3.2)
+
+If d_G(w)>=delta+1, this is immediate from |N_G[w]|>=delta+2. If instead
+d_G(w)=delta, the choice of v implies d_R(w)>=r=delta, hence every edge incident
+with w is also red. As vw is red and R is triangle-free, v and w have no common
+neighbour in G. Therefore
+
+  |N_G[v] union N_G[w]|=2delta>=delta+2.
+
+This proves (3.2). Applying induction in (2.1) now gives
+
+  C(G)/alpha^N <= alpha^(-1)+alpha^(-delta-1)
+                                      +delta*alpha^(-delta-2).  (3.3)
+
+The last two terms equal (alpha+delta)*alpha^(-delta-2), which decrease with
+delta>=2. Indeed the successive ratio is
+
+  (alpha+delta+1)/(alpha*(alpha+delta)) < 1,
+
+because (alpha-1)(alpha+delta)>1. Hence (3.3) is at most its value at delta=2,
+
+  alpha^(-1)+alpha^(-3)+2alpha^(-4)
+    = (2+4sqrt(3))/9 < 1.
+
+The last inequality is equivalent to sqrt(3)<7/4, or 48<49. This completes all
+minimum-degree-at-least-two cases, without a separate degree-three exception.
+
+4. Isolated vertices and the exact leaf recurrence
+--------------------------------------------------
+
+If G has an isolated vertex v, every dominating set contains v, and
+C(G)=C(G-v)<=alpha^(N-1)<alpha^N.
+
+Now let v be a leaf with unique neighbour w, and let d_G(w)=D. Put
+c=2 if vw is red and c=1 if vw is blue. Then the following identity holds:
+
+  C(G) = C(G-{v,w}) + c*C(G-N_G[w])
+          + sum_{u in N_R(w)\{v}}
+                      C(G-(N_G[w] union N_G[u])).              (4.1)
+
+To verify it, first consider v selected and w unselected. Removing v and w
+leaves exactly a counted set of G-{v,w}, because v has no other neighbours.
+Next consider w selected. If it has no selected red partner, the count is
+C(G-N_G[w]). If it has a red partner u different from v, it gives the displayed
+sum. Finally v and w may both be selected exactly when vw is red; that produces
+a second copy of C(G-N_G[w]). Domination of the leaf excludes the case in which
+neither v nor w is selected. These are disjoint, exhaustive cases.
+
+If D=1, the pair {v,w} is an isolated component K2. It contributes three choices
+when red ({v},{w},{v,w}), and two choices when blue ({v},{w}). Thus its count is
+at most alpha^2, with equality exactly for a red edge.
+
+If D>=2, every deleted closed-neighbourhood union in (4.1) contains N_G[w], of
+size D+1. There are at most D-1 possible red partners other than v. Therefore
+
+  C(G)/alpha^N <= alpha^(-2)+(D+1)alpha^(-D-1).
+
+The second term decreases for integers D>=2, so the right side is at most
+
+  1/3+3alpha^(-3)=(1+sqrt(3))/3 < 1.
+
+The blue-leaf case has an even smaller coefficient. This proves (1.1) in all
+cases. Every step is strict unless it removes an isolated red K2 component.
+Multiplicativity therefore also proves the equality characterization. QED.
+
+5. The full-link application: notation and paired loops
+------------------------------------------------------
+
+Let H be a finite F5-vector space, G0=F5 x H, and B={2,3} x H. Let S be a
+sum-free subset of G0\B of the form
+
+  S=T union {s},   T=-T.
+
+If s belongs to T, the seed is already symmetric. Otherwise -s is not in S;
+we treat this single unmatched antipodal element. Zero does not belong to S,
+because a sum-free set has no solution x+y=z even with repeated entries.
+
+The link graph on B has an ordinary edge between distinct x,y if one of x+y,
+x-y,y-x belongs to S. A vertex x has a loop exactly when
+
+  x in (S+S) union (S-S) union (S/2).
+
+The looped vertices form a negation-invariant set. Here is an exact verification,
+which removes the need to discard only a bounded exceptional core. Because T=-T,
+
+  S+S = (T+T) union (T+s) union {2s},
+  S-S = (T+T) union (T+s) union (T-s) union {0}.
+
+Also T/2 is contained in T+T: in characteristic five, t/2=3t=(-t)+(-t).
+Finally s/2=3s=-2s. Since zero is outside B, the looped set is precisely
+
+  B intersect [(T+T) union (T+s) union (T-s) union {2s,-2s}].     (5.1)
+
+Every set in the bracket is paired under negation, taking the middle two sets
+together. Thus deleting all looped vertices deletes entire orbits {x,-x}.
+
+Write W for the remaining vertices. No orbit {x,-x} has an internal edge in the
+remaining simple link: its sum is zero, while a difference equal to an element
+of S would give 2x in S or -2x in S, forcing at least one of x,-x to be looped;
+by (5.1), both would already have been deleted.
+
+6. Quotient by antipodal pairs
+------------------------------
+
+Parametrize the antipodal pairs by x in H:
+
+  A_x=(2,x),   B_x=(3,-x),   orbit x={A_x,B_x}.
+
+Keep only pairs contained in W. Their number m is |W|/2<=|B|/2.
+
+The symmetric seed T gives complete bipartite adjacency between any two orbit
+pairs whenever it gives any adjacency at all. Indeed changing either endpoint
+to its negative interchanges a sum with a difference, and T=-T preserves the
+membership condition. Define Q on the m surviving orbits by these adjacencies.
+Thus a Q-edge lifts to K2,2.
+
+The single seed s gives another quotient graph R, described in the next section.
+If an edge belongs to both Q and R, retain it in Q and remove it from R; this does
+not affect which supports may be counted. The red graph remains triangle-free.
+
+7. The single-seed red graph and the injection
+---------------------------------------------
+
+ZERO-LAYER CASE. Suppose s=(0,a), where a is nonzero. Then R is the induced
+subgraph, on surviving orbit indices, of the Cayley graph with differences +/-a.
+Since a has order five, the latter is a disjoint union of C5's.
+
+For y=x+a, the single-seed link between orbit x and orbit y has exactly the
+three edges
+
+  A_x A_y,   B_x B_y,   B_x A_y,
+
+and its missing cross pair is A_x B_y. If both orbit indices belong to the
+support of an independent set in the lifted link, their selected copies are
+therefore uniquely forced to be A_x and B_y. At an index y, simultaneous selected
+neighbours y-a and y+a would force both B_y and A_y respectively, a contradiction.
+Thus the red subgraph induced on the support has maximum degree at most one.
+
+NONZERO-LAYER CASE. Negating the entire group if necessary, assume s=(1,a).
+The red quotient is the matching given by y=-a-x. Its single fixed index
+x=-a/2=2a corresponds to the pair {2s,-2s}, which has already been deleted as
+looped. For two distinct matched indices x,y, the single-seed link consists of
+
+  A_x B_y,   B_x A_y,   B_x B_y,
+
+with A_x A_y missing. Thus if both indices are selected, the selected copies
+are uniquely forced to be A_x and A_y. Again R is triangle-free and its induced
+degree condition is automatic because R is a matching.
+
+Now let I be a maximal independent set of the looped link, regarded as a maximal
+independent set of the simple induced graph on W. Define its support D to be the
+set of orbit indices at which I selects at least one copy.
+
+* D is independent in Q, since a Q-edge lifts to all four possible edges.
+* R[D] has maximum degree at most one, by the previous descriptions.
+* D dominates Q union R. Otherwise an orbit outside D with no quotient neighbour
+  in D would have no selected neighbour at either copy, contradicting maximality.
+
+Moreover, the support determines I uniquely. For a red edge of R[D], the selected
+copies at both ends were just shown to be forced. If an index of D has no red
+neighbour in D, it has no selected neighbour in any other orbit, since D is
+Q-independent. There is no internal orbit edge. Maximality therefore forces
+both copies in that orbit to be selected. These rules specify every selected
+copy, proving injectivity.
+
+Notice that no converse is needed: some colored dominating dissociation sets
+may fail to give maximality at an outside orbit, which only improves the bound.
+
+8. Uniform exact corollary
+--------------------------
+
+Applying Theorem (1.1) to the support injection gives
+
+  mis(L_S[B]) <= C(Q,R) <= 3^(m/2)
+              =3^(|W|/4) <=3^(|B|/4).            (8.1)
+
+If s lies in a nonzero layer, at least the orbit {2s,-2s} was deleted, so in fact
+
+  mis(L_S[B]) <= 3^((|B|-2)/4).                  (8.2)
+
+These inequalities hold for arbitrary sizes and ranks of T, including symmetric
+seeds meeting all three external layers. There is no fixed-rank restriction and
+no additive O(|K|) core error. For G0=F5^k, |B|=2*5^k/5, (8.1) is the desired
+local exponent 3^(5^k/10) throughout this infinite family.
+
+The remaining general proof problem still includes seeds with at least two
+unmatched antipodal elements. The present result must not be reported as a
+proof of all such seeds or of the original counting conjecture.

@@ -1,0 +1,138 @@
+ALL SEEDS MEETING THE ZERO LAYER: THE GENERIC-COMPONENT TARGET
+Status: assembled complete paper proof, with finite exact integer
+certificates for the explicitly identified rank-one and rank-two models.
+This is the zero-containing local part of the completed joint theorem in
+global_final_coverage.txt and global_final_bridge_audit.txt. The no-zero
+family is proved separately. No new Lean verification is claimed.
+
+THEOREM.
+Let G=F_5 x H, B={2,3}xH, and let S subset G\B be sum-free with
+S intersect ({0}xH) nonempty. Apply a shear preserving B if useful and
+let K be the span of all seed tails. Write kappa=|K|. The generic link
+block on {2,3}x((g+K) union(-g+K)), for g not in K, satisfies
+    mis(block)<=3^kappa.
+Equivalently the exponent is one quarter of the block's 4kappa vertices.
+There is no size or rank restriction on S in this generic statement.
+
+Consequently the full link graph satisfies
+    mis(L_S[B])<=3^{|H|/2+kappa/6}.
+The kappa/6 term comes entirely from applying Moon--Moser to the finite
+exceptional core. It is not silently omitted or asserted to be uniform
+when kappa grows with |H|.
+
+NOTATION.
+A=S_0, P=S_1, Q=-S_4, z=|A|, p=|P|, q=|Q|,
+a0=|A union -A|, d0=|P union Q|. The generic block has half its vertices
+in each of the degree classes
+    a0+z+d0+p, a0+z+d0+q.
+All generic vertices are loop-free. Edges preserve a quotient coset or
+reverse its sign, so distinct generic blocks and the core do not meet.
+
+PROOF BY SEED SIZE.
+
+1. Pure zero layer, any size.
+The complete local full-link theorem is zero_pure_layer_theorem.txt.
+It uses the general regular-graph potential for degree>=10; the few
+smaller degrees are symmetric, single-defect, small-seed, triangle-free
+nine-regular, or the separately proved zero-sum rank-two triple.
+It has no rank bound and no exceptional-core error. Its componentwise
+proof also yields the generic target. Alternatively use the amplification
+observation at the end of this file.
+
+2. |S|>=8, with at least one zero-layer seed.
+Order p>=q. Put alpha=a0+z>=3, a=alpha+d0+p, b=alpha+d0+q.
+Then a<=2b-3 and b>=a0+|S|>=10. Theorem C of
+global_general_potential_audit.txt applies. Its fixed potential has
+beta=c/(a+b-4), c=log_2(3)/3, and initial exponent exactly3c/4.
+The proof uses a general hereditary maximum-degree master lemma;
+it does not assume that induced subgraphs retain two degree classes.
+
+3. |S|=6 or 7.
+The exhaustive paper classification is global_small_seed_potential.txt.
+If a0>=4 or the union P union Q is large enough, the smaller degree
+is at least10 and theorem C applies. Otherwise A lies in one antipodal
+direction. Nested layer sets, or A=-A, give triangle-free generic blocks.
+The few remaining size-six patterns are the degree-cap lemmas12/9
+with six low neighbors and10/9 with five low neighbors and two retained
+neighborhood edges. Those lemmas explicitly keep original degree caps
+and a fixed potential in every residual graph.
+Independent audit: zero_small_seed_audit.txt.
+
+4. |S|=5.
+The exhaustive classification is global_sizefive_progress.txt.
+The broad subcases follow from theorem C, the triangle-free degree
+potentials, or the symmetric-core theorems. The remaining nine-regular
+family is proved by a same-coordinate partner induction with six common
+neighbors and two protected neighbors; its proof handles every induced
+subgraph. The10/8 family is proved in global_ten_eight_proof.txt using
+fixed degree caps, maximal neighbor deficit, and one extra branch in
+the full graph. The8/8 triangle-free case uses zero_eight_extension.txt.
+The triangle-bearing8/8 case has normalized form
+    A={a}, P={0,r}, Q={0,r+a}.
+Independent a,r give the explicit100-point transfer in
+matrix_size5_triangle_proof.txt; dependent a,r leave only r=2a,
+covered by global_rank1_certificate.txt.
+
+5. |S|=4.
+Every distribution and disposition is recorded in
+global_mixed_size4_table.txt. Three normalized rank-two models require
+finite transfer certificates:
+    A={a},    P={0,r}, Q={0};
+    A={a},    P={0,r}, Q={a};
+    A={a,-a}, P={0,r}, Q=empty.
+For independent a,r all are proved in matrix_size4_proof.txt. The
+dependent possibilities are explicitly listed and proved by the small
+branching tables in global_rank1_certificate.txt. The remaining
+nine-regular pattern A={a,b},P={p},Q={p+a} uses exactly the same
+six-common-neighbor and protected-neighbor proof as the size-five
+nine-regular family; the complete coordinate check is in the size-four
+coverage table. Symmetric backgrounds plus two opposite-layer defects
+use round4/two_opposite_defects_application.txt directly.
+
+6. |S|=3.
+If all seeds lie in the zero layer, use step1. If exactly two do, then
+dependent tails must be opposite and the seed is symmetric core plus
+one; independent tails give the7/8 generic graph proved in
+zero_eight_potential_audit.txt. If exactly one seed lies in the zero
+layer, normalize one nonzero tail to zero by a shear. Independent
+remaining directions give exactly the same-layer and opposite-layer
+rank-two models in matrix_mixed3_strip_proof.txt. Their integer upper
+bounds are112,742,891,520 and128,849,018,880, each below3^25.
+Dependent directions give the five twenty-point triple certificates
+in global_rank1_certificate.txt, apart from the already symmetric-core
+case. Thus no affine-rank assumption is left implicit.
+
+7. |S|<=2.
+Use the complete non-enumerative paper proofs in
+round3/paper_algebra_lowrank.txt, Sections 1--7. The generic counts or
+upper bounds are: singleton zero100; opposite zero pair25; independent
+zero pair<=673,538,641,636<3^25; one zero plus one nonzero<=220<3^5.
+All other one/two-seed cases have no zero element and are treated by the
+no-zero theorem. The old round-two finite enumeration is not needed.
+
+This exhausts every seed meeting the zero layer.
+
+FULL-LINK CONSEQUENCE AND CORE ACCOUNTING.
+Let h=|H|. The exceptional core has2kappa vertices, so its maximal
+independent set count is at most3^{2kappa/3} after removing forbidden
+loop vertices. There are(h/kappa-1)/2 generic blocks, each bounded by
+3^kappa. Multiplication gives
+    3^{2kappa/3} * (3^kappa)^{(h/kappa-1)/2}
+       =3^{h/2+kappa/6}.
+
+AMPLIFICATION OBSERVATION FOR EARLIER FULL-LINK THEOREMS.
+Suppose an earlier theorem gives the target full-link upper bound for
+a fixed seed embedded in every enlarged ambient H. In the extension
+H=K direct-sum F_5^m, the same generic block occurs(5^m-1)/2 times and
+the core has at least one maximal independent set. If its count is C,
+then C^{(5^m-1)/2}<=3^{kappa5^m/2}. Letting m tend to infinity yields
+C<=3^kappa. This justifies generic use of a full-link theorem even when
+one prefers not to re-run its fiber-local proof on a single block.
+
+VERIFICATION STATUS.
+The potential proofs, complete small-size classifications, and finite
+state-to-MIS bijections are mathematical arguments. The accompanying
+scripts check only their stated finite integer identities, graph
+isomorphisms, and transfer inequalities. No statement here asserts
+that the fifth-round arguments have passed Lean or have established
+publication-level novelty.

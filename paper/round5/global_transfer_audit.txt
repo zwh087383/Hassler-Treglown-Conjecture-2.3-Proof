@@ -1,0 +1,54 @@
+INDEPENDENT AUDIT OF THE SIZE-FOUR AND SIZE-FIVE INTEGER TRANSFERS
+Audited files: matrix_size4_proof.txt / matrix_size4_verify.py and
+matrix_size5_triangle_proof.txt / matrix_size5_triangle_verify.py.
+Status: mathematical definitions and original-link identifications
+independently read; both verifiers re-run successfully. No Lean claim.
+
+1. The strip bijections use all 100 vertices, with exactly two phases
+of ten-vertex slices and only neighboring-slice interfaces. The row
+coordinate r=2x_1+1-(row mod2), h=floor(row/2), j=x_0 is bijective.
+The verifier constructs edges directly from y+z,y-z,z-y in the actual
+F_5^4 seed, independently constructs the strip, and compares every
+adjacency list. It also checks seed sum-freeness and that all generic
+vertices avoid the full loop set. All these checks passed.
+
+2. Internal independence plus compatibility across adjacent interfaces
+is exactly independence in the original graph. For consecutive selected
+slice sets L,S, the deficit U=D_0(S) minus previous-slice domination is
+uniquely determined. The transition requirement U subset In(T) ensures
+that the next slice dominates every remaining unselected vertex.
+Conversely every closed walk obeying the stated transition conditions
+selects an independent dominating set. Thus closed walks and maximal
+independent sets are in bijection, not merely bounded in one direction.
+The feasibility pruning does not delete any actual closed walk, since
+its actual previous and next slice sets witness the existential tests.
+
+3. A fixed starting slice prevents cyclic overcounting. The alternating
+two-step matrix B records exactly the intermediate states, and trace B^5
+counts each MIS once. Different deficit states cannot create duplicate
+counts for the same selected sets because each deficit is fixed by the
+actual previous and current selected sets.
+
+4. All matrix entries are nonnegative integers. The proposed vector w
+has positive entries and satisfies Bw<=lambda w entrywise. Hence
+B^5w<=lambda^5w, and each diagonal entry of B^5 is at most lambda^5.
+Therefore trace B^5<=dim(B)*lambda^5, with no spectral approximation.
+The simultaneous j-rotation is a graph symmetry, and the verifiers
+check every state orbit, all orbit sizes, and the constancy of weights
+and their products. Thus the short orbit tables cover all rows.
+
+Re-run outcomes:
+  size4 nested:   phases100/70, lambda40, upper7,168,000,000;
+  size4 triangle: phases295/340, lambda65, upper342,285,734,375;
+  size4 twozero:  phases75/75, lambda36, upper4,534,963,200;
+  size5 triangle: phases305/185, lambda64, upper198,642,237,440.
+Each is strictly below 3^25=847,288,609,443. The optional exact traces
+also matched, but they are not needed for the mathematical inequalities.
+
+Rank-one affine dependencies are not inferred from the rank-two strip
+bounds. They are covered separately by global_rank1_certificate.txt,
+whose verifier reconstructs each twenty-point graph both from generic
+coordinates and from the original F_5^3 link condition. Its deterministic
+depth-six/seven include/exclude trees end in explicit Moon--Moser bounds.
+The eleven recorded histogram inequalities were independently run and
+all passed.

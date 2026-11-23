@@ -1,0 +1,135 @@
+ROUND 5: ENTROPY PROOFS FOR THE FINAL NO-ZERO TYPES A AND C
+Status: complete counting arguments with exact rational local sums.
+The sums are independently reconstructed by root_entropy_ac_verify.py
+and zero_entropy_ac_audit.py. No Lean or novelty claim is made here.
+
+1. GRAPH AND FOUR-STATE VARIABLES
+
+Let K be a finite abelian group of order q, P,Q subsets of K, and
+T=P union Q. The bipartite graph Gamma(P,Q) has left vertices A_x,B_x
+and right vertices C_y,D_y, x,y in K. Its edges are
+  A_x C_y iff y-x in T;   A_x D_y iff y-x in Q;
+  B_x C_y iff y-x in P;   B_x D_y iff y-x in T.
+
+Choose a maximal independent set I uniformly. Put
+  Z_x=1_{A_x in I}+2*1_{B_x in I},
+  W_y=1_{D_y in I}+2*1_{C_y in I}.
+Both variables take values in {0,1,2,3}. The right pair is deliberately
+encoded in reversed order. A maximal independent set in a bipartite
+graph is determined by its left part: its right part consists exactly
+of vertices with no selected left neighbor. Thus
+  H((Z_x)_{x in K})=log_2 mis(Gamma).
+
+Translations are graph automorphisms, as is
+  A_x -> D_{-x}, B_x -> C_{-x},
+  C_y -> B_{-y}, D_y -> A_{-y}.
+For example an A_x C_y edge of difference y-x in T maps to a
+B_{-y} D_{-x} edge of the same difference. P and Q edge types are
+preserved separately. Hence every Z_x and every W_y have the same
+marginal distribution under the uniform choice of I.
+
+For fixed y list T={t_1,...,t_d} and let z_i=Z_{y-t_i}. The output
+W_y=F(z) is deterministic. Write z_i=x_i+2y_i with binary x_i,y_i.
+A P-only input contributes (x_i OR y_i,y_i) to the two right blocking
+indicators; a Q-only input contributes (x_i,x_i OR y_i); a common
+input contributes (x_i OR y_i,x_i OR y_i). Taking coordinatewise OR
+gives b_C,b_D. Then
+  F(z)=(1-b_D)+2*(1-b_C).
+
+2. THE ENTROPY CERTIFICATE LEMMA
+
+Let Omega contain the support of the local random tuple. Choose
+positive weights w_i(s), i=1,...,d and s=0,1,2,3. Set
+  R(z)=product_i w_i(z_i)/w_i(F(z)),
+  Zeta=sum_{z in Omega} R(z).
+Then
+  mis(Gamma)<=Zeta^{q/d}.                                    (1)
+
+Indeed Jensen's inequality applied to R(z)/Pr[z] gives
+  H(z)+E log_2 R(z)<=log_2 Zeta.
+For each i, z_i and F(z)=W_y have the same distribution, so
+  E log_2 w_i(z_i)-E log_2 w_i(F(z))=0.
+Therefore H(z)<=log_2 Zeta.
+
+The q sets {y-t_1,...,y-t_d}, y in K, cover every index exactly d
+times. The chain rule and the fact that conditioning cannot increase
+entropy give Shearer's inequality in the required form:
+  H((Z_x)_{x in K}) <= (1/d) sum_y H((Z_{y-t_i})_{i=1}^d).
+To verify it directly, order K. Expand each subset entropy by the
+chain rule; replacing its earlier conditioning indices by all earlier
+indices can only decrease it. Summing counts every chain-rule term
+exactly d times. Translation invariance makes the q local entropies
+identical. Combining these statements proves (1).
+
+3. EXACT SUPPORT WHEN Q HAS ONE EXCLUSIVE TRANSLATION
+
+Suppose Q\P={t}. For every x,
+  N(A_x)\N(B_x)={C_{x+t}}.
+If Z_x=2, B_x is selected and A_x is omitted. Independence excludes
+all common neighbors of A_x,B_x; maximality then forces C_{x+t} to
+be selected. B_x is adjacent to D_{x+t}, so W_{x+t}=2.
+
+Conversely, if W_{x+t}=2, C_{x+t} is selected and D_{x+t} omitted.
+Since N(D_{x+t})\N(C_{x+t})={B_x}, maximality forces B_x to be
+selected; A_x is omitted by independence. Consequently
+  Z_x=2 if and only if W_{x+t}=2.                             (2)
+
+For types A,C every other translation is in P, so the selected
+C_{x+t} is adjacent to both left copies at every other input index.
+All those input states are zero. With the Q-only input listed last,
+the local support is contained in the 193 configurations
+  Omega={z in {0,1,2,3}^4:
+              z_4!=2 or (z_1,z_2,z_3)=(0,0,0)}.              (3)
+The deterministic output also satisfies
+  F(z)=2 iff z=(0,0,0,2).
+
+4. TYPE A: THREE P-ONLY AND ONE Q-ONLY TRANSLATIONS
+
+Assume |P|=3, |Q|=1 and P intersect Q empty. List the P inputs first.
+In state order 0,1,2,3 choose
+  w_1=w_2=w_3=(1,1/2,1/2,1/2),
+  w_4=(1,1,1,1/2).
+The contributions to Zeta, separated by output, are
+
+  F=3: all inputs zero; contribution 16.
+  F=2: the unique input (0,0,0,2); contribution 8.
+  F=1: Q input zero and P inputs in {0,1}, not all zero;
+       contribution [(3/2)^3-1]/(1/2)^3=19.
+  F=0: the remaining allowed inputs; contribution
+       (5/2)^3(5/2)-(3/2)^3=571/16.
+
+Thus
+  Zeta=16+8+19+571/16=1259/16<81=3^4.
+By (1),
+  mis(Gamma(P,Q))<=(1259/16)^{q/4}<3^q.                      (4)
+No affine independence of the translations is assumed.
+
+5. TYPE C: ONE COMMON, TWO P-ONLY, ONE Q-ONLY TRANSLATION
+
+Assume |P|=3, |Q|=2 and |P intersect Q|=1. List the common input
+first, the P-only inputs next, the Q-only input last. Choose
+  w_1=(1,1,1,1),
+  w_2=w_3=(1,1/2,1/2,1/2),
+  w_4=(1,1/2,1,1/2).
+The same support (3) holds. Its output contributions are
+
+  F=3: all inputs zero; contribution 8.
+  F=2: unique input (0,0,0,2); contribution 4.
+  F=1: common and Q-only inputs zero, P-only inputs in {0,1},
+       not both zero; contribution [(3/2)^2-1]/(1/2)^3=10.
+  F=0: all remaining allowed inputs; contribution
+       4*(5/2)^2*2-(3/2)^2=191/4.
+
+Consequently
+  Zeta=8+4+10+191/4=279/4<81,
+and (1) gives
+  mis(Gamma(P,Q))<=(279/4)^{q/4}<3^q.                         (5)
+Again there is no affine rank restriction.
+
+6. SCOPE
+
+The no-zero generic link graph is Gamma(P,Q), on 4q vertices. Equations
+(4),(5) therefore close the residual types A,C, including their
+500-vertex rank-three models. Type B is treated separately by the
+seven-input entropy certificate and its low-rank cases. A generic
+estimate does not itself remove the exceptional core in the full link.

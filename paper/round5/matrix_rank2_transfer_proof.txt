@@ -1,0 +1,290 @@
+An 83-state transfer proof for the mixed rank-two three-seed matrix
+=================================================================
+Date: 2026-11-22.
+Status: complete finite transfer argument with an explicit 19-row rational
+arithmetic certificate. The certificate is independently evaluated by two
+different formulas in matrix_rank2_transfer_verify.py. This is not a Lean
+verification. It does not prove the arbitrary-matrix or all-seed conjecture.
+
+THEOREM
+-------
+Let K=F_5^2 and let u,v be linearly independent. Put P={0}, Q={u,v}.
+Let Gamma(P,Q) have biadjacency matrix
+
+               [ C_(P union Q), C_Q           ]
+               [ C_P,           C_(P union Q) ].
+
+Then
+
+  mis Gamma(P,Q)
+       <= (1433053/32)^(5/2)
+       < 3^25.
+
+The same inequality per 25-element coset applies in an arbitrary ambient
+F_5-vector space. Thus the desired exponent holds for every mixed pattern
+with one translation in one color and two in the other. The case of
+dependent normalized translations is already covered by the rank-one
+result; a normalized zero translation in the other color is nested-row.
+
+1. Coordinates and row-union map
+-------------------------------
+The number of MIS of a bipartite graph equals the number of different
+unions of row neighborhoods. We therefore count the Boolean row span.
+
+Use horizontal basis u-v and vertical basis v. Then the two Q translations
+are (0,1) and (1,1). Write coordinates (i,j), with i,j in F_5, and use j
+as the layer. For each layer j let X_j,Y_j subset F_5 be the chosen row
+indices in the upper and lower row blocks, and put T_j=X_j union Y_j.
+
+Define horizontal dilation
+
+        delta(Z)=Z union (Z+1),    Z subset F_5.
+
+Direct multiplication by the Boolean biadjacency matrix gives the two
+output sets in layer j:
+
+        U_j=T_j union delta(X_(j-1)),
+        V_j=Y_j union delta(T_(j-1)).                 (1)
+
+All layer indices are cyclic modulo 5. This identity is exact.
+
+The incoming carry state in layer j is
+
+        c_j=(p_j,q_j)=(delta(X_(j-1)),delta(T_(j-1))).
+
+2. The carry alphabet has exactly 83 states
+------------------------------------------
+Let C consist of pairs (delta(X),delta(T)) with X subset T subset F_5.
+Encode such a pair (p,q), p subset q, by a cyclic word w in {0,1,2}^5:
+2 on p, 1 on q\p, and 0 outside q.
+
+The word w is a carry state exactly when it has no strict local maximum:
+
+        w_i <= max(w_(i-1),w_(i+1)) for every i.       (2)
+
+Proof. Encode X subset T by an input word z with levels 0,1,2. The output
+word of their two dilations is w_i=max(z_i,z_(i-1)), which cannot have a
+strict local maximum. Conversely, when (2) holds, choose
+z_i=min(w_i,w_(i+1)). Then
+
+ max(z_i,z_(i-1))
+    =min(w_i,max(w_(i-1),w_(i+1)))=w_i.
+
+This proves the characterization.
+
+Here is a direct count, without enumerating 243 input words. A binary
+word using only 0,1 satisfies (2) precisely when its 1-runs have length
+at least two. On a five-cycle there are 17: two constant words and five
+rotations of a run of length 2,3,4.
+
+If the word contains 2, its 2-positions form one cyclic run: two separate
+2-runs would require at least six positions. If the run has length
+5,4,3,2, respectively, the numbers of words are
+
+             1,  5*2=10,  5*4=20,  5*7=35.
+
+For the last count, the remaining three entries are binary, and their
+middle entry cannot be 1 when both its neighbors are 0; only 010 is
+forbidden among the eight binary words. Thus |C|=17+66=83.
+
+Rotation splits C into three constant states and sixteen five-element
+orbits, giving the 19 representatives in the arithmetic table below.
+
+3. Definition of the transition matrix
+--------------------------------------
+For c=(p,q) and c'=(r,s) in C, define the nonnegative integer A_(c,c') as
+the number of DISTINCT ordered output pairs (U,V) for which there exist
+X,Y subset F_5 satisfying
+
+ T=X union Y,
+ delta(X)=r, delta(T)=s,
+ U=T union p, V=Y union q.                            (3)
+
+Distinct means that different row choices producing the same (U,V,c')
+are counted only once. This detail matters for the bound.
+
+Any complete choice of rows in the 100-vertex graph produces a closed
+walk c_0,c_1,...,c_4,c_0, together with an output label on each transition.
+Conversely a transition label has a witnessing choice X_j,Y_j by (3);
+choosing such witnesses at the five layers is compatible because their
+outgoing carries are the next layer's incoming carries.
+
+Different full output sequences cannot be the same labeled closed walk.
+An output sequence might have more than one representing walk, which
+only increases the bound. Therefore
+
+               mis Gamma(P,Q) <= tr(A^5).            (4)
+
+4. A closed formula for each matrix entry
+-----------------------------------------
+The following second formula eliminates existential row choices and
+gives a direct finite expression for the table's entries.
+
+For W subset F_5 put
+
+          epsilon(W)=W intersect (W-1).
+
+This is the largest set Z with delta(Z) subset W. In particular,
+delta(epsilon(W))=W whenever W itself is a dilation image.
+
+For c=(p,q), c'=(r,s) and candidate outputs U,V with p subset U and
+q subset V, form
+
+          T*=U intersect epsilon(s) intersect (epsilon(r) union V).
+
+Then (U,V) is counted in A_(c,c') if and only if all four conditions hold:
+
+       U\p subset T*,              V\q subset T*,
+       delta(T*)=s,                delta(T* intersect epsilon(r))=r. (5)
+
+Proof of necessity. Any witnessing X,Y,T from (3) has
+T subset U, T subset epsilon(s), X subset epsilon(r), and
+T\epsilon(r) subset Y subset V. Thus T subset T*. The first two
+inclusions in (5) follow because T must contain U\p and Y must contain
+V\q. Monotonicity gives s=delta(T) subset delta(T*) subset s and
+r=delta(X) subset delta(T* intersect epsilon(r)) subset r.
+
+Proof of sufficiency. Define
+
+       X=T* intersect epsilon(r),
+       Y=(V\q) union (T*\epsilon(r)).
+
+The two inclusions in (5) and the definition of T* give Y subset T*,
+X union Y=T*, U=T* union p, and V=Y union q. The last two equalities
+in (5) provide the required outgoing carry. Thus these X,Y witness (3).
+
+Consequently every A-entry is given by a sum over only the 32^2 possible
+ordered output pairs, testing the explicit bit-set conditions (5).
+The verifier constructs A once from (3), once from (5), and checks that
+all 83^2 entries agree.
+
+5. Diagonal weighting and the 19-row rational certificate
+--------------------------------------------------------
+Let D be diagonal, with D_(c,c)=2^(|q|/2) for c=(p,q), and set B=DAD^-1.
+Then tr(B^5)=tr(A^5), while
+
+      ||B||_F^2
+          =sum_(c=(p,q), c'=(r,s)) 2^(|q|-|s|) A_(c,c')^2.
+
+Define the integral row numerator
+
+      H(p,q)=sum_(c'=(r,s)) 2^(5+|q|-|s|) A_((p,q),c')^2.    (6)
+
+All exponents are nonnegative. Rotation preserves (3), (5), and all
+cardinalities in (6), so H is constant on each of the 19 rotation orbits.
+Words are read in cyclic order; their levels encode p subset q as in
+Section 2. Substitution in the explicit formula (5) gives:
+
+ word    orbit size     H(p,q)       orbit contribution
+ 00000       1           35877              35877
+ 00011       5           34488             172440
+ 00022       5           10944              54720
+ 00111       5           35208             176040
+ 00122       5           13320              66600
+ 00221       5           13320              66600
+ 00222       5            8776              43880
+ 01111       5           36800             184000
+ 01122       5           14544              72720
+ 01221       5           16160              80800
+ 01222       5           10544              52720
+ 02211       5           14544              72720
+ 02221       5           10544              52720
+ 02222       5            8000              40000
+ 11111       1           39968              39968
+ 11122       5           18336              91680
+ 11222       5           13280              66400
+ 12222       5           10848              54240
+ 22222       1            8928               8928
+ ------------------------------------------------------
+ total      83                            1433053
+
+Hence
+
+             ||B||_F^2=1433053/32 <59049=3^10.         (7)
+
+The strict comparison is simply the integer inequality
+
+                         1433053 <1889568.
+
+No floating-point calculation is used.
+
+6. The final norm inequality uses only Cauchy--Schwarz
+-----------------------------------------------------
+For any real matrices X,Y of compatible dimensions,
+||XY||_F <= ||X||_F ||Y||_F. Applying Cauchy--Schwarz to the trace and
+then this submultiplicativity gives
+
+  |tr(B^5)|
+       =|sum_(i,j) (B^2)_(i,j) (B^3)_(j,i)|
+       <=||B^2||_F ||B^3||_F
+       <=||B||_F^5.
+
+Combining (4) and (7),
+
+       mis Gamma(P,Q) <= (1433053/32)^(5/2) <3^25.
+
+This completes the finite transfer proof.
+
+7. A smaller-check alternative to the exact row sum
+---------------------------------------------------
+For fixed q and p_0 subset p, both valid carry states, each transition
+output under p is obtained from the corresponding output under p_0 by
+replacing U with U union p. Thus
+
+             A_((p,q),c') <= A_((p_0,q),c').
+
+Every nonempty p contains an adjacent pair p_0, and (p_0,q) is a valid
+carry whenever p_0 subset q. Consequently the largest H with p nonempty
+is bounded by the seven rows with p an adjacent pair. The seven cases
+give H<=18336. For p empty, the five binary orbit types give H<=39968.
+There are 17 states with p empty. The fully occupied state p=q=F_5 has
+A_((p,q),c')=1 for every c', and H=8928. This last value also follows
+without evaluating transitions: the counts of carry states at |s|=0,2,3,4,5
+are 1,10,20,35,17, giving
+
+       H(F_5,F_5)=1024+10*256+20*128+35*64+17*32=8928.
+
+Thus the table can alternatively be used only through the inequalities
+for its five p-empty types and seven minimal nonempty-p types:
+
+  32||B||_F^2 <=17*39968+65*18336+8928
+               =1880224 <1889568=32*3^10.
+
+This also proves the desired bound, without needing the exact total
+1433053 or the other six nonconstant row evaluations.
+
+8. Reproduction and scope
+-------------------------
+Run, from the workspace root:
+
+             python3 round5/matrix_rank2_transfer_verify.py
+
+The script uses only the Python standard library and finishes quickly.
+It proves the state alphabet equivalence by direct equality of two finite
+sets, constructs all matrix entries independently by (3) and (5), checks
+the 19 orbit sizes and rational row values, and checks the final integer
+comparison. It also supplies the supplementary exact value
+
+                     tr(A^5)=142457592583 <3^25,
+
+which gives a stronger numerical upper bound but is unnecessary for
+the short Frobenius-norm certificate.
+
+Files:
+ matrix_rank2_transfer_verify.py -- complete small verifier;
+ matrix_rank2_transfer_data.json -- all 83 states and all integer entries;
+ matrix_rank2_transfer_table.txt -- the 19-row table and exact checks.
+
+For a singleton translation p and two translations q_1,q_2, relabel both
+right coordinate blocks by subtracting p. This gives P={0} and
+Q={q_1-p,q_2-p}. Swapping the two row blocks and the two column blocks
+interchanges P and Q, so either mixed color allocation is covered.
+If the normalized translations span a two-dimensional subspace L of a
+larger K, the graph decomposes into |K|/25 isomorphic components on its
+cosets. Thus
+
+       mis Gamma(P,Q) <= (1433053/32)^(|K|/10) <3^|K|.
+
+The case of one-dimensional span is handled by the previous 212<243
+paper bound (or the earlier exact rank-one enumeration). This proof
+does not address arbitrary larger translation sets.

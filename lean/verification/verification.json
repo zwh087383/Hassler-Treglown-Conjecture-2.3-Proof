@@ -1,0 +1,40 @@
+{
+  "lean_version": "Lean (version 4.19.0, x86_64-w64-windows-gnu, commit 6caaee842e94, Release)",
+  "mathlib_commit": "c44e0c8ee63ca166450922a373c7409c5d26b00b",
+  "locked_external_checkouts_with_clean_tracked_files": {
+    "plausible": "77e08eddc486491d7b9e470926b3dbe50319451a",
+    "LeanSearchClient": "25078369972d295301f5a1e53c3e5850cf6d9d4c",
+    "importGraph": "e6a9f0f5ee3ccf7443a0070f92b62f8db12ae82b",
+    "proofwidgets": "c4919189477c3221e6a204008998b0d724f49904",
+    "aesop": "5d50b08dedd7d69b3d9b3176e0d58a23af228884",
+    "Qq": "fa4f7f15d97591a9cf3aa7724ba371c7fc6dda02",
+    "batteries": "f5d04a9c4973d401c8c92500711518f7c656f034",
+    "Cli": "02dbd02bc00ec4916e99b04b2245b30200e200d0",
+    "mathlib": "c44e0c8ee63ca166450922a373c7409c5d26b00b"
+  },
+  "math_source_files": 136,
+  "math_source_placeholders_or_project_axioms": 0,
+  "verified_entry_points": [
+    "Audit.Sharp.main_theorem",
+    "Audit.Sharp.upper",
+    "Audit.Sharp.log_limit",
+    "Audit.Sharp.limit_via_generic_blocks",
+    "Audit.GenericTheorem.generic_block",
+    "Audit.DefinitionCheck.paper_statement",
+    "Audit.Raw.type_A",
+    "Audit.Raw.type_B",
+    "Audit.Raw.type_C"
+  ],
+  "reported_axioms": [
+    "Classical.choice",
+    "Lean.ofReduceBool",
+    "Quot.sound",
+    "propext"
+  ],
+  "kernel_replay_summary": "Inspected 136 project modules. Replaying 3042 project declarations in the dependency closure, including 1762 theorem declarations.",
+  "final_source_matches_both_build_directories": true,
+  "input_hashes": {
+    "sumfree_complete_proof_draft.pdf": "38969911403cec822168b48e364f1f148c4b7d374f6a5f4f3b3f1e9cfb2384cd",
+    "sumfree_complete_proof_bundle.zip": "d7262d10dc0234c3b851421412c643343ad435a7bf6460fc93afd11727d2fca6"
+  }
+}

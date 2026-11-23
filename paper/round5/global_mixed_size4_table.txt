@@ -1,0 +1,77 @@
+EXHAUSTIVE MIXED SIZE-FOUR COVERAGE TABLE
+Status current to round 5. Here z=|A|>=1 and p>=q by exchanging the
+nonzero layers. Pure-zero cases are included for completeness. The
+independent-rank transfer certificates below are completed. This table
+is one component of the completed joint proof in global_final_coverage.txt.
+
+References:
+  GEN: round5/global_general_potential_audit.txt, theorem C.
+  TF10/TF12: round5/global_trianglefree_potential.txt.
+  TF8: round5/zero_eight_extension.txt (and its companion verifier).
+  CAP9: round5/global_sizefive_progress.txt, section 2.
+  ONE: round4/one_defect_application.txt.
+  TWO-OPPOSITE: round4/two_opposite_defects_application.txt.
+  PURE-ZERO: round5/zero_pure_layer_theorem.txt, with the degree-nine
+             zero-sum pattern in round5/zero_triple_proof.txt.
+  SYM: prior symmetric-seed theorem, also used in round4/research_note.tex.
+  RANK1: round5/global_rank1_certificate.txt.
+
+z=4, p=q=0:
+  All A: PURE-ZERO.
+
+z=3, (p,q)=(1,0):
+  a0=6 (A has no opposite pair): degrees 11/10, GEN.
+  a0=4 (A has an opposite pair): degrees 9/8, triangle-free by the
+     generalized nested lemma, TF10 (degree sum 17).
+
+z=2, A nonopposite (a0=4):
+  (p,q)=(2,0): degrees 10/8, nested and triangle-free, TF10.
+  (p,q)=(1,1), P=Q: degrees 8/8, nested and triangle-free, TF8.
+  (p,q)=(1,1), P!=Q: degrees 9/9. Put P={p},Q={q}.
+     If q-p avoids A union -A, the generic graph is triangle-free,
+        so TF10 applies.
+     Otherwise seed sum-freeness forbids p-q in A; thus q=p+a for
+        one a in A. The nine-regular buddy proof in section 3 of
+        global_sizefive_progress.txt applies with the other zero
+        direction contributing the unused third unique neighbor.
+        The exact six common neighbors for v=X_x,w=Y_x, A={a,b},
+        are X_{x+a},X_{x+b},Y_{x-a},Y_{x-b},Y_{-x-p},X_{-x-q}.
+        The two protected neighbors of w are Y_{x+a},X_{-x-p};
+        their two witnesses in N(v) are exactly the same as in
+        the original nine-regular proof. The reverse-row argument
+        is likewise unchanged. Thus this case is covered.
+
+z=2, A={a,-a} (a0=2):
+  (p,q)=(1,1), P=Q: the seed is symmetric, SYM.
+  (p,q)=(1,1), P!=Q: symmetric zero background plus two opposite-layer
+     unpaired elements, TWO-OPPOSITE. This is a full-link bound.
+  (p,q)=(2,0): degrees 8/6, triangle-free. Normalize P={0,r}.
+     If a,r are independent, this is one 100-vertex generic model,
+        proved in matrix_size4_proof.txt (model twozero).
+     If dependent, r=2a or 3a; both 20-vertex models are RANK1.
+
+z=1, A={a}:
+  (p,q)=(3,0): degrees 9/6, triangle-free, CAP9.
+  (p,q)=(2,1), Q subset P: normalize P={0,r},Q={0}; degrees 7/6,
+     triangle-free. Independent a,r: one 100-vertex generic model,
+        proved in matrix_size4_proof.txt (model nested).
+     Dependent: r=2a or 3a, covered by RANK1.
+  (p,q)=(2,1), P intersect Q empty: degrees 8/7.
+     If U-U avoids +/-a, triangle-free; TF8 gives exponent49/124<target.
+     Otherwise normalize P={0,r},Q={a}. Independent a,r: one
+        100-vertex generic model, proved in matrix_size4_proof.txt
+        (model triangle).
+     In the dependent case seed sum-freeness leaves only r=3a;
+        the resulting 20-vertex model is RANK1.
+
+There are no other mixed size-four distributions: the cases z=1,2,3,4
+partition all possibilities, p+q=4-z, and P,Q are either equal/nested
+or disjoint whenever their sizes are at most two and one.
+
+ADDITIONAL SIZE-FIVE MODEL FOR THE SAME TRANSFER TASK
+The remaining triangle-bearing 8/8 family is
+  A={a}, P={0,r}, Q={0,r+a}.
+If a,r are independent it is one 100-vertex generic model, proved in
+matrix_size5_triangle_proof.txt.
+If dependent, sum-freeness leaves only r=2a, covered by RANK1.
+Its triangle-free subfamily has already been covered by TF8.

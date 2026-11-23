@@ -1,0 +1,86 @@
+INDEPENDENT AUDIT OF complete_manuscript.tex
+===========================================
+Audit date: 2026-11-22.
+Status: passed after the scope/reference corrections recorded below.
+
+Mathematical material checked against its source proofs:
+
+1. Link definition, exact loop set, generic-block coordinate edges, equal
+   degree-class sizes, and absence of generic loops.
+2. Induced-subgraph MIS extension injection and the short Moon--Moser
+   induction. No ordinary-edge-addition monotonicity is used.
+3. A/C marginal symmetry, unique private-neighbor support restriction,
+   four-state weight tables, and constants 1259/16 and 279/4.
+4. B's seven-coordinate cover, statewise balance ca^2b^4=g^2, the four
+   conditional sums, constant 43177189/20736, collision classification,
+   color exchange, Boolean row-union factorization, and 212<243 argument.
+5. General potential drops, fixed-beta scope, two-degree target exponent,
+   and triangle-free potential parameter ranges.
+6. All six displayed hundred-vertex transfer bounds, the independent
+   83-state Frobenius bound, and the twenty-vertex branching upper bound.
+7. No-zero sizes four through six and the scope of the zero-containing
+   classification, including the pure-zero nine-regular alternatives.
+8. Full-link degree bounds, 8192 seed cutoff, fingerprint construction,
+   uniform rank/core constant, container/removal/maximal-extension bridge,
+   Lev's structural application, and the P4 lower-bound injection.
+
+Exact arithmetic independently re-evaluated in this audit:
+
+  571/16+19+8+16=1259/16<81;
+  191/4+10+4+8=279/4<81;
+  (2629/72)^2+(1/4)(775/24)^2+2(125/8)^2
+       =43177189/20736<2187;
+  105*8^10=112742891520<3^25;
+  120*8^10=128849018880<3^25;
+  70*40^5=7168000000<3^25;
+  295*65^5=342285734375<3^25;
+  75*36^5=4534963200<3^25;
+  185*64^5=198642237440<3^25;
+  1433053/32<3^10;
+  8192/35331+8/513=1495048/6041601<1/4;
+  1/2-(9/2-1/2)/36=7/18, and 2^14<3^9.
+
+All comparisons passed using Python integers and fractions.Fraction.
+
+Corrections applied with root's authorization:
+
+A. The degree-nine extension now explicitly assumes maximum degree at
+   most nine, with at least four degree-at-most-seven neighbors at each
+   degree-nine vertex. Its proof reference is appendix Z4 Section 2;
+   P3/P4 are the maximum-degree-eight theorem and its extension.
+B. The (J,U) transfer-state/MIS bijection is explicitly restricted to the
+   zero-containing strip models. The no-zero 83-state proof instead
+   counts row-union outputs through labeled closed walks and uses an
+   upper bound, not an asserted bijection. Its separate two-formula
+   verification is described accurately.
+C. The twenty-vertex seven-level branching certificates are identified
+   as the dependent cases of the zero-containing models. No-zero rank
+   one uses the separate 212 paper bound.
+D. For pure-zero nine-regular triangle-free graphs, the main text and
+   zero_pure_layer_theorem.txt now use the already included P2 theorem:
+   mis<=2^(7N/18)<3^(N/4). global_final_coverage.txt was updated as well.
+   This removes an unnecessary dependency on zero_potential_proof.txt.
+E. Lev's article title was typeset with its mathematical Z_5^n notation.
+
+Appendix completeness point raised and resolved by root:
+the one-unpaired-seed application of the colored counting theorem needs
+its full proof, not just the colored theorem itself. Root has arranged
+appendix S4=round4/one_defect_application.txt. The audit does not alter
+the final appendix numbering.
+
+Bibliographic checks:
+Conjecture 2.3 and the lower bound appear in the primary source
+https://arxiv.org/html/2506.17401v2 .
+The citation Integers 26 (2026), A97 is independently confirmed by the
+journal's official repository and the author's university record:
+https://zenodo.org/records/21678439
+https://research.birmingham.ac.uk/en/publications/notes-on-sum-free-sets-in-abelian-groups/
+The other primary-source formulations were independently checked in
+global_final_bridge_audit.txt.
+
+Final conclusion: no remaining wrong constant, degree threshold, seed
+classification, entropy scope, or global-error claim was found in the
+reviewed manuscript after these corrections. This is a mathematical
+text/certificate audit; it does not assert new Lean verification or
+external peer review. Final PDF typography and bundled-file validation
+are separate production checks handled by root.

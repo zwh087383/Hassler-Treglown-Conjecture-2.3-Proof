@@ -1,0 +1,270 @@
+ROUND 5: THREE MIXED SIZE-FOUR MODELS, WITH SHORT TRANSFER CERTIFICATES
+
+Let a,p be linearly independent over F_5. We use normalized seed notation
+  A=S_0, P=S_1, Q=-S_4.
+This file proves the generic-component bound for the following models:
+
+  nested:    A={a},    P={0,p}, Q={0};
+  triangle:  A={a},    P={0,p}, Q={a};
+  twozero:   A={a,-a}, P={0,p}, Q=empty.
+
+All three generic graphs have 100 vertices. Their degree pairs, with
+50 vertices of each degree, are respectively (7,6), (8,7), and (8,6).
+The middle graph has triangles. No argument about adding ordinary edges
+being monotone for maximal independent sets is used.
+
+THEOREM.
+For the three respective generic components,
+
+  nested:   mis <=70*40^5  =  7,168,000,000;
+  triangle: mis <=295*65^5 =342,285,734,375;
+  twozero:  mis <=75*36^5  =  4,534,963,200.
+
+Each quantity is strictly smaller than 3^25=847,288,609,443.
+
+1. COMMON COORDINATES
+
+For t outside K=span{a,p}, use rows
+  a_x=(2,t+x), b_x=(3,t+x),
+  c_x=(3,-t-x), d_x=(2,-t-x), x=x_0 a+x_1 p in K.
+Number rows a,b,c,d by 0,1,2,3 and assign strip coordinates
+
+  r=2x_1+1-(row mod 2) in Z_10,
+  h=floor(row/2) in {0,1}, j=x_0 in Z_5.
+
+Even-r slices contain b,d and odd-r slices contain a,c. Every slice has
+W={0,1} x Z_5. There are no edges between nonadjacent distinct slices.
+
+For nested and triangle, the internal graph F has a 5-cycle in each
+h-row and the matching (1,j)--(0,j+1); it is C_5 square K_2.
+For twozero, the internal graph F' joins (h,j) to (k,j+1) and (k,j-1)
+for every h,k. Thus F' is the graph obtained by replacing each vertex
+of C_5 by an independent pair and every cycle edge by a complete K_2,2.
+
+Define three directed interfaces:
+  J: (h,j)->(k,j), all h,k;
+  L: (h,j)->(k,j), k<=h;
+  D: (h,j)->(k,j), k<=h, and (h,j)->(k,j+1), h<=k.
+
+The interfaces from even to odd, and from odd to the next even, are
+
+       model       even->odd     odd->even
+       nested          J             L
+       triangle        D^T           L
+       twozero         L^T           L.                     (1)
+
+For example, the common translation zero in P,Q creates the complete
+relation J. If Q={a}, the P0 and Qa edges form D from the a,c slice to
+the b,d slice, so their orientation from even to odd is D^T. The Pp
+edges always give L to the following even slice. With Q empty, P0 alone
+gives L^T in the other direction. The one or two zero seeds give F or
+F', respectively. These statements also follow by direct substitution
+in the link condition y+z,y-z,z-y in S.
+
+The verifier independently constructs each graph in F_5^4 from its
+actual seed (remembering Q=-S_4), checks seed sum-freeness and absence
+of generic loops, and compares all 100 adjacency lists with (1).
+
+2. A PRECISE FINITE TRANSFER
+
+Let I be all independent subsets of the internal graph (81 for F,
+61 for F'). Write D_0(S)=W\(S union N(S)). For an interface C let
+Out_C(L) be its neighbors reached from L and In_C(T) the vertices
+that have an interface neighbor in T.
+
+A phase-i state is (S,U), where S belongs to I and for some L in I,
+  Out_Cprev(L) intersect S=empty,
+  U=D_0(S)\Out_Cprev(L).
+Keep only states for which some T in I satisfies
+  Out_Ci(S) intersect T=empty, U subset In_Ci(T).
+
+From a retained state (S,U) to a retained next-phase state (T,V), a
+transition exists exactly when
+  Out_Ci(S) intersect T=empty,
+  U subset In_Ci(T),
+  V=D_0(T)\Out_Ci(S).                                       (2)
+
+A maximal independent set gives its selected slice sets S_r. Then
+U_r consists exactly of vertices not selected or internally dominated,
+and not dominated from slice r-1. Maximality is precisely the second
+condition in (2), domination from slice r+1. Conversely a closed walk
+obeying (2) gives an independent set that dominates every omitted
+vertex. The U_r are determined by consecutive selected slice sets,
+so this is a bijection with length-ten closed walks.
+
+The retained states and one-step transition counts are
+
+       model       states phase0/phase1     edges phase0/phase1
+       nested              100/70                  615/340
+       triangle            295/340                 925/3875
+       twozero              75/75                  390/390.
+
+Let T_0,T_1 denote the two transition matrices. For nested choose phase
+one and B=T_1 T_0 (70 states). For the other two choose phase zero and
+B=T_0 T_1 (295 and 75 states). The bijection gives
+
+                            mis=tr(B^5).                     (3)
+
+3. THE INTEGER CERTIFICATES
+
+Set w=B1, the row-sum vector of the two-step matrix. The complete
+finite certificate is
+
+       w>0 and Bw<=lambda*w,
+
+with lambda=40,65,36 for nested, triangle, twozero. All entries are
+integers. In fact the largest ratios (Bw)_i/w_i are
+
+       nested:   3481/88 <40;
+       triangle: 1601/25 <65;
+       twozero:  457/13  <36.
+
+The tables below list every rotation orbit in the selected phase,
+with columns S,U,w,Bw. Encode (h,j) by bit 5h+j. Rotation j->j+1 acts
+simultaneously on S and U and has orbit size five on every retained
+state in the selected phase. Thus the three tables contain 14,59,15
+rows, respectively. Every state and transition is defined explicitly
+by (1),(2); the certificate involves no numerical eigenvalue.
+
+For reference, the interface row masks are
+  J=(33,66,132,264,528,33,66,132,264,528),
+  L=(1,2,4,8,16,33,66,132,264,528),
+  D=(67,134,268,536,49,97,194,388,776,560).
+
+The standard-library verifier constructs all states and transitions,
+forms B exactly, checks all table orbits and checks every integer
+inequality. A positive vector satisfying Bw<=lambda*w gives
+B^5w<=lambda^5*w. Therefore (B^5)_{ii}<=lambda^5, and (3) implies
+
+                        mis<=dim(B)*lambda^5.
+
+This proves all three asserted upper bounds.
+
+As an optional stronger calculation using the same exact transfer,
+the maximal-independent-set counts are
+  nested:    74,668,930;
+  triangle: 770,498,435;
+  twozero:   30,758,595.
+These exact counts are not needed for the certificates and are not
+claimed to come from an independent counting method.
+
+4. SCOPE AND FILES
+
+Every opposite pair of nonzero quotient cosets of H/K gives the same
+100-vertex generic graph. The finite exceptional core over K is treated
+by the existing global reduction. No estimate for that core is silently
+inferred from this generic theorem.
+
+The fourth model A={a,-a},P={0},Q={p} is already a symmetric zero-layer
+core plus two defects in opposite nonzero layers, so the round-four
+two-opposite-defects theorem covers it without a new certificate.
+
+Files: matrix_size4_verify.py, matrix_size4_certificate.json,
+       matrix_size4_table.txt. The complete table follows.
+
+nested
+S U w=B1 Bw=B^2 1
+   0  165    21     648
+   1  164    27     784
+   1  296    12     401
+   5  160    18     537
+  33    0    88    3481
+  33  132    31    1203
+  33  264    31    1206
+  37  128    27     994
+  41  256    25     963
+  48    0    84    3286
+  48  132    31    1203
+  52  128    27     994
+ 165    0    55    2114
+ 180    0    49    1857
+lambda = 40
+bound = 7168000000
+exact trace = 74668930
+
+triangle
+S U w=B1 Bw=B^2 1
+   0  361   102    6036
+   0  363    77    4435
+   0  485    49    2846
+   0  487    28    1589
+   0  491    28    1589
+   0  493    49    2846
+   0  495    28    1589
+   1  164    82    4922
+   1  224    29    1732
+   1  228    29    1732
+   1  420    49    2846
+   1  428    28    1589
+   5  160    29    1732
+  32  144    67    4236
+  32  145    25    1601
+  32  148    42    2635
+  32  265    92    5481
+  32  280    68    4178
+  32  281    35    2094
+  32  389    33    1905
+  32  393    54    3162
+  32  397    33    1905
+  32  404    33    2084
+  32  408    54    3341
+  32  409    21    1257
+  32  412    33    2084
+  33  128   121    7342
+  33  132   121    7342
+  33  264   113    6808
+  33  388   103    6190
+  33  392    74    4346
+  33  396    74    4346
+  36  144    37    2284
+  36  145    25    1601
+  36  385    21    1257
+  36  400    29    1732
+  36  401    21    1257
+  37  128    44    2614
+  37  384    28    1589
+  40  256    62    3749
+  40  257    33    1905
+  41  256    44    2541
+  48    0   179   11427
+  48  128   150    9449
+  48  132   120    7408
+  52  128    46    2884
+ 160    1    81    4926
+ 160    5    41    2490
+ 160   16    54    3310
+ 160   17    40    2436
+ 161    0   105    5991
+ 161    4    53    3042
+ 164    1    52    3182
+ 164   16    54    3310
+ 164   17    40    2436
+ 165    0    69    3860
+ 176    0    73    4484
+ 176    4    54    3371
+ 180    0    71    4105
+lambda = 65
+bound = 342285734375
+exact trace = 770498435
+
+twozero
+S U w=B1 Bw=B^2 1
+  32  132    28     717
+  32  133    13     343
+  32  264    28     717
+  32  265    13     343
+  33  132    18     457
+  33  264    18     457
+ 160    0    83    2639
+ 160    1    29     973
+ 160    4    29     973
+ 160    5    13     457
+ 161    0    61    1936
+ 161    4    19     642
+ 164    0    61    1936
+ 164    1    19     642
+ 165    0    46    1438
+lambda = 36
+bound = 4534963200
+exact trace = 30758595
+

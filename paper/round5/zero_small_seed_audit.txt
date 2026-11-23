@@ -1,0 +1,86 @@
+ROUND 5: INDEPENDENT AUDIT OF global_small_seed_potential.txt
+Auditor: zero-layer agent. Result: passed, with no correction required.
+The input file and global_general_potential_audit.txt were read in full;
+global_small_seed_certificates.py was run and every certificate passed.
+
+1. Coordinate edge table.
+For X_x=(2,x), Y_x=(3,-x), A=S_0, P=S_1, Q=-S_4, U=P union Q:
+  XX differences give A union -A; XX sums give -Q.
+  YY differences give A union -A; YY sums give -P.
+  XY sums give x-y in A; the two XY differences give x+y in -U.
+Thus all signs in the table are correct. Translation edges preserve the
+two coset signs and reflection edges exchange them. As g not in K and
+2g not in K, the two types cannot overlap, and reflection edges have no
+fixed point. This also verifies the degree formulas and the equal sizes
+of the two row classes. Swapping the rows replaces (A,P,Q) by (-A,Q,P),
+so assuming p>=q is legitimate.
+
+2. Triangle-free lemma and its sum-free consequences.
+A closed triangle has zero or two reflections. Zero reflections give a
+sum of three increments from {t,-t}, which cannot vanish in F_5. Two
+reflections with labels u,v require u-v=+/-t along the translation edge.
+The stated shift-free condition on U-U therefore excludes all triangles.
+
+When P,Q are nested, U is one of the two sets, and a difference +/-t
+would create a Schur triple with whichever of t,-t lies in A. If A is
+the full opposite pair, differences within P or Q are excluded as above,
+and a difference across P and Q is excluded by (P-Q) intersect A empty.
+Both consequences are valid, including the empty nonzero-layer case.
+
+3. The uniform neighborhood-triangle dichotomy.
+For A={t} and v=u+t with u,v in U, the proposed edges in N(Y_y) are
+  Y_{y+t} -- X_{-y-v}, with coordinate sum -u;
+  Y_{y-t} -- X_{-y-u}, with coordinate sum -v.
+Both are cross-row reflection edges. The four endpoints are genuine
+neighbors of Y_y. The two edges are distinct since t!=-t and u!=v.
+The argument works in either generic coset sign and for every Y_y.
+
+4. Degree-cap lemmas.
+In 2A a current degree-d vertex with d>9 must be originally high. It
+has at most six high neighbors and hence at least d-6 low neighbors.
+The bound d^2-(d-9)(d-6)=15d-54 on edges meeting N[v] is valid even
+when the graph has triangles. With beta=c/17 the two potential drops
+are exactly bounded below by c(18-d)/17 and c(3d+72)/17. The fixed-beta
+master lemma applies to all residual graphs of maximum degree at most
+nine. The initial potential is (3c/4)n as claimed.
+
+In 2B any vertex retaining degree ten retains its entire original
+neighborhood. In particular it retains the five low neighbors and the
+two edges among neighbors. Consequently at most 5*10+5*9-2=93 edges
+meet N[v]. For beta=c/15 the drops are 2c/5 and 83c/15. The same fixed
+beta is used in the residual maximum-degree-nine master theorem.
+Again the initial potential is (3c/4)n. All nine comparison certificates
+and all three degree-cap polynomial checks passed exactly.
+
+5. Exhaustion of sizes six and seven.
+Let m=max(p,q), l=min(p,q), r=d0-m>=0. The smaller generic degree is
+  b=a0+|S|+r.
+If a0>=4, sizes six and seven give b>=10; the general theorem C applies.
+Otherwise a0=2 and A is either a singleton or an opposite pair.
+
+For size seven, r>=1 is already covered by theorem C. For r=0 the
+sets P,Q are nested. The complete lists are:
+  z=1: (15,9),(13,9),(11,9),(9,9);
+  z=2: (14,9),(12,9),(10,9).
+Every listed non-symmetric case meets one of the stated triangle-free
+corollaries, and the final (9,9) singleton-zero case also has the
+symmetric-core plus one-defect interpretation.
+
+For size six, r>=2 is already covered by theorem C. For z=2, r=0 or 1
+gives exactly
+  (12,8),(10,8),(8,8),(11,9),(9,9).
+The (8,8) case has P=Q and A=-A, hence is symmetric; all other pairs
+meet the triangle-free corollaries. For z=1 and r=0 the complete list is
+  (13,8),(11,8),(9,8).
+For z=1,r=1, the only possibilities with p>=q are
+  p=4,q=1,d0=5: degrees (12,9), cross degree 6;
+  p=3,q=2,d0=4: degrees (10,9), cross degree 5.
+These are exactly the hypotheses of 2A and of the dichotomy followed
+by 2B, respectively. No omitted integer profile remains.
+
+Conclusion: the proof that every generic mixed component with |S|>=6
+satisfies the required MIS bound is correct, conditional only on the
+already established master and triangle-free potential lemmas named in
+the original file. This audit does not add any claim about exceptional
+cores, the final global counting reduction, bibliographic novelty, or
+Lean verification.

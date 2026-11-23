@@ -1,0 +1,167 @@
+ROUND 5: THE SIZE-FIVE EIGHT-REGULAR MODEL WITH TRIANGLES
+
+Theorem. Let a,p be independent over F_5 and use the normalized notation
+  A=S_0={a}, P=S_1={0,p}, Q=-S_4={0,p+a}.
+Every generic component on the two opposite nonzero cosets of
+K=span{a,p} has 100 vertices and satisfies
+
+  mis <=185*64^5=198,642,237,440 <3^25=847,288,609,443.
+
+This is a complete integer transfer certificate. The graph has
+triangles, so no triangle-free estimate is used. The accompanying
+matrix_size5_triangle_verify.py reconstructs the original link from
+the five actual seeds in F_5^4, checks the strip coordinates and all
+finite inequalities below. It uses only Python standard libraries.
+
+1. THE ORIGINAL GRAPH AND ITS TEN SLICES
+
+For t outside K use four rows
+  a_x=(2,t+x), b_x=(3,t+x),
+  c_x=(3,-t-x), d_x=(2,-t-x),        x in K.
+Write x=x_0 a+x_1 p and number the rows a,b,c,d by 0,1,2,3.
+The actual seed in the fourth layer has tails 0 and -p-a.
+
+Assign coordinates
+  r=2x_1+1-(row mod 2) in Z_10,
+  h=floor(row/2) in {0,1},
+  j=x_0 in Z_5.
+Thus even-r slices contain the b,d rows at one p-coordinate and odd-r
+slices contain the a,c rows at that coordinate. Each slice has vertex
+set W={0,1} x Z_5 and induces the same graph F:
+  both rows are 5-cycles, and (1,j) is joined to (0,j+1).
+This is a pentagonal prism.
+
+There are no edges between nonadjacent distinct slices. The two
+interfaces alternate as follows:
+
+ J: (h,j) -> (k,j) for all h,k;             from even r to r+1;
+ D: (h,j) -> (k,j) if k<=h, and
+    (h,j) -> (k,j+1) if h<=k;              from odd r to r+1.  (1)
+
+The common translation 0 in P and Q gives the complete 2 by 2 relation
+J. The translation p in P gives the first part of D, and p+a in Q
+gives the second. The zero seed supplies exactly the edges of F.
+This proves the strip description from the link equations. The verifier
+also compares every adjacency list with the original sum/difference
+construction, verifies that all 100 degrees equal eight, and confirms
+that each open neighborhood spans exactly three edges.
+
+2. TRANSFER STATES AND MAXIMALITY
+
+Let I(F) be the 81 independent subsets of F. For S in I(F) put
+  D_0(S)=W \ (S union N_F(S)).
+For an interface C let Out_C(L) be the vertices reached from L and
+In_C(T) the vertices having an interface neighbor in T.
+
+Phase zero has outgoing interface J and incoming D; phase one has
+outgoing D and incoming J. A state (S,U) at phase i is retained exactly
+when all the following hold:
+ - S belongs to I(F);
+ - for some L in I(F), Out_Cprev(L) intersects S trivially and
+       U=D_0(S) \ Out_Cprev(L);
+ - for some T in I(F), Out_Ci(S) intersects T trivially and
+       U subset In_Ci(T).
+
+From (S,U) at phase i there is a transition to (T,V) at the other phase
+exactly when
+  Out_Ci(S) intersect T=empty,
+  U subset In_Ci(T),
+  V=D_0(T) \ Out_Ci(S).                                     (2)
+
+The transition entries are zero or one. For a maximal independent set
+of the original graph, let S_r be its intersection with slice r. Then
+U_r is precisely the set of vertices not selected or internally
+dominated, and also not dominated from slice r-1. Maximality says that
+the following slice dominates U_r, giving (2). Conversely every closed
+walk satisfying (2) gives an independent set and dominates every
+unselected vertex internally, from the previous slice, or from the
+next slice. Thus it is maximal. The U_r are uniquely determined by
+S_{r-1},S_r, so this is a bijection, not only an upper bound.
+
+There are 305 retained states in phase zero and 185 in phase one,
+with 3885 and 480 outgoing transitions, respectively. Let T_0,T_1
+be the two rectangular transition matrices and put
+  B=T_1 T_0,
+a 185 by 185 nonnegative integer matrix. Starting at a fixed phase-one
+slice, the bijection gives
+                        mis=tr(B^5).                         (3)
+
+3. THE 37-ROW INTEGER CERTIFICATE
+
+Encode (h,j) as bit 5h+j. In this encoding the interface rows are
+  J=(33,66,132,264,528,33,66,132,264,528),
+  D=(67,134,268,536,49,97,194,388,776,560).
+All retained states and transitions are defined by the finite set
+conditions above, without any heuristic pruning.
+
+Set w=B^2 1. Every entry is positive. The table below lists one state
+from each orbit under simultaneous cyclic rotation j->j+1, together
+with (B1)_i,w_i,(Bw)_i. All 185 states belong to orbits of size five,
+so the table contains 37 rows. Direct integer arithmetic gives
+                          Bw<=64w.                           (4)
+
+The following is the entire table, with columns S,U,B1,w,Bw:
+
+   0 165 116 6051 318752
+   0 231  56 2858 150364
+   0 363  72 3740 196967
+   0 495  28 1429  75182
+   1  96  30 1633  86538
+   1 164  74 3944 208323
+   1 228  30 1633  86538
+   1 296  28 1429  75182
+   1 428  28 1429  75182
+   5 160  30 1633  86538
+  32  17  30 1633  86538
+  32 133  28 1429  75182
+  32 265  74 3944 208323
+  32 281  30 1633  86538
+  32 397  28 1429  75182
+  33   0 141 7677 411607
+  33 132 105 5576 297651
+  33 264 105 5576 297651
+  33 396  69 3475 183695
+  36 129  21 1389  75280
+  36 145  16  882  46603
+  36 385  16  882  46603
+  36 401  16  882  46603
+  37 128  43 2289 121673
+  37 384  28 1429  75182
+  40 257  28 1429  75182
+  41 256  45 2330 124887
+  48   0 153 8867 476132
+  48 132 107 5819 310811
+  52 128  46 2605 139811
+ 160   5  30 1633  86538
+ 161   4  45 2330 124887
+ 164   1  43 2289 121673
+ 164  17  28 1429  75182
+ 165   0  67 3332 176774
+ 176   4  46 2605 139811
+ 180   0  71 3732 199209
+
+For example the largest ratio in the final two columns is
+75280/1389<64. The verifier constructs the complete two-step matrix
+independently from (2), checks every row of (4), and checks the orbit
+count and constancy of all three displayed quantities on each orbit.
+
+4. CONCLUSION
+
+Nonnegativity and (4) imply B^5w<=64^5w. For every i,
+  (B^5)_{ii}w_i <= (B^5w)_i <=64^5w_i.
+Dividing by w_i>0 and summing the 185 diagonal entries in (3) gives
+  mis<=185*64^5=198,642,237,440<847,288,609,443=3^25.
+
+As an optional stronger check, the exact integer trace equals
+  tr(B^5)=428,140,310.
+The norm bound above does not need that exact count, and it is not
+claimed to come from an independent counting algorithm.
+
+The graph in this theorem occurs once for every opposite pair of
+nonzero cosets in H/K. The bounded-size exceptional core over K is
+handled by the existing generic-component reduction; this theorem
+does not assert the generic estimate for the exceptional core.
+
+Files: matrix_size5_triangle_verify.py,
+       matrix_size5_triangle_certificate.json,
+       matrix_size5_triangle_table.txt.

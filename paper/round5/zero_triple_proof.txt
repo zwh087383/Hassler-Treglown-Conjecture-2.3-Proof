@@ -1,0 +1,208 @@
+A PAPER CERTIFICATE FOR THE ZERO-SUM THREE-SEED GRAPH
+==================================================
+Status: completed paper proof. No enumeration of the 50-vertex graph's
+maximal independent sets is used. No new Lean verification is claimed.
+
+1. A hereditary graph class and its potential
+---------------------------------------------
+Set
+    c=(log_2 3)/3,   beta=19/500,
+    mu(F)=(c+beta)v(F)-beta e(F).
+Let C be the class of finite simple graphs with maximum degree at most
+nine such that every vertex of degree nine has at least six edges within
+its open neighborhood.
+
+Theorem. Every graph F in C satisfies
+    mis(F) <= 2^mu(F).                                        (1)
+
+The class C is hereditary under induced vertex deletion. Indeed, a
+vertex retaining degree nine in an induced subgraph of F must originally
+have had degree nine, so none of its original neighbors was removed.
+All original edges among those neighbors are consequently retained.
+
+For later use define A_d and B_d by
+    A_d=c-beta(d-1),
+    B_d=(d+1)c-beta(d^2-d-1).
+Deleting a degree-d vertex decreases mu by exactly A_d. If d is the
+maximum degree, deleting its closed neighborhood decreases mu by at
+least B_d. The latter statement needs no triangle-free assumption: the
+number of removed edges equals
+    sum_{u in N(v)}deg(u)-e(F[N(v)]) <= d^2.
+
+We use the standard relations
+    mis(F) <= mis(F-v)+mis(F-N[v]),                            (2)
+and, if v is a leaf with neighbor w,
+    mis(F)=mis(F-{v,w})+mis(F-N[w]).                           (3)
+For any independent set Z, the maximal independent sets containing Z
+are counted exactly by mis(F-N[Z]). All inequalities involving scalar
+powers below have strict integer certificates in zero_verify_triple.py.
+
+2. High-degree steps
+--------------------
+For maximum degree d=4,...,8, the inductive coefficient in (2) is
+    f(d)=2^(-A_d)+2^(-B_d).
+This is convex in real d: both summands are exponentials of convex
+functions (one affine, one quadratic). Thus it is enough to check d=4
+and d=8. We have the strict rational estimates
+    2^(-A_4)<10/13,  2^(-B_4)<3/13,
+    2^(-A_8)<21/25,  2^(-B_8)<4/25.
+Their sums are strictly less than one.
+
+For maximum degree nine choose a degree-nine vertex v. By the defining
+property of C, deleting N[v] removes ten vertices and at most
+    9^2-6=75
+edges. Its potential decrease is therefore at least 10c-65beta. The
+exclude decrease is c-8beta. Their coefficients satisfy
+    2^(-(c-8beta))<6/7,
+    2^(-(10c-65beta))<1/7,
+and again their sum is strictly less than one.
+
+3. Low-degree induction, including triangles
+--------------------------------------------
+We provide the full low-degree argument; in particular, no triangle-free
+hypothesis is imposed in this section. All subsidiary estimates are
+derived using (1) only on strictly smaller graphs.
+
+The potential is additive over components and the count multiplicative,
+so disconnected graphs follow by induction on their proper components.
+An isolated vertex is forced and its deletion decreases mu by c+beta>0.
+An isolated edge contributes exactly two sets and has potential
+2c+beta>1, so it too is harmless.
+
+A. A leaf with neighbor degree two or three.
+In (3), if deg(w)=2, the potential decreases are at least 2c and 3c-beta.
+If deg(w)=3, they are at least 2c-beta and 4c-3beta. These follow by counting
+at most 1+3=4 or 1+3+3=7 removed edges in the closed-neighborhood branch.
+Since 4c-3beta >= 3c-beta, uniformly
+    mis(F) < (17/20) 2^mu(F).                                (4)
+Indeed
+    2^(-(2c-beta))<1/2,
+    2^(-(3c-beta))<7/20,
+and 1/2+7/20=17/20.
+
+B. A locally triangle-free degree-two/degree-three configuration.
+Suppose x has degree two, with neighbors y,z, where deg(y)=3,
+deg(z)>=2, and yz is not an edge. Deleting y makes x a leaf while z
+keeps its original degree, so (4) applies to F-y. The two potential
+decreases in (2) at y are at least c-2beta and 4c-4beta; for the latter,
+the sum of neighbor degrees is at most 2+3+3=8. Hence
+    mis(F)/2^mu(F)
+      < (17/20)2^(-(c-2beta))+2^(-(4c-4beta))
+      < (17/20)(3/4)+13/50
+       =359/400 <19/20.                                     (5)
+
+C. A triangle containing a degree-two vertex.
+Suppose the graph has minimum degree at least two, maximum degree at
+most three, and a degree-two vertex x next to a degree-three vertex y.
+If the other neighbor z of x is adjacent to y, these vertices form a
+triangle. If z also has degree two, this is a triangle with exactly one
+external edge, incident with y. Every maximal independent set selects
+exactly one vertex of this triangle, since x,z have no outside neighbor.
+The branches selecting x or z delete the triangle and its one outgoing
+edge, giving potential decrease 3c-beta. The branch selecting y deletes
+four vertices and at most six edges, giving decrease at least 4c-2beta.
+Thus the coefficient is less than
+    2(7/20)+1/4=19/20<1.
+
+If z has degree three, the triangle has two outgoing edges. Again every
+maximal independent set selects a triangle vertex, because x has no
+outside neighbor. Selecting x decreases mu by 3c-2beta; selecting y or
+z decreases it by at least 4c-3beta. Since
+    2^(-(3c-2beta))<9/25,
+and 4c-3beta>4c-4beta, the sum is less than
+    9/25+2(13/50)=22/25<1.
+If all vertices of a component have degree two, it is a cycle. For a
+cycle e(F)=v(F), so mu(F)=c v(F), and the classical Moon--Moser bound
+mis(F)<=3^(v(F)/3) is exactly sufficient. This also handles the component
+K3 with equality.
+
+D. Cubic graphs with no triangle.
+If F is cubic and triangle-free, delete any vertex v. A neighbor x of v
+now has degree two, while each of its other neighbors still has degree
+three: otherwise there was a triangle through v. The configuration in
+B is present in F-v. Thus the first term in (2) benefits from (5).
+The two potential decreases are c-2beta and 4c-5beta. The coefficient is
+less than
+    (19/20)(3/4)+4/15=47/48<1,                               (6)
+using 2^(-(4c-5beta))<4/15.
+
+E. Cubic graphs containing a triangle.
+Let x,y,z form a triangle. Each has exactly one neighbor outside the
+triangle. If all three outside neighbors coincide, the graph has a K4
+component. Its four maximal independent sets satisfy the bound because
+    mu(K4)=4c-2beta>2.
+Otherwise there are at least two distinct outside neighbors.
+
+A maximal independent set either selects one of x,y,z or selects none.
+There are three branches of the first kind. In each, deleting the closed
+neighborhood removes four vertices and at most eight edges: the two
+other triangle vertices already contribute an edge inside the open
+neighborhood. Thus each branch decreases mu by at least 4c-4beta.
+In the branch selecting no triangle vertex, all distinct outside
+neighbors are forced to be selected. If they are not independent this
+branch is empty. Otherwise delete their closed neighborhoods. This
+deletes at least the three triangle vertices and two outside vertices,
+so at least five vertices. In a graph of maximum degree three, deleting
+u vertices removes at most 3u edges, hence decreases mu by at least
+    u(c-2beta) >= 5(c-2beta).
+The combined coefficient is consequently less than
+    3(13/50)+21/100=99/100<1,                                (7)
+using 2^(-5(c-2beta))<21/100.
+
+Completion of induction.
+Once isolated vertices and leaves have been handled, a connected
+subcubic graph is either a cycle, cubic, or has adjacent vertices of
+degrees two and three. The latter configuration is covered by B or C,
+and the cubic cases by D or E. Together with Section 2 these exhaust
+all graphs in C, proving (1). QED.
+
+4. Application to a zero-sum triple in F_5^k
+-------------------------------------------
+Let a,b be linearly independent in a vector space H over F_5 and put
+    c0=-a-b,   A={a,b,c0}.
+Set S={0}xA and B={2,3}xH. This seed is sum-free, has no opposite pair,
+and its link graph has no loops. With X_x=(2,x), Y_x=(3,-x), each vertex
+has six same-row neighbors in directions +/-a,+/-b,+/-c0 and three
+opposite-row neighbors. The graph is therefore nine-regular.
+
+In each vertex's six same-row neighbors there is a cycle of length six.
+At a center x, the offsets in order are
+    a, -b, c0, -a, b, -c0, a.
+Consecutive differences are again in +/-A; the six offsets are distinct
+by independence of a,b. Hence every degree-nine vertex has at least six
+edges within its neighborhood. The link graph belongs to C.
+
+Writing N=2|H| and using e(F)=9N/2 in (1), we obtain
+    mis(L_S[B]) <= 2^((c-133/1000)N) < 3^(N/4).               (8)
+The strict final comparison is equivalent to
+    c<133/250,
+or the exact integer inequality
+    3^250 < 2^399.
+
+For H=F_5^2, N=50, the requested small graph thus has the purely paper
+bound
+    mis(F_A) <= 2^(50(log_2 3)/3 - 133/20) < 3^(25/2).
+No exact MIS count such as 19245 is needed in this proof. The same
+inequality applies directly in any larger ambient space H.
+
+5. Why this is the only remaining low-degree pure-zero pattern
+--------------------------------------------------------------
+For a general pure-zero sum-free A, put m=|A| and let p be the number of
+opposite pairs in A. Its link graph is regular of degree
+    d=3m-2p>=2m.
+Thus d<=9 implies m<=4. If m=4, d<=9 forces p=2 and A=-A. If m=3,
+either p=1 (one unpaired element, already proved), or p=0 and d=9.
+In the latter case, if 0 is not in A+A+A the graph is triangle-free and
+the earlier ninth-degree potential applies. If 0 is in A+A+A, no repeated
+summand is possible: 2a+b=0 would imply 2b=a in characteristic five,
+contradicting sum-freeness. Hence A consists of three distinct elements
+summing to zero. They cannot lie in a line: its four nonzero vectors split into two
+opposite pairs, so any three distinct vectors contain an opposite pair,
+incompatible with their zero sum and nonzero third member. Thus A is
+exactly the rank-two pattern in Section 4, up to an invertible linear map.
+The cases m<=2 have the earlier paper proofs.
+
+Once the independently established arbitrary-regular-graph degree-at-
+least-ten theorem is attached, this classification gives the full pure-
+zero seed theorem in every rank without invoking the previous finite
+rank-two enumeration. That final attachment is recorded by root.

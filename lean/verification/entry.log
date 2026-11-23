@@ -1,0 +1,55 @@
+'Audit.Raw.type_A' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+'Audit.Raw.type_B' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+'Audit.Raw.type_C' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+'Audit.Raw.raw_matrix' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Audit.Raw.no_loops' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Audit.Collisions.all_dimensions' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+'Audit.Collisions.weights_checked' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+'Audit.RankOne.every_seed' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+'Audit.Entropy.shearer' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Audit.Coverage.nested_colors' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Audit.Link.container_count' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Audit.Fingerprint.large_graph' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+'Audit.Asymptotic.lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Audit.Asymptotic.limit_of_upper' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Audit.Removal.remove' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Audit.Band.large_seed' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+'Audit.Blocks.small_seed' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Audit.Sparse.sparseCovers' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Audit.Structure.largeSetStructure' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+'Audit.Main.upper_of_generic_blocks' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+'Audit.Main.main_of_generic_blocks' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+'Audit.Unconditional.exponent_window' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+'Audit.RankOneBridge.all' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+'Audit.Degrees.many' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Audit.Strip.model_bound' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+'Audit.Strip.NoZero.model_bound' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+'Audit.NoZero.all' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+'Audit.SmallMixed.three' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+'Audit.SmallMixed.four' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+'Audit.Mixed.five' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+'Audit.Mixed.six' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+'Audit.Mixed.seven' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+'Audit.TenEight.crossing' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+'Audit.GenericTheorem.generic_block' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+'Audit.GenericTheorem.original_blocks' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+'Audit.StandardCoordinates.fmax_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Audit.Sharp.standard_band' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+'Audit.Sharp.upper' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+'Audit.Sharp.log_limit' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+'Audit.Sharp.limit_via_generic_blocks' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+'Audit.Sharp.main_theorem' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+'Audit.DefinitionCheck.paper_statement' depends on axioms: [propext, Classical.choice, Lean.ofReduceBool, Quot.sound]
+Audit.Sharp.upper {η : ℝ} (positive : 0 < η) (small : η ≤ 1) :
+  ∀ᶠ (k : ℕ) in Filter.atTop,
+    ↑(Audit.Asymptotic.fmax (k + 1)) ≤
+      2 ^ (2 * η * Audit.Assembly.order k) * 3 ^ (Audit.Assembly.order k / 10 + Audit.Blocks.errorConstant)
+Audit.Sharp.log_limit :
+  Filter.Tendsto (fun k => Real.logb 3 ↑(Audit.Link.maximalSets Finset.univ).card / 5 ^ k) Filter.atTop (nhds (1 / 10))
+Audit.Sharp.main_theorem :
+  ∃ e,
+    (e =o[Filter.atTop] fun k => 5 ^ k) ∧ ∀ (k : ℕ), ↑(Audit.Link.maximalSets Finset.univ).card = 3 ^ (5 ^ k / 10 + e k)
+Audit.DefinitionCheck.paper_statement :
+  ∃ e,
+    (e =o[Filter.atTop] fun k => 5 ^ k) ∧
+      ∀ (k : ℕ), ↑(Audit.DefinitionCheck.paperFamily (Fin k → ZMod 5)).card = 3 ^ (5 ^ k / 10 + e k)

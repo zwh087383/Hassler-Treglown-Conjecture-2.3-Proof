@@ -1,0 +1,153 @@
+ROUND 5: THE MIXED SINGLETON-ZERO 10/8 FAMILY, IN EVERY RANK
+Status: complete paper proof; no Lean verification or novelty claim.
+Exact scalar certificates are in global_ten_eight_certificates.py.
+
+1. NORMAL FORM AND ORIGINAL DEGREES
+We treat A={a}, |P|=3, |Q|=1, P intersect Q empty, with a!=0.
+If (P union Q)-(P union Q) avoids +/-a, the generic component is
+triangle-free and the already proved maximum-degree-ten potential
+handles its degree sum 18. Otherwise sum-freeness forces the unique
+relation q=p+a, p in P, q in Q. A shear preserving B and the zero layer
+allows us to put
+    P={0,r,s}, Q={a}.
+Set K=span(a,r,s), and consider a generic component on X_x,Y_x with
+x in +/-g+K, g not in K. Use the edge formulas recorded in
+global_small_seed_potential.txt. The Y-vertices are high, of degree 10;
+the X-vertices are low, of degree 8. Every high vertex has five high
+and five low neighbors; every low vertex has three low and five high
+neighbors. There are equally many high and low vertices.
+If the seed was initially described using a larger span K_old, the
+normalizing shear uses a vector in K_old and the new K is contained
+in K_old. Any old generic block, whose quotient coordinate is outside
+K_old, splits into new generic blocks and contains no new exceptional
+core. Their estimates multiply to the same target for the old block.
+Thus passing to this minimal normalized K loses no generic cases.
+
+Every original neighborhood contains a three-edge P4. For a high
+center Y_x, its edges are
+    {Y_{x+a},X_{-x-a}},
+    {X_{-x-a},X_{-x}},
+    {X_{-x},Y_{x-a}}.
+For a low center X_x, the corresponding path is
+    X_{x+a} -- Y_{-x-a} -- Y_{-x} -- X_{x-a}.
+Only the existence of these three edges, not exact neighborhood-edge
+counts, is used below.
+
+The subgraph on high vertices is connected. Its translation edges
+permit +/-a, and its reflection edges have labels 0,r,s. Composing
+the label-0 reflection with the label-r or label-s reflection produces
+translations by r or s. These generate K, and the label-0 reflection
+connects the two coset signs. This is why the normalization and the
+minimal span K were fixed above.
+
+2. FIXED POTENTIAL AND INDUCTION
+Let c=log_2(3)/3, beta=c/14, and
+    mu(F)=(c+beta)|V(F)|-beta|E(F)|.
+Prove m(F)<=2^mu(F) for every induced subgraph F of this fixed original
+component by strong induction on |V(F)|. Original vertex types and
+their caps 10 or 8 remain fixed throughout. The parameter beta never
+changes. Initially e/n=(10+8)/4=9/2, so mu/n=3c/4, exactly the target.
+
+3. CURRENT MAXIMUM DEGREE AT MOST NINE
+For maximum degree at most eight, the general master lemma with D=8
+applies: beta<1/25, and its endpoint terms are
+    3^(-1/6)<5/6, 3^(-71/42)<1/6.
+If the maximum degree is nine, choose a degree-nine vertex. It must
+be high, having lost exactly one original neighbor. It retains at
+least four low neighbors. Since the original neighborhood contains
+a P4 and one deleted neighbor can remove at most two of its edges,
+at least one neighborhood edge survives. Thus the closed neighborhood
+meets at most
+    5*9+4*8-1=76
+edges. The exclude and include terms are
+    3^(-1/7)<171/200, 3^(-37/21)<29/200.
+Their sum is strictly below one. This handles all current degrees<=9.
+
+4. CURRENT MAXIMUM DEGREE TEN AND A DEFICIT PARAMETER
+A degree-ten vertex v must be high and retains its entire original
+neighborhood. Define its neighbor cap deficit by
+    D(v)=sum_{u in N_F(v)} [cap(u)-deg_F(u)].
+Here cap is 10 on high vertices and 8 on low vertices. Choose a
+degree-ten vertex v for which D(v) is largest among all degree-ten
+vertices in F. Its original neighbor cap sum is 90, and its retained
+P4 supplies at least three neighborhood edges. Hence at most
+    87-D(v)
+edges meet N_F[v]. Its exclusion term is
+    x=3^(-5/42).
+
+If D(v)>=3, the include term is at most 3^(-27/14), so the coefficient
+is less than
+    eta=9976/10000.
+Indeed 3^(-5/42)<87741/100000 and
+3^(-27/14)<12019/100000. This also gives the strengthened eta bound
+whenever such a degree-ten vertex exists.
+
+5. THE CASE 1<=D(v)<=2
+Write v=Y_x and let its nonadjacent partner be w=X_x. Their common
+original neighborhood contains exactly six vertices:
+    X_{x+a},Y_{x-a},X_{-x-a},Y_{-x},Y_{-x-r},Y_{-x-s}.
+All survive because v has degree ten. The partner w must survive;
+otherwise each of these six vertices would lose a cap-neighbor and
+D(v)>=6. Besides these six common neighbors, w has exactly two other
+neighbors,
+    u1=X_{x-a}, u2=Y_{-x-a}.
+
+The second, u2, must survive. It is adjacent to the following four
+distinct vertices of N(v):
+    X_{x+a},Y_{x+a},X_{-x},Y_{-x}.
+If it were missing, D(v)>=4. If u1 were missing, it would cause deficits
+at two distinct neighbors X_{-x},Y_{-x} of v. Since D(v)<=2, all other
+neighbors of v would have their full caps. In particular Y_{x-a}
+would be a full degree-ten vertex. But its partner u1 is missing, so
+its six common neighbors with u1 would all have lost at least one
+neighbor. This would give D(Y_{x-a})>=6, contrary to maximality of
+D(v). Thus u1 also survives and w has its full degree eight.
+
+Delete v and branch at w. Its six common neighbors with v lose one
+degree each, so their cap sum falls by at least six. The original cap
+sum around w is 3*8+5*10=74, and its retained P4 still has three edges
+because v and w are nonadjacent. Thus at most 74-6-3=65 edges meet its
+closed neighborhood. The two terms at w are
+    3^(-1/6)+3^(-5/3)<993/1000.
+The include term at the original v is at most 3^(-79/42)<127/1000,
+because D(v)>=1. Using x<8775/10000, the overall coefficient is less
+than
+    (8775/10000)(993/1000)+127/1000<1.
+Every invoked induced graph is smaller. This closes D(v)=1,2.
+
+6. THE CASE D(v)=0
+By the maximal choice of v, every full degree-ten vertex has zero
+neighbor cap deficit. Thus each high neighbor of such a vertex is
+also present with degree ten. Connectivity of the original high
+subgraph propagates this to every high vertex. Every low vertex is
+adjacent to a high vertex, so all low vertices also survive. Hence
+F is the entire original generic component. This conclusion is not
+assumed for arbitrary residual graphs; it follows from the global
+maximal-deficit choice and the original high-subgraph connectivity.
+
+Choose v=Y_x and w=X_x. Branch first on v; within the exclusion branch
+branch on w. The first include term is at most
+    y=3^(-13/7).
+At w in G-v the exclude and include terms are respectively
+    xw=3^(-1/6), yw=3^(-5/3),
+by the same 65-edge calculation as above.
+
+After excluding both v and w, the vertex z=Y_{x-2a} still has its full
+degree ten: it is adjacent to neither deleted vertex. Its neighbor
+Y_{x-a} was adjacent to both deleted vertices and has lost two degrees;
+its other neighbor X_{x-a} was adjacent to w and has lost at least one.
+Therefore D(z)>=3, and the eta strengthened bound from section 4
+applies to this doubly excluded graph. The total coefficient is at
+most
+    x[xw*eta+yw]+y.
+Exact rational upper bounds are
+    x<8775/10000, xw<833/1000, eta<9976/10000,
+    yw<1603/10000, y<13/100.
+They give
+    x[xw*eta+yw]+y
+      <249966613/250000000<1.
+This completes the induction for every induced subgraph and proves
+the original generic-component bound m(G)<=3^{n/4}. QED.
+
+This closes the mixed size-five (10,8) family in every rank. It uses
+no enumeration of a generic component's maximal independent sets.

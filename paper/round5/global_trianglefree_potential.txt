@@ -1,0 +1,172 @@
+ROUND 5: TWO TRIANGLE-FREE POTENTIAL THEOREMS AND THE NO-ZERO CUTOFF
+Status: proved on paper, independently derived; exact numerical
+certificates are in global_trianglefree_certificates.py.
+No Lean formalization or novelty claim is made.
+
+All graphs are finite and simple. Write m(G) for the number of maximal
+independent sets, n for vertices and e for edges. Define
+    nu_b(G)=n/2-b(e-n/2)=(1+b)n/2-be.
+For a fixed b, this is additive over components. If v has maximum degree
+d in a triangle-free graph, ordinary include/exclude branching gives
+potential drops
+    A_b(d)=1/2-b(d-1/2),
+    B_b(d)=(d+1)/2-b(d^2-(d+1)/2).
+Indeed, the neighborhood of v is independent, and at most d^2 edges
+meet N[v]. The sum of the two exponential branch terms is convex as a
+function of real d: the exponents are respectively affine and convex
+quadratic.
+
+THEOREM 1 (maximum degree at most 10).
+For every triangle-free graph G of maximum degree at most 10,
+    m(G)<=2^{nu_{1/36}(G)}.
+
+PROOF OF THEOREM 1.
+Induct on n, keeping b=1/36 fixed in all induced subgraphs. Isolated
+vertices are harmless, and an isolated K2 has potential exactly 1 and
+count 2. When the current maximum degree d is at least 4, convexity
+reduces to d=4,10. The respective drops are
+    d=4: A=29/72, B=17/8;
+    d=10: A=17/72, B=23/8.
+The branch terms are respectively less than 19/25,6/25 and 17/20,3/20.
+Thus both sums are strictly below 1.
+
+For current maximum degree at most three we use stronger local bounds.
+
+(i) Non-isolated leaf. A leaf v with neighbor w of degree 2 or 3 gives
+    m(G)=m(G-{v,w})+m(G-N[w]).
+For degree 2 the drops are at least 35/36 and 103/72, whose branch terms
+are less than 51/100 and 3/8. Their sum is 177/200.
+For degree 3 the drops are at least 17/18 and 67/36; the terms are less
+than 21/40 and 1/3, whose sum is less than 177/200.
+Hence a subcubic graph containing a non-isolated leaf satisfies
+    m(G)<(177/200)2^{nu(G)}.
+
+(ii) Minimum degree two and a 2--3 edge. Choose a vertex w of degree 3
+adjacent to v of degree 2. If u is v's other neighbor, triangle-freeness
+ensures wu is absent. Thus G-w has the non-isolated leaf v, with u still
+of degree at least two. Apply (i) to the exclude-w branch. The drops
+are 31/72 and at least 11/6, since w's neighbor-degree sum is at most 8.
+The exponential factors are less than 3/4 and 9/32. The total factor is
+    (177/200)(3/4)+9/32=189/200.
+
+(iii) Cubic graph. In a connected cubic triangle-free graph, deleting a
+vertex leaves a 2--3 edge: a neighbor y of the deleted vertex has degree
+2, and either of its other neighbors still has degree 3 by the absence
+of triangles. The delete-vertex and include-vertex drops are 31/72 and
+65/36. The factors are less than 3/4 and 29/100, respectively. Using (ii),
+    (189/200)(3/4)+29/100=799/800<1.
+
+(iv) Cycles. A connected 2-regular triangle-free graph is C_k, k>=4.
+If a_k=m(C_k), then a_4=2,a_5=5,a_6=5, and
+    a_k=a_{k-2}+a_{k-3} (k>=7).
+For completeness, encode a cyclic independent dominating set by states
+0,1,2 according to the number of unselected vertices since the last
+selected vertex. The allowed transition matrix is
+    T=[[0,1,0],[1,0,1],[1,0,0]].
+For k>=3 there is a bijection between such cyclic words and closed
+state walks, so a_k=tr(T^k). Direct multiplication gives T^3=T+I,
+proving the recurrence. Since (7/5)^(-2)+(7/5)^(-3)=300/343<1 and the
+three initial counts are below (7/5)^k, induction gives a_k<=(7/5)^k.
+The exact certificate 7^72<5^72*2^35 gives
+    (7/5)^k<2^{35k/72}=2^{nu_{1/36}(C_k)}.
+These cases exhaust the subcubic components. Theorem 1 is proved.
+
+THEOREM 2 (maximum degree at most D, D>=12).
+For every triangle-free graph G with maximum degree at most D,
+    m(G)<=2^{nu_b(G)}, b=2/[7(D-1)].
+
+PROOF FOR D>=13.
+Here b<=1/42<1/36. If the current maximum degree is at most 10, remove
+isolated vertices and apply theorem 1 to the remaining graph H. Since
+e(H)>=|V(H)|/2, reducing b increases the potential. Add back the positive
+potential of isolated vertices. This proves the needed bound in this
+case. For current degrees at least 4 (in particular 11 or larger), use
+convexity and the endpoints 4,D.
+At 4 the drops are at least 5/12 and 61/28>2. Their terms are less than
+3/4 and 1/4, because 3^12>2^19.
+At D the drops equal
+    A=(3D-5)/[14(D-1)], B=(3D+5)/14.
+They increase with D. At D=13, A=17/84>1/5 and B=22/7>3. The first term
+is less than 7/8 because 2*7^5>8^5, and the second is less than 1/8.
+This closes the induction for every D>=13.
+
+PROOF FOR D=12.
+Fix b=2/77<1/36 and induct on n. Current maximum degree at most 10 is
+covered by theorem 1 exactly as above. For current maximum degree 11,
+the drops are A=5/22>1/5, B=232/77>3, so the terms are less than 7/8,1/8.
+
+For a degree-12 vertex put
+    x=2^(-31/154), y=2^(-41/14),
+    z1=2^(-65/22), z2=2^(-459/154).
+Integer certificates give
+    x<87/100, y<33/250, z1<13/100, z2<127/1000.
+If a degree-12 vertex has a neighbor of degree at most 11, its closed
+neighborhood meets at most 143 edges. Its branch coefficient is at most
+    x+z1<1.
+If that neighbor has degree at most 10, the coefficient is at most
+    x+z2<997/1000.
+These strengthened inequalities follow by branching at that degree-12
+vertex and applying the inductive hypothesis to proper induced graphs.
+
+If a component containing degree-12 vertices is not 12-regular, a path
+from a degree-12 vertex to a smaller-degree vertex contains a 12--<=11
+edge, giving the preceding bound. It remains to handle a 12-regular
+component C. Delete any v in C and call the graph H. Each original
+neighbor u of v now has degree 11, and every neighbor of u in H has
+degree 12: such a neighbor cannot have been adjacent to v, by
+triangle-freeness. Choose one such neighbor w. In H-w, u has degree 10,
+and every remaining neighbor of u still has degree 12, again because
+triangles wuq are forbidden. Therefore H-w satisfies the x+z2 bound.
+Branching on w in H gives the coefficient
+    x(x+z2)+z1 < (87/100)(997/1000)+13/100
+                =99739/100000.
+Finally branch on v in C. Its coefficient is at most
+    x[ x(x+z2)+z1 ]+y
+        <(87/100)(99739/100000)+33/250
+        =9997293/10000000<1.
+The extra expansions use only proper induced subgraphs, so the induction
+is well founded. Components multiply. This completes theorem 2.
+
+TWO-DEGREE COROLLARIES.
+Suppose exactly half the vertices have degree a, and half degree b0.
+Then e/n=(a+b0)/4.
+(1) If max(a,b0)<=10 and a+b0>=17, theorem 1 gives
+    nu/n<=1/2-15/144=19/48<log_2(3)/4,
+where the strict comparison is exactly 2^19<3^12.
+(2) If max(a,b0)<=12 and a+b0>=18, theorem 2 with parameter D=12 gives
+    nu/n<=1/2-8/77=61/154<log_2(3)/4,
+where the strict comparison is exactly 2^122<3^77.
+(3) If D=max(a,b0)>=12 and min(a,b0)>=D/2, theorem 2 gives
+    nu/n<=11/28+1/[28(D-1)]<=61/154<log_2(3)/4.
+In all three situations m(G)<3^{n/4} for nonempty graphs.
+
+NO-ZERO-LAYER GENERIC LINK APPLICATION.
+Let p=|P|,q=|Q|,d0=|P union Q|. The generic link is bipartite, hence
+triangle-free, with half its vertices of degree d0+p and half d0+q.
+The larger degree is at most twice the smaller degree. The previously
+proved pure-layer and symmetric-plus-one cases are also available.
+Every such no-zero seed S with |S|=p+q>=7 is now covered:
+
+First suppose p+q>=8, and by symmetry assume p>=q.
+- If p>=6, the maximum degree is at least 12, so corollary (3) applies.
+- If p=5, then q>=3. If maximum degree is at most 12, the degree sum is
+  2d0+p+q>=10+8=18 and corollary (2) applies. If larger, use (3).
+- The only remaining possibility is p=q=4. If P=Q, the seed is symmetric.
+  Otherwise d0>=5, so the degree sum is >=18 and (2) or (3) applies.
+
+For p+q=7, with p>=q and both layers nonempty:
+- p>=6 again uses (3).
+- p=5,q=2: if d0=5, the degrees are 10 and 7, covered by (1). For
+  d0>=6 the degree sum is >=19, covered by (2) or (3).
+- p=4,q=3: if d0=4, Q is a subset of P and the seed consists of a
+  symmetric core plus one extra element, already handled by colored-DD.
+  If d0=5 or 6, the degrees have maximum <=10 and sum >=17, so (1)
+  applies. If d0=7, the degrees are 11 and 10, covered by (2).
+Pure-layer cases are already solved independently.
+
+Thus every no-zero generic component arising from |S|>=7 obeys the
+required 3^{n/4} bound. The smaller no-zero seeds are now completely
+covered in matrix_nozero_remaining.txt, including the final rank-free
+entropy arguments. The exceptional core and uniform global counting
+are included in the completed joint proof in global_final_coverage.txt
+and global_final_bridge_audit.txt.

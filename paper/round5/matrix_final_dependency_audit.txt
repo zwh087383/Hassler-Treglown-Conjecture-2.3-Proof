@@ -1,0 +1,337 @@
+FINAL INDEPENDENT DEPENDENCY AUDIT
+Auditor: matrix agent. Date: 2026-11-22.
+
+Scope requested by root:
+  (1) global_general_potential_audit.txt;
+  (2) global_trianglefree_potential.txt;
+  (3) actual source/data dependencies of the matrix transfer verifiers.
+
+Conclusion: no mathematical gap was found in either potential proof.
+The strong inductions close on the stated hereditary graph classes with
+their parameters fixed. The D=12 lookahead is well founded and its tight
+coefficient is correct. This conclusion comes from checking the arguments
+and re-deriving their drops, not merely running the existing PASS scripts.
+Separate exact computations then checked the numerical inequalities.
+
+1. COMMON BRANCHING AND EDGE ACCOUNTING
+
+For a simple graph and a vertex v,
+  mis(G)<=mis(G-v)+mis(G-N[v]).
+The selected-v branch is in bijection with the MIS of G-N[v]. The
+unselected-v branch injects into MIS of G-v: every other omitted vertex
+must still have a selected neighbor. No monotonicity under ordinary edge
+addition is used.
+
+Put d=deg(v). The number of edges removed on deleting N[v] is exactly
+  sum_{u in N(v)} deg(u)-e(G[N(v)]).
+This identity counts the edges v--N(v) once, the edges inside N(v)
+once after the subtraction, and edges from N(v) to the exterior once.
+For a current maximum-degree vertex the expression is at most d^2.
+For a triangle-free graph the subtraction term is zero. These facts
+justify every initial potential-drop formula in the two files.
+
+Both potentials are additive, while MIS counts multiply over connected
+components. The empty graph and isolated vertices are handled directly.
+Disconnected residual graphs cause no difficulty: either apply strong
+induction to the whole proper residual graph, or multiply the bounds
+on its components. A strengthened bound from one component remains a
+strengthened bound for the product with the other components.
+
+2. GENERAL-GRAPH MASTER LEMMA: FIXED BETA AND CONVEX ENDPOINTS
+
+Here c=log_2(3)/3 and mu_beta=(c+beta)n-beta e. Fix D and beta once for
+the whole induction. After deletion, beta is never recomputed from a
+new maximum degree or degree profile. Every residual graph remains a
+simple graph of maximum degree at most the original D.
+
+The drops at a current maximum-degree vertex are
+  A(d)=c-beta(d-1),
+  B(d)=(d+1)c-beta(d^2-d-1).
+The exponent -A(d) is affine in d; -B(d) has positive quadratic
+coefficient beta. Thus 2^{-A(d)}+2^{-B(d)} is convex on the real interval
+[4,D]. The value at every intermediate current degree is bounded by
+the larger endpoint value. There is no assumption that residual graphs
+remain regular or retain two degree classes.
+
+At d=4, the uniform beta<=1/25 endpoint is justified by
+  2^{-(c-3/25)}<19/25,
+  2^{-(5c-11/25)}<6/25.
+The stronger 3/4,1/4 bounds claimed in the narrower beta<=27/800 range
+also hold. Both ranges used later really lie inside the master range.
+
+3. GENERAL-GRAPH LOW-DEGREE CLOSURE
+
+This is the important part that cannot simply be assumed after a
+high-degree branching. I checked each residual configuration explicitly.
+
+3a. Leaf. If v is a leaf with neighbor w of degree d=2 or 3, splitting
+on whether v or w is selected gives the exact recurrence
+  mis(G)=mis(G-{v,w})+mis(G-N[w]).
+The first drop is 2c-beta(d-2)>=2c-beta. The second is at least
+  (d+1)c-beta(2d-3),
+because the neighbor-degree sum of w is at most 1+3(d-1). For d=3
+this is no worse than the d=2 value 3c-beta, since c>2beta. At the worst
+allowed beta=1/25, the two factors are below 1/2 and 7/20. The claimed
+17/20 strengthened coefficient is therefore valid for any subcubic
+graph having this configuration.
+
+3b. A 2--3 edge. For deg(v)=2, deg(w)=3 and u the other neighbor of v,
+deleting w leaves a non-isolated leaf unless deg(u)=2 and uw is an
+edge. In the ordinary case the first branch receives the preceding
+17/20 factor, and the drops are c-2beta and at least 4c-4beta. The
+coefficient is below
+  (17/20)(3/4)+13/50=359/400<19/20.
+
+In the exceptional case u,v,w form a pendant triangle. The exact
+recurrence is
+  mis(G)=2mis(G-{u,v,w})+mis(G-N[w]).
+Deleting the triangle meets four edges; deleting N[w] meets at most
+six. The drops are at least 3c-beta and 4c-2beta, respectively. Hence
+the coefficient is below 2(7/20)+1/4=19/20. This accounts for the case
+where the leaf-based argument alone would not apply.
+
+3c. Cubic graphs. In a connected cubic graph other than K4, deletion
+of any v leaves minimum degree at least two and a 2--3 edge. If no
+such edge existed, all three former neighbors of v would have both
+remaining neighbors among those same three vertices, forcing a K4
+component, hence the whole connected graph to be K4. Thus the 19/20
+bound legitimately applies to G-v. The drops c-2beta and 4c-5beta give
+  (19/20)(3/4)+4/15=47/48<1.
+K4 itself has mu=4c-2beta>2, so its four MIS are covered directly.
+
+3d. Exhaustion. Isolated edges have potential 2c+beta>1 and count two.
+After removing leaves, a connected subcubic graph is either a cycle,+cubic, or has a 2--3 edge. For a cycle e=n and mu=cn; the ordinary
+Moon--Moser inequality supplies the required bound, including C3.
+Thus the low-degree proof exhausts all possibilities. The only external
+standard graph theorem used in this subcase is Moon--Moser; it should
+remain stated/cited or proved in the final manuscript.
+
+All strengthened estimates are consequences of the same main strong
+induction applied to their proper children. Applying a strengthened
+estimate to G-v does not assume the desired stronger result for G.
+
+4. GENERAL THEOREMS A, B, C
+
+For beta=gamma/(D-2), the endpoint drops are
+  A(D)=c-gamma-gamma/(D-2),
+  B(D)=(D+1)(c-gamma)-gamma/(D-2).
+Both increase with D for gamma=27/100 and 3/8, since c exceeds both
+values. Thus the claimed reductions to D=10 and D=22 are sound.
+
+At D=10 the drops are c-243/800 and 11c-2403/800, with factors below
+6/7 and 1/7. At D=22 they are c-63/160 and 23c-1383/160, with factors
+below 911/1000 and 89/1000. Their exact-power comparisons were
+independently rechecked. The regular and two-degree exponent comparisons
+reduce respectively to 3^50<2^81 and 3^160<2^261, both correct.
+
+For theorem C, D=a and beta=c/(a+b-4) are fixed using the ORIGINAL
+degrees. The master lemma applies to all residual graphs without any
+two-degree hypothesis. For fixed b, x=1/(a+b-4) makes both endpoint
+drops affine in x:
+  A=c(b-3)x,
+  B=c(b-2)-c[(b-2)(b-5)+1]x.
+Convexity therefore permits checking a=b and a=2b-3. The two drops at
+each endpoint increase with b>=10. Re-derivation yields the displayed
+four tests at (10,10) and (17,10), with the exact powers 7/48,87/48,
+7/69,143/69 of 3. The paper's four integer comparisons are correct.
+Finally beta(a+b-4)/4=c/4, so the initial potential is exactly
+3cn/4=(n/4)log_2(3), as asserted.
+
+The generic-link degree calculation also checks out: with a0=|A union
+-A|, z=|A|, d0=|P union Q| and p>=q, the degrees are
+  a=a0+z+d0+p, b=a0+z+d0+q.
+For z>=1, a0>=2, a-2b<=-3, and b>=a0+|S|>=|S|+2. Thus |S|>=8 gives
+theorem C's hypotheses. This application still concerns generic
+components; it does not replace the separate exceptional-core argument.
+
+5. TRIANGLE-FREE THEOREM 1: ALL RESIDUAL DEGREES
+
+Keep b=1/36 fixed. The potential nu_b=(1+b)n/2-be has drops
+  A_b(d)=1/2-b(d-1/2),
+  B_b(d)=(d+1)/2-b(d^2-(d+1)/2).
+The same convexity argument applies. Direct substitution gives the
+correct endpoint pairs (29/72,17/8) at d=4 and (17/72,23/8) at d=10.
+
+The low-degree strengthened estimates are also valid:
+ - A leaf with neighbor degree two has drops 35/36,103/72.
+ - With neighbor degree three the drops are 17/18,67/36.
+   These give the uniform factor 177/200.
+ - A 2--3 edge has delete/include drops 31/72 and at least 11/6.
+   Triangle-freeness ensures the leaf's other neighbor is not removed
+   or degree-reduced by deleting the degree-three vertex. Hence
+     (177/200)(3/4)+9/32=189/200.
+ - Deleting a vertex of a cubic triangle-free component leaves a 2--3
+   edge, because a common neighbor would form a triangle. The root
+   drops 31/72,65/36 yield
+     (189/200)(3/4)+29/100=799/800<1.
+
+The cycle argument is correct. The stated transition matrix represents
+successive gaps of two or three between selected vertices. Every closed
+walk has a selected-state occurrence and determines a unique cyclic
+independent dominating set. T^3=T+I gives a_k=a_{k-2}+a_{k-3}; the initial
+counts 2,5,5 for C4,C5,C6 are correct. The inequalities
+  (7/5)^(-2)+(7/5)^(-3)=300/343<1,
+  7^72<5^72*2^35
+give precisely the required cycle potential. Together these cases close
+the full hereditary class of triangle-free graphs of maximum degree ten.
+
+6. TRIANGLE-FREE THEOREM 2: SMALLER BETA AND ENDPOINTS
+
+For D>=12 use the fixed b=2/[7(D-1)]. When a residual graph has maximum
+degree at most ten, remove isolated vertices first. The remaining H has
+e(H)>=|V(H)|/2, and therefore
+  nu_b(H)-nu_{1/36}(H)
+     =(1/36-b)(e(H)-|V(H)|/2)>=0.
+Theorem 1 transfers in the correct direction. Adding back isolated
+vertices only adds positive potential and does not change the count.
+The removal of isolated vertices is necessary here, and the file does
+explicitly do it.
+
+For D>=13, b<=1/42. The d=4 drops are at least 5/12 and 61/28, whose
+terms are below 3/4 and 1/4. At d=D the exact drops are
+  (3D-5)/[14(D-1)] and (3D+5)/14.
+They increase with D and at D=13 exceed 1/5 and 3, respectively. The
+inequalities 3^12>2^19 and 2*7^5>8^5 justify the stated rational bounds.
+Thus the convex-endpoint step covers every current degree from four
+through D, including eleven and twelve when they occur in residuals.
+
+7. THE D=12 LOOKAHEAD, CHECKED STEP BY STEP
+
+Here b=2/77 is held fixed. Current maximum degree eleven has drops
+5/22 and 232/77, giving terms below 7/8 and 1/8. Let
+  x=2^(-31/154), y=2^(-41/14),
+  z1=2^(-65/22), z2=2^(-459/154).
+
+A degree-twelve vertex retaining at least one neighbor of degree at
+most eleven has neighbor-degree sum at most 143, so its include drop
+is 65/22 and its ordinary branch factor at most x+z1<1. A neighbor of
+degree at most ten improves that sum to at most 142, giving x+z2<997/1000.
+These are strengthened LOCAL configurations obtained by applying the
+main induction to proper children; they do not assume the theorem for
+the current graph as an extra premise.
+
+If a connected component containing a degree-twelve vertex is irregular,
+a path to a smaller-degree vertex gives the first configuration. For a
+twelve-regular connected component C, the paper's three levels are:
+
+  Level 1: choose v and put H=C-v. A neighbor u of v now has degree
+  eleven. Every remaining neighbor w of u has degree twelve in H,
+  since adjacency w--v would make triangle v,u,w.
+
+  Level 2: branch at such a w in H. In H-w, u has degree ten. Every
+  remaining neighbor z of u still has degree twelve: z was adjacent
+  neither to v (triangle v,u,z) nor to w (triangle w,u,z). There are
+  ten such remaining neighbors, so the low-neighbor configuration is
+  present. The stronger x+z2 bound therefore applies to H-w.
+
+  Level 3: its use is justified by one more branch at z in H-w, whose
+  two children have fewer vertices still and use the main induction.
+  The other branch H-N_H[w] at level 2 uses the ordinary inductive
+  bound. Since w had the degree-eleven neighbor u in H, this gives
+    mis(H)<=2^{nu(H)}[x(x+z2)+z1].
+
+The root selected-v branch has the regular include factor y. Therefore
+the overall coefficient is
+  x[x(x+z2)+z1]+y.
+Using the exact certified bounds
+  x<87/100, y<33/250, z1<13/100, z2<127/1000
+gives successively
+  x+z2<997/1000,
+  x(x+z2)+z1<99739/100000,
+  x[x(x+z2)+z1]+y<9997293/10000000<1.
+
+Every invocation is on a proper induced subgraph with the same b and
+maximum degree at most twelve. This is a valid strong-induction proof,
+not an assumption that H or H-w remains regular, and not a circular
+invocation of the desired strengthened estimate.
+
+8. DEGREE COROLLARIES, NUMERICAL CHECKS, AND MINOR EDITORIAL POINTS
+
+The three triangle-free corollaries have the correct exponents:
+  19/48 for maximum<=10 and degree sum>=17;
+  61/154 for maximum<=12 and degree sum>=18;
+  11/28+1/[28(D-1)]<=61/154 for min degree class>=D/2, D>=12.
+Their strict target comparisons are exactly 2^19<3^12 and 2^122<3^77.
+The no-zero size>=7 classification in the file exhausts p>=q>0:
+p>=6, p=5, and p=q=4 for total>=8; then (6,1),(5,2),(4,3) for total7.
+Its nested/symmetric exceptions are already covered separately.
+
+I independently derived and checked 18 general-graph rational-power
+inequalities and 21 triangle-free ones, using only integers and
+Fractions. The original certificate scripts were not imported for
+that check. The checks include the tight D10 general endpoint, all
+D12 terms, the nested coefficient 9997293/10^7, the cycle comparison,
+and the final exponent inequalities.
+
+There are only two editorial cautions for the final manuscript:
+ - Strict comparisons with 3^{n/4} should say n>0; at n=0 both sides
+   equal one. Every nontrivial component application has n>0.
+ - The last paragraph of the triangle-free file says the remaining
+   no-zero size is at most six. This was the status after that lemma;
+   the final entropy arguments now settle those sizes. It is a
+   historical status line, not an outstanding mathematical gap.
+
+9. ACTUAL MATRIX-VERIFIER DEPENDENCIES
+
+All six final verification sources use Python standard libraries only.
+NONE reads a JSON certificate, a table file, a probe file, an executable,
+or previously generated numeric data. They reconstruct their objects
+from definitions and write the listed JSON/table files as OUTPUTS.
+Normal Python execution with assertions enabled is required; do not
+use the -O switch when running these assertion-based verifiers.
+
+SOURCE                                      LOCAL PYTHON IMPORTS
+matrix_rank2_transfer_verify.py              none
+matrix_mixed3_verify.py                      none
+matrix_mixed3_strip_verify.py                matrix_mixed3_verify
+matrix_size5_triangle_verify.py              matrix_mixed3_strip_verify
+matrix_size4_verify.py                       matrix_mixed3_strip_verify,
+                                            matrix_size5_triangle_verify
+matrix_typeB_entropy_verify.py               none
+
+The imports are transitive. In particular:
+ - size5_triangle also needs matrix_mixed3_verify.py because importing
+   matrix_mixed3_strip_verify imports it, even when only helper functions
+   are requested;
+ - size4 needs all four sources: size4, size5_triangle, mixed3_strip,
+   mixed3_verify.
+
+The minimal common SOURCE package for all final matrix verifications is
+therefore exactly these six files, kept together in one directory:
+  matrix_rank2_transfer_verify.py
+  matrix_mixed3_verify.py
+  matrix_mixed3_strip_verify.py
+  matrix_size5_triangle_verify.py
+  matrix_size4_verify.py
+  matrix_typeB_entropy_verify.py.
+
+Reconstructed output files are:
+  rank2: matrix_rank2_transfer_data.json,
+         matrix_rank2_transfer_table.txt;
+  mixed3: matrix_mixed3_strip_certificate.json,
+          matrix_mixed3_strip_table.txt;
+  size5: matrix_size5_triangle_certificate.json,
+         matrix_size5_triangle_table.txt;
+  size4: matrix_size4_certificate.json,
+         matrix_size4_table.txt;
+  typeB: matrix_typeB_entropy_certificate.json.
+matrix_mixed3_verify.py does not write a data file.
+
+For a complete human-review bundle also include the five corresponding
+proof texts and, optionally, the regenerated output tables/JSON as
+convenience artifacts. Those outputs are not trusted inputs to any
+verifier. No matrix_*probe file, numerical-optimization JSON, C++ search
+program, compiled binary, or exploratory log is a proof dependency.
+
+10. ISOLATED-PACKAGE EXECUTION TEST
+
+After the source inspection I copied ONLY the six Python files above
+into a fresh temporary directory, with no input data, then ran each by
+absolute path while using a different empty working directory. Every
+script completed successfully. The temporary directory was removed
+afterward. This confirms both the transitive import list and that output
+paths are based on __file__, not on the working directory or on probe
+files left in the research workspace.
+
+This test supplements the paper audit; it does not substitute for any
+of the inductive reasoning checked in Sections 1--8.

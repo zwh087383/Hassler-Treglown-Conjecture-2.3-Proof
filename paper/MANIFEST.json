@@ -1,0 +1,346 @@
+{
+  "version": "2026-11-22-public-revision-1",
+  "scope": "Revised manuscript, all 25 proof appendices, and 18 exact finite certificate checks. The companion Lean project formally proves the main theorem (Audit.Sharp.main_theorem).",
+  "files": [
+    {
+      "path": "README.txt",
+      "bytes": 4180,
+      "sha256": "c0d88130a5dcab49d59b94fcc741e4148fdebb7dd0cc31934d6f9a66ad7649da"
+    },
+    {
+      "path": "licenses/DejaVu-LICENSE.txt",
+      "bytes": 4816,
+      "sha256": "d75938dec098f06f0ac3c00853065d94f020be1c3c62ef1dc2975ba15b4d9b0e"
+    },
+    {
+      "path": "output/sumfree_complete_proof_draft.pdf",
+      "bytes": 1655869,
+      "sha256": "7e2866dcdaf32261ef99a150db386f0ecd4ad7c8e53a40a146492570e4e06970"
+    },
+    {
+      "path": "round3/paper_algebra_lowrank.txt",
+      "bytes": 13151,
+      "sha256": "1635fe6666ae1b2b07ffc5a98a66130bab200cb231e99d72a874d3167a8b4b47"
+    },
+    {
+      "path": "round4/colored_dd_proof.txt",
+      "bytes": 12586,
+      "sha256": "5bfa29d9e0b2523ff0047e5f7ad80ba0325d5b5b5bac5c73b0dadbbe31e72539"
+    },
+    {
+      "path": "round4/one_defect_application.txt",
+      "bytes": 5486,
+      "sha256": "c4e8ce28f370d94e422fceebc92584fb8d7ab44de0e3f3dc3319316585a5f07c"
+    },
+    {
+      "path": "round4/two_opposite_defects_application.txt",
+      "bytes": 6796,
+      "sha256": "5ec5cd44548a2b0913eed6d30e1471721c8668b1ac20882609055de792513739"
+    },
+    {
+      "path": "round5/appendix_manifest.json",
+      "bytes": 2053,
+      "sha256": "f493c54f1c2201f513a20f625589073873d39004d8f6426f6d43484bcae65b49"
+    },
+    {
+      "path": "round5/build_complete_pdf.py",
+      "bytes": 16426,
+      "sha256": "e8bdf4f1c9154f73b1d27e17a117eeb4907e9b5b611aa8ff4ed1783c9d260de0"
+    },
+    {
+      "path": "round5/complete_manuscript.tex",
+      "bytes": 25995,
+      "sha256": "bd6e4b94f9dde9d661567f4ba8ec763fc6c2289b59f6f6cce2b3f287f7c101c3"
+    },
+    {
+      "path": "round5/final_verification_report.json",
+      "bytes": 12424,
+      "sha256": "0515ea32b143f139ec750c6e4b41838ec5a866e3c6ffc6992b4505ba1617e5b4"
+    },
+    {
+      "path": "round5/global_final_bridge_audit.txt",
+      "bytes": 13883,
+      "sha256": "fe98f165c25117fd9afc9e434ed3c7eb39a4a7466ac66c7f163ff4325263c218"
+    },
+    {
+      "path": "round5/global_final_coverage.txt",
+      "bytes": 25144,
+      "sha256": "b442e2db2982dd6bbc4ad00f4023cd51d9c8abdb8cd2fa71b8f0cc1f5559e8e6"
+    },
+    {
+      "path": "round5/global_general_certificates.py",
+      "bytes": 3142,
+      "sha256": "1f61500b03307eb898211c859437b3ebf8df8edbf7bef88e485ef5523ce1020b"
+    },
+    {
+      "path": "round5/global_general_potential_audit.txt",
+      "bytes": 8509,
+      "sha256": "62aa4df46e775fb4de279dc3cb3b4becb9c525a3066c2f1d6200dd3422615129"
+    },
+    {
+      "path": "round5/global_manuscript_audit.txt",
+      "bytes": 4374,
+      "sha256": "d4f175a2017bebcb4e520b2851a967143841df70713d996d439d21ae50fd729e"
+    },
+    {
+      "path": "round5/global_mixed_size4_table.txt",
+      "bytes": 3792,
+      "sha256": "6905ad21bb1304f3baf0d4f5a334b0bc7c27055dbbfdf1197b1097ba9e073326"
+    },
+    {
+      "path": "round5/global_rank1_certificate.txt",
+      "bytes": 3551,
+      "sha256": "c65554beceeb89b7bb22b0175be54dd70d5cd82c5dc3985799fced08fd9eec91"
+    },
+    {
+      "path": "round5/global_rank1_verify.py",
+      "bytes": 3546,
+      "sha256": "b37c679acc38e83f7ccdc4de0767fb73f6993de8a86243fb6506bb818786a12a"
+    },
+    {
+      "path": "round5/global_sizefive_certificates.py",
+      "bytes": 1231,
+      "sha256": "54d925dad9381da61642addca579fbeea74c44cda9e9b47a45fc94308b38212f"
+    },
+    {
+      "path": "round5/global_sizefive_progress.txt",
+      "bytes": 8797,
+      "sha256": "28419c06f8df1de9e4cd80ef66d0308661f63c5ce19394918e2cd5de73024ec1"
+    },
+    {
+      "path": "round5/global_small_seed_certificates.py",
+      "bytes": 968,
+      "sha256": "54747f90e7405b2c364b840830abe023d0666ce1cdf2885ba77ac4b3281659d6"
+    },
+    {
+      "path": "round5/global_small_seed_potential.txt",
+      "bytes": 7673,
+      "sha256": "5089033cec4e082647fd809253cae65743c885efb7969a970bc0eb80b2ff6297"
+    },
+    {
+      "path": "round5/global_ten_eight_certificates.py",
+      "bytes": 1412,
+      "sha256": "dd07aea873712a6a117bfed76366be1df51cc7bf68717e40fa43b93a525a4d6d"
+    },
+    {
+      "path": "round5/global_ten_eight_proof.txt",
+      "bytes": 7348,
+      "sha256": "0c9bb099ae7224266698310ce9a5de7579d890d7c4de44821ced75af0bbd44e0"
+    },
+    {
+      "path": "round5/global_transfer_audit.txt",
+      "bytes": 3179,
+      "sha256": "8a0f318b8e97df273ac11016506c4242efeaeb07c98137e954288ee6117a2203"
+    },
+    {
+      "path": "round5/global_trianglefree_certificates.py",
+      "bytes": 2347,
+      "sha256": "b7416b26e68afb0c76e57bbc3598e66f789a710f18f0b1ab48d15ddefe2e3f4f"
+    },
+    {
+      "path": "round5/global_trianglefree_potential.txt",
+      "bytes": 8521,
+      "sha256": "43590a7e672fb4e74ec3579253fa6f9bd8d45540cbd7276a445b1de5a3990868"
+    },
+    {
+      "path": "round5/global_zero_layer_generic_theorem.txt",
+      "bytes": 7041,
+      "sha256": "8d6b68972b5f8095f048555deb18d565ecdb67e75fc015cd222b481bba85db24"
+    },
+    {
+      "path": "round5/matrix_final_dependency_audit.txt",
+      "bytes": 16239,
+      "sha256": "df177085c814e6858675385118fd93e414420a65df1200ef1ea781fa714f5da5"
+    },
+    {
+      "path": "round5/matrix_mixed3_strip_certificate.json",
+      "bytes": 11614,
+      "sha256": "cd3ccd72796b39901f9055dadf4cdaa30118a13da6f4bd9d37530b3647263571"
+    },
+    {
+      "path": "round5/matrix_mixed3_strip_proof.txt",
+      "bytes": 10205,
+      "sha256": "9ac96424b659b5d63ddd57e35baba6b8e697fa31d2158fb75c61986376d5b1d5"
+    },
+    {
+      "path": "round5/matrix_mixed3_strip_table.txt",
+      "bytes": 3232,
+      "sha256": "f4e28cad006e1f38e5d46a4d010a6971b46a97ce072326b3d12778fb9eb976fe"
+    },
+    {
+      "path": "round5/matrix_mixed3_strip_verify.py",
+      "bytes": 6650,
+      "sha256": "cf232931b078b931cbf1c64bf031885ceeaae6a77f1990138d1917b36d5d5250"
+    },
+    {
+      "path": "round5/matrix_mixed3_verify.py",
+      "bytes": 3159,
+      "sha256": "c7ce152773739b25166287ae3529df8cc047b57e44e31e1c5ab457858a6e43c4"
+    },
+    {
+      "path": "round5/matrix_nozero_remaining.txt",
+      "bytes": 6379,
+      "sha256": "99f0d8b1613f9a5cd9d41acf25f31a1c74ab6e76d130d94b5105560bbb89eec4"
+    },
+    {
+      "path": "round5/matrix_rank2_transfer_data.json",
+      "bytes": 68523,
+      "sha256": "8be0d121f5ecbdbd71b8ba6e4e2b4bf0049795c73eff3b552a181df3ac63224f"
+    },
+    {
+      "path": "round5/matrix_rank2_transfer_proof.txt",
+      "bytes": 11580,
+      "sha256": "ea380dee9bb7155265d659d34be3b50c0d4dae2e68a5a10a8525b2998b532603"
+    },
+    {
+      "path": "round5/matrix_rank2_transfer_table.txt",
+      "bytes": 528,
+      "sha256": "865a3c85d2783fb7a29e3d9d6825adc729ef5e842b828d40f9407d14827af764"
+    },
+    {
+      "path": "round5/matrix_rank2_transfer_verify.py",
+      "bytes": 4999,
+      "sha256": "7f796039b59ad5790f4b72fec832e5b69927de05ecbf8d1c53daf4a7fb014be2"
+    },
+    {
+      "path": "round5/matrix_size4_certificate.json",
+      "bytes": 35829,
+      "sha256": "bdf300e37767750065a436ad78250ec8ff617a6818bcc4c508a5b09b9b616f1a"
+    },
+    {
+      "path": "round5/matrix_size4_proof.txt",
+      "bytes": 8977,
+      "sha256": "cc1bacf50db7e78164d8288819bb48e926ff7ad8cfdfb6a99d225be9b5512d67"
+    },
+    {
+      "path": "round5/matrix_size4_table.txt",
+      "bytes": 2358,
+      "sha256": "0fa884f82226fba7faed32f444bf5ee7f918a99ded4cf33d53aa948c000b11b8"
+    },
+    {
+      "path": "round5/matrix_size4_verify.py",
+      "bytes": 6228,
+      "sha256": "5c06ecc947f98a09478fc6add85be5c7ffbfa238443ed97434b28c42b0199e78"
+    },
+    {
+      "path": "round5/matrix_size5_triangle_certificate.json",
+      "bytes": 88476,
+      "sha256": "f4bbdcf47781bc3e8406fa28e11a90c6b0f153b73f4541a75e2a456d658a90d2"
+    },
+    {
+      "path": "round5/matrix_size5_triangle_proof.txt",
+      "bytes": 6552,
+      "sha256": "967d800845aee25c97c790080a58c3fcdd6d10e9ecf7ae13f124fb40811ddb69"
+    },
+    {
+      "path": "round5/matrix_size5_triangle_table.txt",
+      "bytes": 1327,
+      "sha256": "2afb65a1f9851a09f11fd57ae6a82baad3642a98f50dc523fef72159d83a2d24"
+    },
+    {
+      "path": "round5/matrix_size5_triangle_verify.py",
+      "bytes": 6319,
+      "sha256": "6edc43e7e001ab32c85e1021a6737e210e4efae04da0b881b2335025bd6aa341"
+    },
+    {
+      "path": "round5/matrix_typeB_entropy_certificate.json",
+      "bytes": 728,
+      "sha256": "dfb7037b5f0f53ee85ef69f8df7526f4ad9b964112f8454fe316a583fe769bfc"
+    },
+    {
+      "path": "round5/matrix_typeB_entropy_proof.txt",
+      "bytes": 12756,
+      "sha256": "c9bcf4ac76e60da9a34e2cb758995dd112eccb1431822b59075697d524bdd849"
+    },
+    {
+      "path": "round5/matrix_typeB_entropy_verify.py",
+      "bytes": 6260,
+      "sha256": "e534ec8d636c494bb099bbeef602703e6edc36bb47af6f83a7677cc040e27af4"
+    },
+    {
+      "path": "round5/root_entropy_ac_proof.txt",
+      "bytes": 5620,
+      "sha256": "6b3475350844db18f50a143ae0fb233b6de51a6e14047e5343db2497ddd636dc"
+    },
+    {
+      "path": "round5/root_entropy_ac_verify.py",
+      "bytes": 1664,
+      "sha256": "7eb7a7d2b51e36995c6b1c6e6fe28cd8ce43db4cc02ce5699ae0aace7dec9bc0"
+    },
+    {
+      "path": "round5/verify_all.py",
+      "bytes": 2296,
+      "sha256": "437495d1604a40491d544fbf5761d31f498b1350474466f25d47cdc67120cea8"
+    },
+    {
+      "path": "round5/zero_eight_extension.txt",
+      "bytes": 2933,
+      "sha256": "c119133066dfa03f6e40d58f6e24854132fe7c9115df090b7b304341dcd1f1a4"
+    },
+    {
+      "path": "round5/zero_eight_potential_audit.txt",
+      "bytes": 10928,
+      "sha256": "3bb58538b473e8457687b96ea8a6f3c7cf467b65a55fdf51aacbf5b084a1e286"
+    },
+    {
+      "path": "round5/zero_entropy_ac_audit.py",
+      "bytes": 1484,
+      "sha256": "84a6a7f2af3955b8634877ebca7219c947da1d5ce813e85a4b76f582a149cbe5"
+    },
+    {
+      "path": "round5/zero_entropy_ac_audit.txt",
+      "bytes": 4207,
+      "sha256": "b36cff0293d9dd40b7a1cb2aa501c4eccc0b82a2229998f7cbacf8246a4a21d6"
+    },
+    {
+      "path": "round5/zero_entropy_b_audit.py",
+      "bytes": 1699,
+      "sha256": "ed0d9b27573274a52fd6b23bf99fa17aad2dc99035c0370a3e87383967fca5ff"
+    },
+    {
+      "path": "round5/zero_entropy_b_audit.txt",
+      "bytes": 6246,
+      "sha256": "764283b971a2d343453c769967ce09497f5a67b8a5370575a0b9159c175f5622"
+    },
+    {
+      "path": "round5/zero_final_bridge_audit.txt",
+      "bytes": 13186,
+      "sha256": "031d6bd47f37376b2df539a6769122923f81af02b9da434e395a6f7d492649f6"
+    },
+    {
+      "path": "round5/zero_pure_layer_theorem.txt",
+      "bytes": 4225,
+      "sha256": "d9fe138691b0a36901fa8c93b1343af5fb6973f8b31c70ca1e7d836ffec4301d"
+    },
+    {
+      "path": "round5/zero_sizefive_audit.txt",
+      "bytes": 2958,
+      "sha256": "deea6fefcb465e1c1dcac50384fc9b366c58b06149b76e408e1a4f78eb7698b2"
+    },
+    {
+      "path": "round5/zero_small_seed_audit.txt",
+      "bytes": 4542,
+      "sha256": "2a5521e5233a6265b88bbd398f98bcfbd6e70d073d4cd3a4f4a868fa6f4b4d74"
+    },
+    {
+      "path": "round5/zero_triple_proof.txt",
+      "bytes": 10177,
+      "sha256": "ba691bfe10d702b2eca1f5eb2c5d2a9dbaa8e9be6949410fc8e4ff0a4eae80ff"
+    },
+    {
+      "path": "round5/zero_verify_eight.py",
+      "bytes": 4931,
+      "sha256": "98615b021a5910b848192b1bf92098c75e66c4d18270510ac4a111ec43652a42"
+    },
+    {
+      "path": "round5/zero_verify_eight_extension.py",
+      "bytes": 913,
+      "sha256": "af5946c0d14c292aaa3f68c39324436beafcc76b3a7cee8d36e7417bade2d187"
+    },
+    {
+      "path": "round5/zero_verify_triple.py",
+      "bytes": 1075,
+      "sha256": "425d9e2056aa0a53543ae27e43826cdf7bf0ba968566a9775d381fe1da68acec"
+    }
+  ]
+}

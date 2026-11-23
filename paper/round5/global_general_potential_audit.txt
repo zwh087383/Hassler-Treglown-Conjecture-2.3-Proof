@@ -1,0 +1,189 @@
+ROUND 5: INDEPENDENT AUDIT OF THE GENERAL-GRAPH POTENTIAL
+Status: paper proof independently checked; exact rational-power certificates
+are in global_general_certificates.py. This is NOT a Lean verification and
+no claim of bibliographic novelty is made.
+
+Notation. m(G) is the number of maximal independent sets, n=|V(G)|,
+e=|E(G)|, and c=log_2(3)/3. All graphs are finite, simple, undirected.
+For beta>0 put
+    mu_beta(G)=(c+beta)n-beta e.
+The potential is additive over connected components.
+
+MASTER LEMMA.
+Let D>=4 be an integer and 0<beta<=1/25. Define
+    F_beta(d)=2^{-c+beta(d-1)}
+              +2^{-(d+1)c+beta(d^2-d-1)}.
+If F_beta(D)<=1, every graph with maximum degree at most D satisfies
+    m(G)<=2^{mu_beta(G)}.
+For every beta in this interval the same conclusion holds for all
+subcubic graphs, without any endpoint assumption. The following proof
+establishes this parameterized lemma; theorems A and B are corollaries.
+
+THEOREM A (maximum degree at most D, D>=10).
+For beta=27/[100(D-2)],
+    m(G) <= 2^{mu_beta(G)}.
+In particular, every D-regular graph, D>=10, satisfies
+    m(G) <= 2^{(c-27/200)n} < 3^{n/4}.
+
+THEOREM B (maximum degree at most D, D>=22).
+For beta=3/[8(D-2)],
+    m(G) <= 2^{mu_beta(G)}.
+If half the vertices have degree a=D and half have degree b with
+    D/2 <= b <= D,
+then
+    mu_beta(G)/n <= c - 9/64 + 3/[32(D-2)]
+                    <= c-87/640 < log_2(3)/4.
+
+THEOREM C (the exact target for two degree classes).
+Suppose half the vertices have degree a and half have degree b, where
+    a>=b>=10 and a<=2b-3.
+Then m(G)<=3^{n/4}.
+
+PROOF OF C FROM THE MASTER LEMMA.
+Fix the ORIGINAL two degrees a,b, set D=a, and fix
+    beta=c/(a+b-4).
+This beta is held fixed in every induced subgraph. No degree-class
+hypothesis is required for those smaller graphs, because the master
+lemma applies to every graph of maximum degree at most the fixed D.
+Since a+b-4>=16, beta<=c/16<1/25.
+The endpoint branch factor at D=a is
+    3^{-(b-3)/[3(a+b-4)]}
+      +3^{-[(a+1)(b-2)-1]/[3(a+b-4)]}.
+For fixed b let x=1/(a+b-4). The potential drops are
+    A=c(b-3)x,
+    B=c(b-2)-c[(b-2)(b-5)+1]x.
+Both are affine in x, so the sum of their negative exponentials is
+convex in x. As a ranges from b to 2b-3, it suffices to check a=b and
+a=2b-3.
+At a=b the drops are
+    A=c/2-c/[2(b-2)],
+    B=c(b+1)/2-c/[2(b-2)],
+both increasing with b>=10. At a=2b-3 they are
+    A=c(b-3)/(3b-7),
+    B=c[2b/3-4/9-1/(9(3b-7))],
+again both increasing with b. Therefore only the two pairs
+    (a,b)=(10,10), (17,10)
+need checking. At the first pair the two terms are less than 6/7,1/7;
+at the second they are less than 17/19,2/19. The exact certificates are
+    3^7*6^48>7^48, 3^87>7^48,
+    3^7*17^69>19^69, 3^143*2^69>19^69.
+Thus the fixed-beta master lemma applies. Finally e/n=(a+b)/4, whence
+    mu_beta(G)/n=c-beta(a+b-4)/4=3c/4=log_2(3)/4.
+This proves theorem C. Notice that the proof deliberately establishes
+the master bound for all induced subgraphs first; it does not assume
+that deletion preserves a two-degree profile.
+
+PROOF COMMON TO A AND B.
+We induct on n. All induced subgraphs use the same fixed beta, not a
+recomputed beta depending on their current maximum degree. Products over
+components allow us to work in a connected component when useful.
+The empty graph has m=1. An isolated vertex has m=1 and positive potential.
+An isolated K2 has m=2 and potential 2c+beta>1.
+
+Standard vertex branching gives
+    m(G) <= m(G-v)+m(G-N[v]).
+If v has maximum degree d, the number of edges incident with N[v] is
+    sum_{u in N(v)} deg(u) - e(G[N(v)]) <= d^2.
+Thus the potential drops are at least
+    A(d)=c-beta(d-1),
+    B(d)=(d+1)c-beta(d^2-d-1).
+Consequently it suffices that
+    F_beta(d)=2^{-A(d)}+2^{-B(d)} <= 1.
+As a real function of d, F_beta is convex: its first exponent is affine,
+its second exponent is a convex quadratic, and exponentiation preserves
+convexity for an increasing convex exponential. Hence on 4<=d<=D it
+suffices to check d=4 and d=D.
+
+For the master lemma beta<=1/25. At d=4,
+    A(4)>=c-3/25, B(4)>=5c-11/25.
+Exact certificates give 2^{-A(4)}<19/25 and 2^{-B(4)}<6/25.
+For the narrower beta<=27/800 range in theorems A and B, the stronger
+individual term bounds 3/4 and 1/4 also hold.
+
+For theorem A write gamma=27/100. At d=D,
+    A(D)=c-gamma-gamma/(D-2),
+    B(D)=(D+1)(c-gamma)-gamma/(D-2).
+Both increase with D>=10. At D=10 the terms are less than 6/7 and 1/7.
+The tight second inequality is exactly
+    3^8800 > 7^2400 * 2^7209.
+For theorem B the same formulas hold with gamma=3/8 and D>=22. At D=22
+the drops are c-63/160 and 23c-1383/160; their terms are less than
+911/1000 and 89/1000. This closes every case of current maximum degree>=4.
+
+LOW-DEGREE CASES (current maximum degree at most 3).
+All estimates below hold uniformly for 0<beta<=1/25.
+
+1. A non-isolated leaf v has a neighbor w of degree 2 or 3. Exactly
+    m(G)=m(G-{v,w})+m(G-N[w]).
+The first drop is >=2c-beta. The second is >=3c-beta: the sharper formula
+for deg(w)=d is (d+1)c-beta(2d-3), and d=3 is no worse because c>2beta.
+The two terms are <1/2 and <7/20. Therefore any subcubic graph containing
+such a leaf satisfies the strengthened bound
+    m(G)<(17/20) 2^{mu_beta(G)}.
+This strengthened assertion is only used in subcubic graphs.
+
+2. Suppose minimum degree is 2 and there is an edge vw with deg(v)=2,
+deg(w)=3. Let u be v's other neighbor. If deg_{G-w}(u)>=2, then G-w has
+the non-isolated leaf v and the preceding 17/20 factor applies. The
+delete-w drop is c-2beta and the closed-neighborhood drop is at least
+4c-4beta, since the sum of w's neighbors' degrees is at most 8.
+The resulting coefficient is less than
+    (17/20)(3/4)+13/50 < 19/20.
+The only other case is deg_G(u)=2 and uw is an edge. Then {u,v,w} is
+a pendant triangle: u and v have no external neighbors and w has one.
+Every MIS contains exactly one of u,v,w, giving the exact recurrence
+    m(G)=2m(G-{u,v,w})+m(G-N[w]).
+The potential drops are >=3c-beta and >=4c-2beta. Its coefficient is
+less than 2(7/20)+1/4=19/20.
+Thus any subcubic graph of minimum degree at least two with a 2--3 edge
+has the strengthened 19/20 bound. This is sufficient for step 3 below.
+
+3. A connected cubic graph other than K4 has, after deletion of any
+vertex v, a 2--3 edge. Otherwise N[v] would be a whole connected
+component with four vertices and degree three, hence K4.
+Apply the 19/20 bound to G-v. The drops are c-2beta and >=4c-5beta.
+The resulting coefficient is less than
+    (19/20)(3/4)+4/15=47/48<1.
+For K4 directly, m=4 and mu=4c-2beta>2.
+
+4. A connected 2-regular component is a cycle. It has e=n, so mu=cn,
+and Moon--Moser gives m<=3^{n/3}=2^{mu}. This includes triangles.
+Together with isolated vertices/edges, leaves, and mixed-degree
+components, this exhausts the subcubic cases. The induction is complete.
+
+COMPARISON CERTIFICATES.
+The regular-graph strict comparison in A is equivalent to
+    3^50 < 2^81.
+The worst two-degree comparison in B is equivalent to
+    3^160 < 2^261.
+All comparisons are strict and are checked by integer arithmetic.
+
+APPLICATION TO THE GENERAL GENERIC LINK COMPONENT.
+With z=|S_0|, P=S_1, Q=-S_4, a0=|S_0 union -S_0|, d0=|P union Q|,
+the generic component has half its vertices in each of two degree classes
+    a0+z+d0+|P|, a0+z+d0+|Q|.
+If z>=1, put alpha=a0+z>=3, m=max(|P|,|Q|), l=min(|P|,|Q|). The two
+degrees, ordered as a>=b, are a=alpha+d0+m and b=alpha+d0+l. Since
+d0>=m,
+    a-2b=-alpha-d0+m-2l<=-alpha<=-3,
+and
+    b>=a0+z+m+l=a0+|S|>=|S|+2.
+Here a0>=2 because the seed does not contain the zero group element and
+nonzero vectors in characteristic five are distinct from their negatives.
+Consequently every generic component with z>=1 and |S|>=8 satisfies
+theorem C. The no-zero-layer case has the stronger |S|>=7 cutoff in
+global_trianglefree_potential.txt.
+The exceptional finite core
+still needs the previously established bounded-rank/core argument;
+this statement alone does not erase that core or complete the original
+sum-free-set conjecture.
+
+ADDITIONAL AUDIT FOR ZERO-AGENT'S SPECIAL DEGREE-NINE GRAPH.
+The six low-degree inequalities in steps 1--3 remain valid for
+beta=19/500, since 19/500<1/25, as also confirmed directly by the exact
+certificate generator.
+The separate high-degree triangle-count argument must still be supplied
+by the zero agent. In an induced subgraph of a 9-regular parent graph,
+any vertex retaining degree 9 retains its entire original neighborhood
+and every original edge inside that neighborhood; this is a valid
+hereditary closure observation.

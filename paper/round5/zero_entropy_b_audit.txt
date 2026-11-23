@@ -1,0 +1,122 @@
+ROUND 5: INDEPENDENT AUDIT OF THE SEVEN-INPUT TYPE-B ENTROPY PROOF
+Result: the complete proof in matrix_typeB_entropy_proof.txt passed.
+The 16,384-term sum was independently reconstructed in
+zero_entropy_b_audit.py from bit-mask edge contributions, using Fraction.
+
+1. Geometry and the state map.
+For P={0,u},Q={v,w}, the right centers 0 and u see respectively
+  (Z_0,Z_{-u};Z_{-v},Z_{-w}),
+  (Z_0,Z_u;Z_{u-v},Z_{u-w}).
+Thus the common input is exactly Z_0 when the seven listed coordinates
+are distinct. In characteristic five, independent u,v,w ensure that
+distinctness. The graph automorphism L0_x<->R1_{-x}, L1_x<->R0_{-x}
+preserves each P,Q block and interchanges the union blocks. Together
+with translations it proves that every input and each swapped output
+has one common marginal law pi. No joint-distribution assumption is
+being silently used.
+
+For P-input state z, the covered-right mask is (0,1,3,3)[z]; for Q-input
+it is (0,3,2,3)[z]. OR of the masks followed by the map (3,1,2,0)
+gives the swapped right state. This reproduces formula (6) in the
+original proof exactly, including output three when all inputs vanish.
+
+2. Cancellation of the logarithmic weights.
+With the stated rational vectors c,a,b,g, the equality
+  c(s)*a(s)^2*b(s)^4=g(s)^2
+holds in each of the four states. Its sides equal 1,4/729,4/729,1/64.
+The logarithmic weight on the seven inputs and two outputs has
+expectation
+  E_pi[log c+2log a+4log b-2log g]=0.
+This requires only the nine single-state marginal laws, which were
+proved by the graph automorphisms. Independence is not required.
+
+3. Four conditional sums and the total.
+For fixed shared P-input s, the two triples of leaves factor in the
+partition sum. The exact conditional sums are
+  R_0=2629/72, R_1=775/24, R_2=R_3=125/8.
+The output mass accounting in the original proof is correct:
+  for s=0, output 3,1,2 have respective unweighted-input masses
+  1,1/3,7/9; for s=1, output 1 has mass 4/3.
+For s=2 or 3 the selected second P-bit blocks both right coordinates.
+It follows exactly that
+  sum_s c(s)R_s^2
+    =(2629/72)^2+(775/24)^2/4+2(125/8)^2
+    =43177189/20736
+    <45349632/20736=3^7.
+The independent enumeration agrees with the four-row expression.
+
+4. Entropy and the final exponent.
+For the actual seven-tuple distribution, Jensen/Gibbs gives
+  H(tuple)+E log weight <= log(partition sum).
+Summing over all 4^7 tuples is a valid upper bound even when many
+tuples never occur in an actual maximal independent set. The expectation
+term is zero by Section 2. The q translates of the seven-coordinate
+shape cover every left-pair coordinate exactly seven times. The
+chain-rule proof of the covering inequality in the original file is
+correct, so
+  log mis(Gamma) <= (q/7) H(tuple)
+                 <= (q/7) log(43177189/20736)
+                  < q log 3.
+
+The entropy theorem therefore rigorously settles every configuration
+with seven distinct shape coordinates. There is no floating-point
+premise, no computational MIS enumeration, and no hidden residual-graph
+induction in this argument.
+
+5. The subsequently supplied geometric completion: all affine ranks.
+Normalize P={0,u}, Q={v,w}, with the four elements distinct and u!=0.
+In characteristic five, a direct pairwise comparison shows that the
+seven coordinates fail to be distinct if and only if
+  v or w belongs to {-u,2u}, or w-v belongs to {u,-u}.
+All other possible equalities would force u=0, v=w, or one of v,w to
+equal 0 or u, which the normalization excludes.
+
+If w-v=+/-u, then Q=P+t for some t. With C_P the Boolean translation
+matrix, exact Boolean matrix multiplication gives
+  M(P,Q)=diag(C_P,C_P) M({0},{t}).
+For any bipartite matrix, the number of maximal independent sets equals
+the number of distinct unions of its rows. Every row union of a Boolean
+product AB is a row union of B. Thus the displayed factorization gives
+  mis M(P,Q)<=mis M({0},{t})<=3^q,
+using the proved two-permutation/even-prism theorem. This is a row-union
+inclusion, not a claim of general monotonicity under adding edges.
+
+Otherwise suppose v is one of -u,2u; rename v,w if needed. Let
+L=span{u}. If the affine rank is at least two, w lies outside L, since
+0,u,v already lie in L. Swap P and Q, then translate by -v. The new
+parameters are
+  u'=w-v outside L, v'=-v in L\{0}, w'=u-v in L\{0}.
+Neither v' nor w' can equal -u' or 2u', and w'-v'=u cannot equal
+u' or -u'. Hence the new seven-coordinate shape has no collision.
+The entropy theorem applies to the relabeled isomorphic graph.
+
+Finally, if the affine rank is one, work on the five-element span.
+The bipartite graph has ten vertices on each side and every row
+neighborhood has exactly six elements. There is one empty row union.
+A union of size six must equal one of the at most ten row neighborhoods.
+All unions of size at least seven contribute at most
+  binom(10,7)+binom(10,8)+binom(10,9)+binom(10,10)=176.
+Consequently mis<=1+10+176=187<243=3^5. Extra ambient coordinates
+give disjoint copies of this graph, so the inequality multiplies.
+
+These three cases prove the entire disjoint two-by-two type B on paper.
+The earlier rank-two DAG certificates are not needed as a logical
+dependency of this completed proof.
+
+6. Audit of the final self-contained Section 7 as saved by matrix.
+The final manuscript uses a unified 212 bound instead of the separate
+187 bound above and an earlier prism reference. This replacement is
+also correct and is fully self-contained. For a Gamma(P,Q) matrix on
+F_5, choose p in P and q in Q. The five blocks with left pair
+{L0_x,L1_x} and right pair {R0_{x+p},R1_{x+q}} form a C4 factor.
+For any independent set the number of occupied left blocks plus the
+number of occupied right blocks is at most five. Hence one side
+occupies at most two blocks, with at most
+  1+5*3+binom(5,2)*3^2=106
+choices for that side. Since an MIS is determined by either whole
+side, this yields at most 212<243 MISs. The right pairing need not be
+the natural same-coordinate pairing; this does not affect the count.
+This one paragraph applies both to the rank-one B matrix and to each
+order-five component of the two-seed Boolean factor. All of the final
+Section 7 is therefore independently approved without any old counting
+lemma or finite orbit enumeration as a dependency.

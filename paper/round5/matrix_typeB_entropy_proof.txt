@@ -1,0 +1,306 @@
+ROUND 5: A SEVEN-INPUT ENTROPY PROOF FOR THE LAST TYPE-B MATRIX
+
+Status: complete proof with a four-row rational certificate. The script
+matrix_typeB_entropy_verify.py checks all 16,384 local configurations
+independently of the four-row summation, and separately checks the
+rank-three graph automorphism and the seven-fold translated cover.
+No floating-point optimization is used in the theorem or its certificate.
+
+THEOREM.
+Let K be a finite abelian group of size q. Take
+  P={0,u}, Q={v,w},
+and suppose the following seven elements are distinct:
+  C={0,-u,u,-v,-w,u-v,u-w}.                                  (1)
+Let Gamma have left pairs L0_x,L1_x and right pairs R0_y,R1_y,
+x,y in K, with Boolean biadjacency matrix
+
+           [ C_(P union Q)     C_Q         ]
+           [ C_P              C_(P union Q)].
+
+Then
+
+  mis(Gamma) <= (43177189/20736)^(q/7) < 3^q.                 (2)
+
+In particular, (1) holds for K=F_5^3 with u,v,w independent, proving
+the rank-three type B: two disjoint translations of each color. The
+same proof applies in every larger ambient space, componentwise or
+directly whenever (1) holds. The theorem does not assert (1) for every
+rank-two or rank-one configuration.
+
+1. RANDOM MAXIMAL INDEPENDENT SETS AND PAIR STATES
+
+Choose a maximal independent set I uniformly from Gamma. Encode the
+selected bits in each left pair by
+  Z_x=1_{L0_x in I}+2*1_{L1_x in I} in {0,1,2,3}.
+
+The entire maximal independent set is determined by its left part:
+the selected right vertices are exactly the right vertices having no
+selected left neighbor. Consequently, using natural-log entropy,
+
+               H((Z_x)_{x in K})=log mis(Gamma).              (3)
+
+Every translation x->x+t of all four rows is a graph automorphism.
+Thus every Z_x has the same distribution, say pi, and all translates
+of the seven-tuple indexed by C have the same joint entropy.
+
+There is also an involutory graph automorphism
+
+  Phi(L0_x)=R1_{-x},    Phi(L1_x)=R0_{-x},
+  Phi(R0_x)=L1_{-x},    Phi(R1_x)=L0_{-x}.                    (4)
+
+For example, an L0_x--R1_y edge has y-x in Q; its image is
+L0_{-y}--R1_{-x}, whose difference is also y-x. The P block is checked
+the same way and the two union blocks are interchanged. Therefore
+the swapped right-pair state
+
+        Z'_y=1_{R1_y in I}+2*1_{R0_y in I}                    (5)
+
+also has distribution pi. This uses uniformity of I under graph
+automorphisms, not independence of any selected bits.
+
+2. THE LOCAL NOR MAP
+
+A P-neighbor with state z=x+2y covers right coordinate zero if x or y
+is one, and covers right coordinate one if y is one. A Q-neighbor
+covers right coordinate zero if x is one, and covers coordinate one
+if x or y is one. Maximality makes a right bit one exactly when that
+coordinate is not covered.
+
+For two P-input states p0,p1 and two Q-input states q0,q1 define
+
+ F(p0,p1;q0,q1)
+   = 1_{p0,p1 in {0,1} and q0=q1=0}
+     +2*1_{p0=p1=0 and q0,q1 in {0,2}}.                      (6)
+
+This is exactly the swapped right state in (5). In particular both
+indicators in (6) hold precisely when all four inputs are zero.
+
+Write the seven variables in (1) as
+  z0=Z_0,       z1=Z_{-u},    z2=Z_u,
+  z3=Z_{-v},    z4=Z_{-w},
+  z5=Z_{u-v},   z6=Z_{u-w}.
+
+The two right pairs at 0 and u have swapped states
+  f0=F(z0,z1;z3,z4),
+  f1=F(z0,z2;z5,z6).                                        (7)
+
+They share exactly the central P-input z0. All seven inputs, as well
+as f0 and f1, have marginal distribution pi. No assumption about their
+joint distribution will be required.
+
+3. AN ELEMENTARY WEIGHTED ENTROPY BOUND
+
+For a random variable X on a finite set and a positive function W,
+Jensen's inequality gives
+  H(X)+E log W(X) <= log sum_x W(x).                          (8)
+Indeed the left side is E log(W(X)/Pr[X]), at most the log of the
+sum of W on the support, which is at most the full sum. This proves
+the entropy inequality directly, including when some probabilities
+are zero.
+
+Use these positive rational weights, ordered by states 0,1,2,3:
+
+ central input: c=(1,1/4,1,1);
+ P-leaf input:  a=(1,1/3,2/3,1/2);
+ Q-leaf input:  b=(1,2/3,1/3,1/2);
+ right output: g=(1,2/27,2/27,1/8).
+
+The exact statewise balance identity is
+                       c(s)*a(s)^2*b(s)^4=g(s)^2             (9)
+for s=0,1,2,3. For states one and two both sides equal 4/729;
+for state three both sides equal 1/64; state zero is immediate.
+
+On all 4^7 possible seven-tuples define
+
+ W(z)= c(z0)a(z1)a(z2)b(z3)b(z4)b(z5)b(z6)
+                  /[g(f0)g(f1)],                            (10)
+
+where f0,f1 are computed by (7), whether or not the tuple occurs in
+an actual maximal independent set. All weights are strictly positive.
+Because all nine random states in (10) have the same marginal pi,
+equation (9) gives
+                         E log W(Z_C)=0.                    (11)
+Apply (8) to obtain
+                       H(Z_C)<=log mathcal_Z,
+where mathcal_Z=sum_{z in {0,1,2,3}^7} W(z).
+
+4. THE ENTIRE PARTITION SUM IN FOUR ROWS
+
+Fix the shared state z0=s. The two groups of three leaves in (7)
+separate completely in (10). Hence
+
+ mathcal_Z=sum_{s=0}^3 c(s) R_s^2,
+ R_s=sum_{p,q0,q1=0}^3 a(p)b(q0)b(q1)/g(F(s,p;q0,q1)).        (12)
+
+Each unconstrained triple of leaves has total weight
+  (sum a)*(sum b)^2=(5/2)^3=125/8.
+
+For s=0, the output-three part has weight 1, the output-one part has
+weight 1/3, and the output-two part has weight
+  (1+1/3)^2-1=7/9.
+The remaining mass gives output zero. Thus
+  R_0=125/8-1-1/3-7/9+8+(27/2)(1/3+7/9)=2629/72.
+
+For s=1, output one occurs exactly when p in {0,1} and q0=q1=0,
+of weight 4/3. All other inputs give output zero. Thus
+  R_1=125/8+(27/2-1)(4/3)=775/24.
+
+For s=2 or 3, the P-input s forces both indicators in (6) to vanish,
+so R_2=R_3=125/8. The certificate table is therefore
+
+          s       c(s)        R_s
+          0        1        2629/72
+          1       1/4        775/24
+          2        1         125/8
+          3        1         125/8.
+
+Substitution in (12) gives the exact value
+
+ mathcal_Z=(2629/72)^2+(1/4)(775/24)^2+2(125/8)^2
+          =43,177,189/20,736
+          <45,349,632/20,736
+          =2187=3^7.                                        (13)
+
+The supplementary verifier enumerates all 16,384 configurations in
+(10) using a separate direct adjacency/NOR routine and obtains the
+same rational number. The four-row computation itself proves (13).
+
+5. THE TRANSLATED ENTROPY COVER
+
+Consider the q translates C+t, t in K. Because (1) consists of seven
+distinct coordinates, every coordinate x in K occurs in exactly
+seven translates, counting translates with multiplicity.
+
+For completeness, the required entropy covering inequality follows
+directly from the chain rule. Order the coordinates of K. For any
+subset D,
+  H(Z_D)=sum_{x in D} H(Z_x | earlier coordinates in D)
+       >=sum_{x in D} H(Z_x | all earlier coordinates of K),
+since conditioning cannot increase entropy. Summing over all C+t
+counts the terms on the right seven times and gives
+
+    7 H((Z_x)_{x in K}) <= sum_{t in K} H(Z_{C+t}).             (14)
+
+Translation invariance makes every entropy on the right equal to
+H(Z_C). Combining (3), (11)--(14),
+
+ log mis(Gamma) <= (q/7) H(Z_C)
+                <= (q/7) log(43177189/20736)
+                 < q log 3.
+
+Exponentiating proves (2). No classification of maximal independent
+sets, numerical optimization, or asymptotic passage is needed in this
+local graph theorem.
+
+6. FILES AND SCOPE
+
+matrix_typeB_entropy_verify.py:
+  verifies (9), the direct NOR formula, both exact sums, the 500-vertex
+  inversion/swap automorphism, the seven distinct coordinates and the
+  exact seven-fold translated cover.
+matrix_typeB_entropy_certificate.json:
+  records all rational weights, the four conditional sums, the exact
+  partition constant and the rank-three coordinates.
+
+The theorem above already settles the rank-three generic type B. The
+next section removes the seven-distinct-coordinates hypothesis over
+F_5, without an affine-orbit enumeration or a large decision DAG.
+
+7. ALL TWO-BY-TWO DISJOINT COLOR SETS OVER F_5
+
+COROLLARY. Let K be any finite-dimensional F_5-vector space. If P,Q are
+disjoint two-element subsets of K, then mis Gamma(P,Q)<=3^{|K|}.
+
+Simultaneous translation of P,Q only relabels the right columns.
+Exchanging P,Q only swaps both left clone blocks and both right clone
+blocks. We may therefore write P={0,u}, Q={v,w}, with u!=0 and
+v,w distinct and outside {0,u}.
+
+COLLISION CLASSIFICATION. The seven coordinates in (1) fail to be
+distinct if and only if at least one of these events occurs:
+
+  v or w belongs to {-u,2u};                                (15)
+  w-v belongs to {u,-u}.                                    (16)
+
+Proof. The three coordinates 0,-u,u are distinct, and each pair
+{-v,u-v}, {-w,u-w} has two distinct entries. Neither pair contains
+zero, since v,w are outside {0,u}. Its possible intersections with
+{-u,u} are exactly v in {-u,2u} or w in {-u,2u}; the other equations
+would force v or w into {0,u}. Finally an intersection between the two
+two-element pairs gives v=w or w-v=+/-u. The first is excluded. This
+lists every possible pairwise collision and proves both directions.
+
+If (16) holds, Q is a translate of P. This parallel case is handled
+below by a Boolean factorization.
+
+Suppose (16) does not hold. If (15) also does not hold, the entropy
+theorem applies immediately. If (15) holds, rename the two Q elements
+so that v in {-u,2u}, and put L=span{u}. When w also lies in L, all
+four translations have rank one, a case treated below. Otherwise
+w is outside L. Exchange the colors and subtract v from both sets.
+The new normalized sets are
+
+      P_new={0,z}, z=w-v outside L,
+      Q_new={-v,u-v} subset L\{0}.                           (17)
+
+Since L intersects span{z} only in zero, neither new Q element can
+be -z or 2z. The difference of the two Q elements is u, which cannot
+be +z or -z. Thus neither (15) nor (16) holds for (17). Its seven
+coordinates are distinct, so the same entropy theorem applies.
+This covers every affine-rank-at-least-two nonparallel configuration.
+
+PARALLEL CASE: A GENERAL BOOLEAN FACTORIZATION LEMMA.
+For sets R,A,B in a finite abelian group, write R+A for their Minkowski
+sum. Boolean multiplication of Cayley matrices gives
+  C_R C_A=C_(R+A).
+Therefore
+
+ GammaMatrix(R+A,R+B)
+   =diag(C_R,C_R) GammaMatrix(A,B).                          (18)
+
+Here all products are Boolean OR/AND products. The row-union image of
+a Boolean product XY is contained in the row-union image of Y, since
+any row union has the form zXY=(zX)Y. The number of maximal independent
+sets of a bipartite graph equals the number of distinct row unions.
+Thus (18) implies
+
+ mis Gamma(R+A,R+B)<=mis Gamma(A,B).                         (19)
+
+For completeness, the row-union identity follows by taking a row-union
+U and the right set Y=R\U, then the maximal left set L\N(Y). This is
+an independent dominating set with right part Y. Conversely every
+maximal independent set has exactly these two parts for its row union.
+
+If Q=P+t, take R=P,A={0},B={t} in (19). This reduces the parallel
+case to Gamma({0},{t}). If t=0 the matrix has paired twin rows and the
+bound is immediate. If t!=0, it has order five, and the matrix splits
+into |K|/5 components indexed by cosets of span{t}, each with 20
+vertices. Each such component obeys the following small paper bound.
+
+RANK-ONE / TWENTY-VERTEX BOUND.
+Any Gamma(P,Q) on F_5 with nonempty P,Q has a perfect C4 factor:
+choose p in P,q in Q and, for each x, pair L0_x,L1_x with
+R0_(x+p),R1_(x+q). All four cross edges are present and the five
+blocks partition the vertices.
+
+For a maximal independent set, let a be the number of occupied left
+pairs and b the number of occupied right pairs. The C4 factor implies
+a+b<=5. If a<=2, its left part has at most
+  sum_{i=0}^2 binom(5,i)3^i=1+15+90=106
+possibilities. If a>=3, then b<=2 and its right part has at most 106
+possibilities. A maximal independent set is determined by either side,
+so altogether there are at most 212<243=3^5 possibilities.
+
+This proves the needed parallel bound by multiplication over the
+20-vertex components. The same argument handles the earlier rank-one
+case, because all four translations lie in L and again decompose into
+20-vertex components. All cases of the corollary are now proved.
+
+The classification uses only the explicit collision equations and the
+Boolean factorization, not a list of rank-two affine representatives.
+The optional verifier checks the collision criterion throughout
+F_5^3 and checks the Boolean factorization on a full rank-two model.
+
+As elsewhere, a generic-component estimate does not by itself remove
+the bounded-size exceptional core from the original sum-free-set
+problem. The corollary is the required full type-B matrix theorem.

@@ -1,0 +1,104 @@
+ALL SUM-FREE SEEDS WITH AT MOST ONE UNPAIRED ELEMENT
+==================================================
+This is a completed paper proof using the colored dominating-dissociation
+lemma proved independently in round4/colored_dd_proof.txt. It includes
+symmetric parts in all three external layers and arbitrary rank.
+
+Colored lemma used.
+Let R and Q be finite simple graphs on a common vertex set V. Suppose R
+is triangle-free. Count U subset V such that U is independent in Q,
+R[U] has maximum degree at most one, and U dominates R union Q. Then
+there are at most 3^(|V|/2) such U. If R and Q share edges, move them to Q
+only: the admissible U and union graph do not change.
+
+Theorem. Let G=F_5 x H, h=|H|, n=5h, B={2,3} x H. Let S be sum-free,
+S subset G\B, and suppose
+    S = T union {s},    T=-T.
+Then
+    mis(L_S[B]) <= 3^(h/2) = 3^(n/10).
+If s belongs to a nonzero external layer, the stronger bound
+    mis(L_S[B]) <= 3^((h-1)/2)
+holds. Consequently every external sum-free seed S with
+    |S\(-S)| <= 1
+satisfies the desired bound, by also invoking the already proved
+symmetric case when S=-S.
+
+Proof.
+The element s is outside T, and symmetry of T implies -s is outside T.
+In characteristic five, (1/2)s=3s=-2s. Expanding the loop set gives
+    Lambda = B intersect ((T+T) union (s+T) union -(s+T)
+                          union {2s,3s} union (1/2)T),
+where the irrelevant point 0 from S-S lies outside B. Hence Lambda=-Lambda.
+Every antipodal fiber
+    C_x={(2,x),(3,-x)},  x in H,
+is either entirely legal or entirely deleted. Let V subset H index the
+legal fibers.
+
+The T-generated graph has no edge within a legal fiber, since such an
+edge would give 2z in T and hence a loop at z. Between any two distinct
+legal fibers its edges are either complete or empty, because T=-T makes
+z and -z have identical outside neighborhoods. Let Q be the simple graph
+on V encoding the complete fiber-to-fiber edge sets.
+
+Case 1: s=(0,a).
+Here a is nonzero. Before loop deletion, put an oriented edge x -> x+a
+on H. This is a disjoint union of directed five-cycles. Restrict it to V;
+call the resulting underlying simple graph R. It is triangle-free, and
+each vertex has at most one incoming and one outgoing edge. Writing
+X_x=(2,x), Y_x=(3,-x), the s-edges over x -> x+a are exactly
+    X_x X_{x+a},  Y_x Y_{x+a},  Y_x X_{x+a}.
+The unique compatible pair across these two occupied fibers is
+    X_x, Y_{x+a}.                                               (1)
+
+For a maximal independent set I, define its support U by I intersects
+C_x exactly when x belongs to U. Q-independence of U is forced by complete
+fiber adjacency. If three consecutive R-fibers were occupied, (1) would
+force the middle fiber to contain Y and X respectively, a contradiction.
+Thus R[U] has maximum degree at most one. An isolated vertex of R[U]
+corresponds to a fully selected two-vertex fiber, since it has no selected
+Q- or R-neighbor to block the other vertex. Every edge of R[U] corresponds
+to the uniquely specified pair (1). Thus U determines I uniquely.
+An empty fiber with no occupied neighbor in R union Q would contain
+undominated vertices, so U dominates R union Q.
+
+For completeness, the converse also holds. Given such a U, take full
+fibers at isolated vertices and the compatible pair (1) at each edge.
+Independence is immediate. Each occupied fiber is dominated internally.
+An empty fiber with an occupied Q-neighbor is completely dominated.
+An occupied R-predecessor of an empty fiber is either a full fiber or
+the right end of its occupied R-edge, in which case its chosen Y-vertex
+is adjacent to both vertices of the empty fiber. Similarly an occupied
+R-successor is either full or uses its X-vertex, again dominating both.
+Thus the reconstructed set is maximal. This establishes an exact
+bijection with the sets counted by the colored lemma, and gives
+    mis(L_S[B]) <= 3^(|V|/2) <= 3^(h/2).
+
+Case 2: s has first coordinate 1 or 4.
+Negating if necessary and applying the shear (i,x) -> (i,x-i*b) for
+s=(1,b), we may assume s=(1,0). These automorphisms preserve B and T=-T.
+The fiber C_0 contains both forced loop vertices (2,0)=2s and (3,0)=3s,
+so 0 is not in V and |V|<=h-1.
+
+On each pair {x,-x} with x nonzero, the s-graph is the path
+    (2,x) -- (3,x) -- (3,-x) -- (2,-x),
+whose two bipartition classes are C_x and C_{-x}. It has exactly one
+missing cross edge. Thus after legal-fiber deletion the s-graph is
+represented by a matching R on V, each edge carrying a unique compatible
+pair of singleton choices. A fiber isolated in the occupied support
+must be chosen in full. An occupied edge of R uses its unique compatible
+pair. An empty fiber with an occupied R-neighbor has a fully selected
+neighbor fiber, because R is a matching, and is therefore fully dominated.
+The same support argument consequently gives a bijection with the sets
+counted by the colored lemma. Since R is triangle-free,
+    mis(L_S[B]) <= 3^(|V|/2) <= 3^((h-1)/2).
+This completes both cases. QED.
+
+Overlap and deletions.
+If a pair of fibers has both an R-edge and a Q-edge, the Q-edge makes
+simultaneous occupation impossible. Deleting that R-edge therefore
+changes neither R[U] for admissible U nor the domination graph R union Q.
+Loop deletion only removes complete fibers; in Case 1 it changes five-
+cycles into induced paths or isolated vertices, preserving all arguments.
+
+This theorem does not imply the main F_5^k counting conjecture: seeds
+with two or more unpaired elements under negation remain outside it.

@@ -1,0 +1,135 @@
+TWO UNPAIRED ELEMENTS IN OPPOSITE NONZERO LAYERS
+==============================================
+Status: complete paper proof using the colored dominating-dissociation
+lemma in round4/colored_dd_proof.txt. The reduction below was independently
+checked by round4_zero after being proposed by root.
+
+Setup. Let G=F_5 x H, where H is a finite vector space over F_5. Put
+h=|H|, n=5h, and B={2,3} x H. Let S subset G\B be sum-free and suppose
+    S=T union {s,t},   T=-T,
+    s=(1,b),   t=(4,c),   t != -s.
+For the intended two-defect case s,t are outside T. The proof below does
+not otherwise restrict the size, rank, or layer distribution of T.
+The condition t != -s is equivalent to c != -b.
+
+Theorem.
+    mis(L_S[B]) <= 3^((h-3)/2) <= 3^(h/2)=3^(n/10).
+In particular every external sum-free seed whose exactly two unpaired
+elements lie one each in layers 1 and 4 satisfies the target bound.
+
+1. All forbidden vertices are deleted in antipodal pairs.
+The link-graph loop set is
+    Lambda=B intersect ((S+S) union (S-S) union (1/2)S).
+Because T=-T, the terms involving T give the symmetric sets
+    T+T, (1/2)T, +/-(s+T), +/-(t+T).
+The remaining terms that can meet B are
+    {2s,-2s}, {2t,-2t}, {s-t,t-s},
+where (1/2)s=3s=-2s and (1/2)t=3t=-2t in characteristic five.
+The cross sum s+t has first coordinate zero and does not meet B; the
+zero arising from a self-difference is also outside B. Consequently
+    Lambda=-Lambda.
+
+As usual define antipodal fibers
+    C_x={X_x,Y_x},  X_x=(2,x),  Y_x=(3,-x),  x in H.
+Each is entirely legal or entirely deleted. Let V subset H index the
+legal fibers.
+
+There are at least three distinct deleted fibers:
+    C_{2b},   C_{3c},   C_{b-c}.
+Indeed their two points are respectively {2s,s/2}, {t/2,2t}, and
+{s-t,t-s}. These three indices are pairwise distinct. The equalities
+2b=3c, 2b=b-c, or 3c=b-c each imply c=-b in F_5, contradicting the
+hypothesis. Thus
+    |V| <= h-3.                                                (1)
+The hypotheses force h>=5, so this bound causes no small-order exception.
+
+2. The symmetric part gives uniform complete fiber adjacency.
+On distinct legal fibers, the T-generated link edges are all four edges
+or none: replacing a vertex z by -z exchanges sums and differences,
+while T=-T removes the sign. There are no edges inside a legal fiber,
+since an edge between z and -z would force 2z in T, making it a loop
+vertex. Let Q be the simple graph on V recording the complete pairs.
+
+3. The two defects give two differently constrained matchings.
+For s=(1,b), distinct fibers C_x,C_y interact exactly when
+    x+y=-b.
+The three s-generated edges between them are
+    X_x Y_y,   Y_x X_y,   Y_x Y_y.
+The unique compatible pair across these occupied fibers is therefore
+    X_x, X_y.                                                  (2)
+The map x -> -b-x is an involution. Its unique fixed point is x=2b,
+whose fiber was deleted. Hence these edges define a matching M_s on V.
+
+For t=(4,c), distinct fibers interact exactly when
+    x+y=c.
+The three t-generated edges between them are
+    X_x X_y,   X_x Y_y,   Y_x X_y.
+Their unique compatible pair is
+    Y_x, Y_y.                                                  (3)
+The involution x -> c-x has the unique fixed point x=3c, already deleted,
+so these edges define a second matching M_t on V.
+
+Since c != -b, M_s and M_t share no edge. More generally, two such
+three-edge patterns with different missing pairs would combine to a
+complete K_{2,2}, which belongs in Q. Remove from M_s union M_t all edges
+already in Q, and call the remaining graph R, retaining the labels s,t.
+Each vertex has at most one incident edge of either label. Thus R has
+maximum degree at most two, and all its cycles alternate the two labels.
+In particular R is triangle-free.
+
+The legal original graph is now completely described by Q and R:
+Q-edges give complete fiber adjacency, and each R-edge has the three
+edges described in (2) or (3). There are no other edges.
+
+4. Exact support correspondence.
+For a maximal independent set I in the legal graph, set
+    U={x in V: I intersects C_x}.
+Then U is independent in Q. If a vertex of R[U] had degree two, one
+incident edge would have label s and the other label t. The first would
+force its selected fiber to contain only X, by (2), and the second only
+Y, by (3). This is impossible. Hence
+    Delta(R[U]) <= 1.                                         (4)
+
+An isolated vertex of R[U] has no occupied R-neighbor and, by Q-
+independence, no occupied Q-neighbor. Both vertices of its fiber are
+compatible with all outside selections. Maximality therefore forces
+both to be selected. On a selected R-edge the singleton choices are
+uniquely prescribed by (2) or (3). Therefore U uniquely determines I.
+An empty fiber with no occupied neighbor in Q union R has undominated
+vertices. Thus U dominates Q union R.
+
+These statements already give the injection needed for the upper bound.
+In fact the converse also holds. Given a Q-independent U satisfying
+(4) and dominating Q union R, select both fiber vertices at isolated
+vertices of R[U]; use the X,X pair on each label-s edge and the Y,Y pair
+on each label-t edge. This is independent. Occupied fibers are internally
+dominated, because a missing partner on an occupied edge is adjacent
+to the selected vertex at its other end.
+
+Consider an empty fiber C_x. An occupied Q-neighbor dominates it in full.
+Otherwise choose an occupied R-neighbor y. If y is isolated in R[U],
+its full fiber is selected and dominates C_x. If y is paired in R[U],
+its other R-edge has the label opposite to xy, since there is at most
+one incident edge of each label. When xy has label s, the selected
+vertex at y is consequently Y_y, which is adjacent to both X_x and Y_x
+by the three-edge pattern in Section 3. When xy has label t, the selected
+vertex at y is X_y and likewise dominates both vertices of C_x. Every
+empty fiber is therefore dominated. This proves maximality and the
+exact support correspondence.
+
+5. Counting.
+The colored dominating-dissociation lemma applies because Q is arbitrary
+and R is triangle-free. It bounds the number of supports by 3^(|V|/2).
+Using (1),
+    mis(L_S[B]) = F(Q,R) <= 3^(|V|/2) <= 3^((h-3)/2).
+This completes the proof. QED.
+
+Scope and limitations.
+The theorem adds arbitrary symmetric backgrounds T to the previously
+known two-element opposite-layer pattern. It is not limited to T in
+the zero layer and introduces no exceptional core factor. It does not
+handle two unpaired elements both in layer 1 (or both in layer 4), nor
+a zero-layer unpaired element together with a nonzero-layer one. In
+those cases the two local compatibility patterns need not force the
+same support-degree restriction. When t=-s the whole seed is symmetric
+and the earlier, stronger symmetric theorem applies instead.

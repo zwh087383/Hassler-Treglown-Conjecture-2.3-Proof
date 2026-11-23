@@ -1,0 +1,134 @@
+{
+  "finite_checks_passed": true,
+  "checks_run": 18,
+  "checks_expected": 18,
+  "scope": "Exact finite certificates; not a formal verification of the paper proof.",
+  "results": [
+    {
+      "script": "global_general_certificates.py",
+      "exit_code": 0,
+      "sha256": "1f61500b03307eb898211c859437b3ebf8df8edbf7bef88e485ef5523ce1020b",
+      "stdout": "PASS master beta=1/25: leaf first\nPASS master beta=1/25: leaf second\nPASS master beta=1/25: degree-three deletion\nPASS master beta=1/25: mixed closed neighborhood\nPASS master beta=1/25: pendant triangle / K4\nPASS master beta=1/25: cubic closed neighborhood\nPASS master degree-four first\nPASS master degree-four second\nPASS master degree-four sum\nPASS degree-four first\nPASS degree-four second\nPASS D=10 first\nPASS D=10 second\nPASS beta=27/800: leaf first\nPASS beta=27/800: leaf second\nPASS beta=27/800: degree-three deletion\nPASS beta=27/800: mixed closed neighborhood\nPASS beta=27/800: pendant triangle / K4\nPASS beta=27/800: cubic closed neighborhood\nPASS leaf coefficient\nPASS mixed coefficient\nPASS pendant coefficient\nPASS cubic coefficient\nPASS regular exponent below target\nPASS D=22 beta allowed\nPASS D=22 first\nPASS D=22 second\nPASS D=22 coefficient\nPASS two-degree exponent below target\nPASS target-adapted beta allowed\nPASS target-adapted (10,10) first\nPASS target-adapted (10,10) second\nPASS target-adapted (17,10) first\nPASS target-adapted (17,10) second\nPASS special beta=19/500: leaf first\nPASS special beta=19/500: leaf second\nPASS special beta=19/500: degree-three deletion\nPASS special beta=19/500: mixed closed neighborhood\nPASS special beta=19/500: pendant triangle / K4\nPASS special beta=19/500: cubic closed neighborhood\n",
+      "stderr": ""
+    },
+    {
+      "script": "global_trianglefree_certificates.py",
+      "exit_code": 0,
+      "sha256": "b7416b26e68afb0c76e57bbc3598e66f789a710f18f0b1ab48d15ddefe2e3f4f",
+      "stdout": "PASS T1 leaf degree2 first\nPASS T1 leaf degree2 second\nPASS T1 leaf degree3 first\nPASS T1 leaf degree3 second\nPASS T1 mixed first\nPASS T1 mixed second\nPASS T1 cubic second\nPASS T1 cycle base4\nPASS T1 cycle base5\nPASS T1 cycle base6\nPASS T1 cycle growth\nPASS T1 degree4 first\nPASS T1 degree4 second\nPASS T1 degree10 first\nPASS T1 degree10 second\nPASS T2 degree4 first\nPASS T2 high first\nPASS T2 D12 x\nPASS T2 D12 y\nPASS T2 D12 z1\nPASS T2 D12 z2\nPASS two-degree target1\nPASS two-degree target2\nPASS leaf sum2\nPASS leaf sum3\nPASS mixed coefficient\nPASS cubic coefficient\nPASS D12 first refinement\nPASS D12 second refinement\nPASS D12 final coefficient\nPASS cycle transition identity\n",
+      "stderr": ""
+    },
+    {
+      "script": "global_small_seed_certificates.py",
+      "exit_code": 0,
+      "sha256": "54747f90e7405b2c364b840830abe023d0666ce1cdf2885ba77ac4b3281659d6",
+      "stdout": "PASS 2A beta allowed\nPASS 2A residual degree9 first\nPASS 2A residual degree9 second\nPASS 2A high-degree first\nPASS 2B beta allowed\nPASS 2B residual degree9 first\nPASS 2B residual degree9 second\nPASS 2B degree10 first\nPASS 2B degree10 second\nPASS degree-cap polynomial identities\n",
+      "stderr": ""
+    },
+    {
+      "script": "global_sizefive_certificates.py",
+      "exit_code": 0,
+      "sha256": "54d925dad9381da61642addca579fbeea74c44cda9e9b47a45fc94308b38212f",
+      "stdout": "PASS 9/6 and 9/7 exclude\nPASS 9/6 and 9/7 include\nPASS 9/6 worst exponent\nPASS nine-regular beta allowed\nPASS residual eight first\nPASS residual eight second\nPASS six neighborhood edges first\nPASS six neighborhood edges second\nPASS two low neighbors first\nPASS two low neighbors second\nPASS partner degree8 second\nPASS partner degree9 second\nPASS root include\nPASS partner degree8 sum\nPASS partner degree9 sum\nPASS root sum\n",
+      "stderr": ""
+    },
+    {
+      "script": "global_ten_eight_certificates.py",
+      "exit_code": 0,
+      "sha256": "dd07aea873712a6a117bfed76366be1df51cc7bf68717e40fa43b93a525a4d6d",
+      "stdout": "PASS beta allowed\nPASS residual max8 first\nPASS residual max8 second\nPASS residual max9 first\nPASS residual max9 second\nPASS strong deficit first\nPASS strong deficit second\nPASS partner exclude precise\nPASS partner include\nPASS positive deficit root include\nPASS root exclude\nPASS root include\nPASS partner exclude convenient\nPASS eta sum\nPASS partner sum\nPASS positive deficit coefficient\nPASS whole-graph coefficient\n",
+      "stderr": ""
+    },
+    {
+      "script": "zero_verify_eight.py",
+      "exit_code": 0,
+      "sha256": "98615b021a5910b848192b1bf92098c75e66c4d18270510ac4a111ec43652a42",
+      "stdout": "PASS: 23 exponential integer certificates\nPASS: rational branch sums, cycle estimates, and target comparison\nPASS: original link and four-row adjacency agree on all 100 vertices\nPASS: 50 vertices of each degree 7/8; 375 edges; each degree-8 vertex has exactly 3 degree-7 neighbors\nPASS: loop-free, triangle-free, and exact potential 1225/31\n",
+      "stderr": ""
+    },
+    {
+      "script": "zero_verify_eight_extension.py",
+      "exit_code": 0,
+      "sha256": "af5946c0d14c292aaa3f68c39324436beafcc76b3a7cee8d36e7417bade2d187",
+      "stdout": "PASS irregular_exclude\nPASS irregular_include\nPASS regular_all_excluded\nPASS regular_include_0\nPASS regular_include_1\nPASS regular_include_2\nPASS regular_include_3\nPASS four-stage coefficient < 499/500 and final target comparison\n",
+      "stderr": ""
+    },
+    {
+      "script": "zero_verify_triple.py",
+      "exit_code": 0,
+      "sha256": "425d9e2056aa0a53543ae27e43826cdf7bf0ba968566a9775d381fe1da68acec",
+      "stdout": "leaf_first PASS\nleaf_second PASS\nmixed_exclude PASS\nmixed_include PASS\npendant_include PASS\ntriangle_two_first PASS\ncubic_include PASS\ncubic_none PASS\ndegree4_exclude PASS\ndegree4_include PASS\ndegree8_exclude PASS\ndegree8_include PASS\ndegree9_exclude PASS\ndegree9_include PASS\nfinal_base PASS\nAll 15 strict integer certificates and all rational sums passed.\n",
+      "stderr": ""
+    },
+    {
+      "script": "global_rank1_verify.py",
+      "exit_code": 0,
+      "sha256": "b37c679acc38e83f7ccdc4de0767fb73f6993de8a86243fb6506bb818786a12a",
+      "stdout": "PASS 86_r2, depth=6: {0: 20, 4: 1, 7: 1, 8: 1, 13: 1}, upper=162<243\nPASS 86_r3, depth=6: {0: 20, 4: 1, 7: 1, 8: 1, 13: 1}, upper=162<243\nPASS 76_r2, depth=6: {0: 17, 2: 1, 3: 1, 6: 1, 8: 1, 14: 1}, upper=211<243\nPASS 76_r3, depth=6: {0: 22, 2: 2, 4: 3, 8: 2, 14: 1}, upper=236<243\nPASS 87_r3, depth=6: {0: 14, 2: 7, 3: 1, 7: 2, 14: 1}, upper=217<243\nPASS 88_r2, depth=6: {0: 14, 2: 5, 4: 1, 5: 1, 6: 1, 14: 1}, upper=205<243\nPASS same3_r2, depth=6: {0: 21, 2: 2, 4: 1, 5: 1, 9: 2, 13: 1}, upper=197<243\nPASS same3_r3, depth=6: {0: 20, 2: 3, 3: 1, 4: 1, 9: 2, 13: 1}, upper=195<243\nPASS opposite3_q1, depth=7: {0: 40, 2: 7, 4: 3, 6: 2, 7: 1, 8: 1, 13: 1}, upper=222<243\nPASS opposite3_q2, depth=7: {0: 42, 2: 2, 3: 5, 6: 2, 7: 1, 12: 1}, upper=172<243\nPASS opposite3_q3, depth=6: {0: 15, 3: 3, 6: 1, 8: 2, 14: 1}, upper=231<243\n",
+      "stderr": ""
+    },
+    {
+      "script": "matrix_rank2_transfer_verify.py",
+      "exit_code": 0,
+      "sha256": "7f796039b59ad5790f4b72fec832e5b69927de05ecbf8d1c53daf4a7fb014be2",
+      "stdout": "word multiplicity row_numerator orbit_numerator\n00000 1 35877 35877\n00011 5 34488 172440\n00022 5 10944 54720\n00111 5 35208 176040\n00122 5 13320 66600\n00221 5 13320 66600\n00222 5 8776 43880\n01111 5 36800 184000\n01122 5 14544 72720\n01221 5 16160 80800\n01222 5 10544 52720\n02211 5 14544 72720\n02221 5 10544 52720\n02222 5 8000 40000\n11111 1 39968 39968\n11122 5 18336 91680\n11222 5 13280 66400\n12222 5 10848 54240\n22222 1 8928 8928\nTOTAL 1433053\nFROBENIUS_SQUARED 1433053/32\nTHRESHOLD 1889568\nTRACE5 142457592583\nTARGET 847288609443\nPASS: both transition constructions agree entry by entry.\n",
+      "stderr": ""
+    },
+    {
+      "script": "matrix_mixed3_verify.py",
+      "exit_code": 0,
+      "sha256": "c7ce152773739b25166287ae3529df8cc047b57e44e31e1c5ab457858a6e43c4",
+      "stdout": "PASS same original adjacency, triangle-free, degree distribution [(5, 50), (7, 50)] and five identical interfaces\nPASS opposite original adjacency, triangle-free, degree distribution [(6, 100)] and five identical interfaces\n",
+      "stderr": ""
+    },
+    {
+      "script": "matrix_mixed3_strip_verify.py",
+      "exit_code": 0,
+      "sha256": "cf232931b078b931cbf1c64bf031885ceeaae6a77f1990138d1917b36d5d5250",
+      "stdout": "PASS opposite original adjacency, triangle-free, degree distribution [(6, 100)] and five identical interfaces\nPASS opposite 100-point link is isomorphic to the asserted ten-slice strip\nPASS opposite positive integer weight A^2 1 satisfies A w <= 8 w\nPASS opposite trace 178640785 <= 128849018880 < 847288609443\nPASS same original adjacency, triangle-free, degree distribution [(5, 50), (7, 50)] and five identical interfaces\nPASS same 100-point link is isomorphic to the asserted ten-slice strip\nPASS same positive integer weight A^2 1 satisfies A w <= 8 w\nPASS same trace 312606470 <= 112742891520 < 847288609443\n",
+      "stderr": ""
+    },
+    {
+      "script": "matrix_size5_triangle_verify.py",
+      "exit_code": 0,
+      "sha256": "6edc43e7e001ab32c85e1021a6737e210e4efae04da0b881b2335025bd6aa341",
+      "stdout": "PASS: original sum-free seed, no generic loops, 8-regular 100-point graph\nPASS: every neighborhood has three edges; exact ten-slice strip isomorphism\nPASS: 305/185 active states; 3885/480 one-step transitions\nPASS: positive integer weight B^2 1 satisfies B w <= 64 w\nPASS: exact trace 428140310 <= 198642237440 < 847288609443\n",
+      "stderr": ""
+    },
+    {
+      "script": "matrix_size4_verify.py",
+      "exit_code": 0,
+      "sha256": "5c06ecc947f98a09478fc6add85be5c7ffbfa238443ed97434b28c42b0199e78",
+      "stdout": "PASS nested original graph, exact strip isomorphism, degrees [(6, 50), (7, 50)]\nPASS nested states [100, 70] phase 1 lambda 40 trace 74668930 bound 7168000000 target 847288609443\nPASS triangle original graph, exact strip isomorphism, degrees [(7, 50), (8, 50)]\nPASS triangle states [295, 340] phase 0 lambda 65 trace 770498435 bound 342285734375 target 847288609443\nPASS twozero original graph, exact strip isomorphism, degrees [(6, 50), (8, 50)]\nPASS twozero states [75, 75] phase 0 lambda 36 trace 30758595 bound 4534963200 target 847288609443\n",
+      "stderr": ""
+    },
+    {
+      "script": "root_entropy_ac_verify.py",
+      "exit_code": 0,
+      "sha256": "7eb7a7d2b51e36995c6b1c6e6fe28cd8ce43db4cc02ce5699ae0aace7dec9bc0",
+      "stdout": "PASS A local counts [184, 7, 1, 1] weighted output sums ['571/16', '19', '8', '16'] Z = 1259/16 < 81\nPASS C local counts [188, 3, 1, 1] weighted output sums ['191/4', '10', '4', '8'] Z = 279/4 < 81\n",
+      "stderr": ""
+    },
+    {
+      "script": "matrix_typeB_entropy_verify.py",
+      "exit_code": 0,
+      "sha256": "e534ec8d636c494bb099bbeef602703e6edc36bb47af6f83a7677cc040e27af4",
+      "stdout": "PASS: all four exact statewise balance identities\nPASS: 256 direct NOR checks, 4-row factorization and 16,384-configuration sum\nPASS: Z=43177189/20736 < 2187=3^7\nPASS: seven distinct coordinates and exact 7-fold translated cover\nPASS: 500-vertex graph has the claimed side-swap/inversion automorphism\nPASS: complete 7,503-case collision audit and color-swap reduction\nPASS: Boolean parallel factorization and 212<3^5 paper constant\n",
+      "stderr": ""
+    },
+    {
+      "script": "zero_entropy_ac_audit.py",
+      "exit_code": 0,
+      "sha256": "84a6a7f2af3955b8634877ebca7219c947da1d5ce813e85a4b76f582a149cbe5",
+      "stdout": "PASS A: 193 allowed inputs, exact sum 1259/16 < 81\n  Output subtotals: {0: Fraction(571, 16), 1: Fraction(19, 1), 2: Fraction(8, 1), 3: Fraction(16, 1)}\nPASS C: 193 allowed inputs, exact sum 279/4 < 81\n  Output subtotals: {0: Fraction(191, 4), 1: Fraction(10, 1), 2: Fraction(4, 1), 3: Fraction(8, 1)}\n",
+      "stderr": ""
+    },
+    {
+      "script": "zero_entropy_b_audit.py",
+      "exit_code": 0,
+      "sha256": "ed0d9b27573274a52fd6b23bf99fa17aad2dc99035c0370a3e87383967fca5ff",
+      "stdout": "PASS statewise balance identities\nPASS four independent conditional sums: [Fraction(2629, 72), Fraction(775, 24), Fraction(125, 8), Fraction(125, 8)]\nPASS all 16,384 inputs: 43177189/20736 < 2187\n",
+      "stderr": ""
+    }
+  ]
+}

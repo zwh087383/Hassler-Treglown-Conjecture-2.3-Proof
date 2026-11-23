@@ -1,0 +1,86 @@
+ROUND 5: INDEPENDENT AUDIT OF THE FOUR-INPUT ENTROPY CERTIFICATES
+Status: full mathematical argument independently checked. The exact
+partition sums were recomputed from all 256 inputs using Fraction.
+This proves the two indicated Cayley matrix families in every rank.
+
+1. Exact graph and state conventions.
+Let K be a finite abelian group, |K|=q, and P,Q subsets of K with
+U=P union Q consisting of four distinct elements. The bipartite graph
+has vertices L0_x,L1_x,R0_x,R1_x for x in K, and edges
+  L0_x--R0_{x+u}, L1_x--R1_{x+u}             (u in U),
+  L1_x--R0_{x+p}                            (p in P),
+  L0_x--R1_{x+r}                            (r in Q).
+For a uniformly random maximal independent set I, put
+  Z_x = 1_{L0_x in I}+2*1_{L1_x in I},
+  W_y = 1_{R1_y in I}+2*1_{R0_y in I}.
+Thus W swaps the two ordinary right-side occupancy bits.
+
+I is uniquely determined by all Z_x: an unblocked right vertex must
+be selected by maximality. Consequently log mis(G)=H((Z_x)_{x in K}).
+At center y, the four inputs are Z_{y-u}, u in U. Let blocked-right
+bits be bit 1 for R0 and bit 2 for R1. The contribution of one input
+z=0,1,2,3 is given by
+  P-only: (0,1,3,3),
+  Q-only: (0,3,2,3),
+  common: (0,3,3,3).
+OR the four masks, then apply (0,1,2,3)->(3,1,2,0) to obtain W_y.
+This explicitly verifies the local function used in the certificate.
+
+2. The symmetry required for the entropy cancellation.
+Simultaneous translations of all indices are automorphisms. So is
+  L0_x <-> R1_{-x},  L1_x <-> R0_{-x}.
+Each of the four displayed edge classes is preserved by this latter
+map; in particular P and Q do not need to be interchanged. The uniform
+distribution on maximal independent sets is invariant under both maps.
+Hence Z_x and W_y have the same marginal distribution for every x,y.
+
+3. The support restriction has a direct pointwise proof.
+In both families below Q\P={r} is a singleton. Then
+  N(L0_x)\N(L1_x)={R0_{x+r}},
+  N(R1_y)\N(R0_y)={L1_{y-r}}.
+If Z_x=2, L1_x is selected and L0_x is unselected. All common neighbors
+are blocked by L1_x, so maximality forces R0_{x+r} to be selected. The
+vertex R1_{x+r} is blocked by L1_x, giving W_{x+r}=2. The converse
+follows from the second private-neighbor identity. Thus, for every MIS,
+  Z_x=2 if and only if W_{x+r}=2.
+At a right center y, W_y=2 is possible only if the unique Q-only input
+is 2 and all the other inputs are zero. Therefore every configuration
+whose Q-only input is 2 and some other input is nonzero is impossible.
+Exactly 63 of the 256 four-input strings are removed; 193 remain.
+This argument uses maximality and private neighbors, not merely an
+expectation comparison or a conjectured marginal identity.
+
+4. Shearer plus relative entropy.
+The q four-coordinate sets {y-u:u in U}, y in K, cover each coordinate
+exactly four times. Shearer's entropy inequality and translation
+invariance give
+  log mis(G) <= (q/4) H(Z_{y-u}:u in U).
+Choose a positive four-entry weight vector w_i for each of the four
+positions. If f(z_1,...,z_4) is the local output W_y, define
+  R(z)=product_i w_i(z_i)/w_i(f(z)),
+  B=sum_{z in allowed support} R(z).
+Because each Z_{y-u_i} has the same marginal distribution as W_y,
+  E log R = sum_i(E log w_i(Z_{y-u_i})-E log w_i(W_y))=0.
+The nonnegativity of relative entropy against the probability measure
+R/B on the allowed support gives H(local)+E log R<=log B. Therefore
+  mis(G) <= B^{q/4}.                                        (1)
+No independence between inputs is assumed anywhere in this argument.
+
+5. The exact two certificates.
+Family A: colors P,P,P,Q, with
+  w_P=(1,1/2,1/2,1/2),  w_Q=(1,1,1,1/2).
+The exact sum over the 193 allowed inputs is B_A=1259/16<81.
+The contributions for outputs W=3,0,2,1 are respectively
+  16, 571/16, 8, 19.
+
+Family C: colors common,P,P,Q, with
+  w_common=(1,1,1,1),
+  w_P=(1,1/2,1/2,1/2),  w_Q=(1,1/2,1,1/2).
+The exact sum is B_C=279/4<81.
+The corresponding output contributions are 8, 191/4, 4, 10.
+
+Equation (1) proves mis(G)<3^q in both cases. These are precisely
+  |P|=3,|Q|=1,P intersect Q empty,
+  |P|=3,|Q|=2,|P intersect Q|=1,
+without any restriction on the rank or additive relations of U.
+The arithmetic is independently checked in zero_entropy_ac_audit.py.

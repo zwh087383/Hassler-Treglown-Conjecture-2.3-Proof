@@ -1,0 +1,19 @@
+PASS global_general_certificates.py
+PASS global_trianglefree_certificates.py
+PASS global_small_seed_certificates.py
+PASS global_sizefive_certificates.py
+PASS global_ten_eight_certificates.py
+PASS zero_verify_eight.py
+PASS zero_verify_eight_extension.py
+PASS zero_verify_triple.py
+PASS global_rank1_verify.py
+PASS matrix_rank2_transfer_verify.py
+PASS matrix_mixed3_verify.py
+PASS matrix_mixed3_strip_verify.py
+PASS matrix_size5_triangle_verify.py
+PASS matrix_size4_verify.py
+PASS root_entropy_ac_verify.py
+PASS matrix_typeB_entropy_verify.py
+PASS zero_entropy_ac_audit.py
+PASS zero_entropy_b_audit.py
+ALL 18 FINITE CHECKS PASSED
